@@ -49,12 +49,12 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!--  Object  -->
 	<script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
-<script src='jquery.reel.js' type='text/javascript'></script>
+	<script src='jquery.reel.js' type='text/javascript'></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	
 	</head>
 	<body>
 		
@@ -90,13 +90,16 @@
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
-				<div class="col-md-7 col-md-push-5 text-left intro">
-					<h2> Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
+				<div class="col-md-7 col-md-push-5 text-left intro"  >
+					<h2  > Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
-				</div>
-				
+				</div>				
 			</div>
+
 			<div class="row">
+
+			<!-- CARD -->
+
 				<div class="col-md-4 text-center animate-box">
 					<a class="work" href="portfolio_detail.html">
 						<div class="work-grid" style="background-color: white">
@@ -108,6 +111,7 @@
 						</div>
 					</a>
 				</div>
+
 				<div class="col-md-4 text-center animate-box">
 					<a class="work" href="portfolio_detail.html">
 						<div class="work-grid" style="background-image:url(images/project-2.jpg);">
@@ -204,6 +208,9 @@
 						</div>
 					</a>
 				</div>
+			<!-- END CARD -->
+
+
 			</div>
 		</div>
 	</div>
