@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Silpakorn</title>
+	<title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -49,12 +49,12 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!--  Object  -->
 	<script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
-	<script src='jquery.reel.js' type='text/javascript'></script>
+<script src='jquery.reel.js' type='text/javascript'></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
+
 	</head>
 	<body>
 		
@@ -68,7 +68,7 @@
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
-						<!-- Link Menu Write here (Web)-->
+					<	<!-- Link Menu Write here (Web)-->
 					<li class="has-dropdown">
 						
 						<ul class="dropdown">
@@ -90,126 +90,34 @@
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro"  >
-					<h2  > Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
+				<div class="col-md-12 text-center intro">
+					<h2> Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
-				</div>				
+				</div>
+				
 			</div>
-
 			<div class="row">
-
-			<!-- CARD -->
-
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-color: white">
-							
-								<div class="desc" align="center">
-									<?php include 'Object.html'; ?>
-								</div>
-							
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-2.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Power Led Light</h3>
-									<span class="cat">Illustration</span>
-								</div>
+				<?php
+					include 'config.php';
+					mysqli_set_charset($conn, "utf8");
+					$sql = "SELECT * FROM `class2/2`";  
+        			$rs_result = mysqli_query($conn, $sql);  
+       				while($row = mysqli_fetch_array($rs_result)){
+       					?> 
+       						<div class="col-md-4 text-center animate-box">
+								<a class="work" href="portfolio_detail.html">
+									<div class="work-grid" style="background-color: white">
+										
+											<div class="desc" align="center" style="color: black;">
+												<?php echo $row["name"]; ?>
+											</div>
+										
+									</div>
+								</a>
 							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-3.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Elephant Origami</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-4.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Electric Kick Scooter</h3>
-									<span class="cat">Web Design</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-5.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Shark Diver</h3>
-									<span class="cat">Branding</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-6.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Objekte Unserer Tage Berlin</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-7.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Aloha Shirt</h3>
-									<span class="cat">Web Design</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-8.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Olafur Elliasson Waterfall Versailles</h3>
-									<span class="cat">Branding</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-9.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Hand Care</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			<!-- END CARD -->
-
+       					<?php
+       				}  
+				?>
 
 			</div>
 		</div>

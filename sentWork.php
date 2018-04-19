@@ -12,13 +12,6 @@
 	<!-- 
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
 
 	//////////////////////////////////////////////////////
 	 -->
@@ -54,6 +47,19 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+	.item{
+		width:200px;
+		text-align:center;
+		display:block;
+		background-color: transparent;
+		border: 1px solid transparent;
+		margin-right: 10px;
+		margin-bottom: 1px;
+		float:left;
+		}
+	
+	</style>
 	
 	</head>
 	<body>
@@ -79,6 +85,8 @@
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
+			
+
 				<ul class="fh5co-social">
 					
 					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
@@ -88,15 +96,24 @@
 	</nav>
 	
 	<div id="fh5co-work">
-		<div class="container">
-			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro"  >
-					<h2  > Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
-					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
-				</div>				
-			</div>
+			<div class="container">
+			<?php
+					include 'config.php';
+					mysqli_set_charset($conn, "utf8");
+					$sql = "SELECT * FROM `class2/2` ";  
+					$rs_result = mysqli_query($conn, $sql);  
+					
+					?>
+				<h3> <font face="verdana" > Name   LastName</font></h3>
+				<div class="item">
 
-			<div class="row">
+					<a href="#">
+					<img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
+					<h3> <font face="verdana" > upload </font></h3>
+					</a>
+				</div>
+					
+				<div class="row">
 
 			<!-- CARD -->
 
@@ -109,9 +126,7 @@
 	</div>
 	
 	
-	<footer id="fh5co-footer" role="contentinfo">
 
-	</footer>
 	</div>
 
 	<div class="gototop js-top">
