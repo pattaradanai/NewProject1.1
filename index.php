@@ -49,7 +49,7 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!--  Object  -->
 	<script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
-<script src='jquery.reel.js' type='text/javascript'></script>
+	<script src='jquery.reel.js' type='text/javascript'></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -68,7 +68,7 @@
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
-					<	<!-- Link Menu Write here (Web)-->
+						<!-- Link Menu Write here (Web)-->
 					<li class="has-dropdown">
 						
 						<ul class="dropdown">
