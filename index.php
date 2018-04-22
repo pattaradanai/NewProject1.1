@@ -1,4 +1,7 @@
 <!DOCTYPE HTML>
+<?php
+
+?>
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -68,7 +71,7 @@
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
-					<	<!-- Link Menu Write here (Web)-->
+						<!-- Link Menu Write here (Web)-->
 					<li class="has-dropdown">
 						
 						<ul class="dropdown">
@@ -91,7 +94,7 @@
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
-					<h2> Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
+					<h2> Welcome To  Student PortFolio <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				

@@ -27,11 +27,13 @@
 		else
 		{
 			$_SESSION["status"] = $objResult["status"];
-			if($_SESSION["status"] == "teacher")
+			$_SESSION["name"] = $objResult["username"];
+			
+			if($_SESSION["status"] == "0")
 			{
-				header("Location:listroom.php");
+				header("Location:sentWork.php");
 			}
-			else if ($_SESSION["status"] == "student")
+			else if ($_SESSION["status"] == "1")
 			{
 				header("Location:.php");
 			}

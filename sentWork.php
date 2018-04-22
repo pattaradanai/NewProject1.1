@@ -1,4 +1,12 @@
 <!DOCTYPE HTML>
+
+<?php
+include 'config.php';
+ 
+session_start();
+
+?>
+
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -47,16 +55,28 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- textarea comment box -->
+
+	
 	<style>
 	.item{
-		width:200px;
+		width:100px;
 		text-align:center;
 		display:block;
 		background-color: transparent;
 		border: 1px solid transparent;
-		margin-right: 10px;
+		margin-right: 0px;
+		padding : 20px;
 		margin-bottom: 1px;
 		float:left;
+		
+		}
+
+	 textarea{	
+		 	
+		 	margin-right : 20px ;
+    		color: black;
 		}
 	
 	</style>
@@ -66,64 +86,63 @@
 		
 	<div class="fh5co-loader"></div>
 	
-	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="container">
-			<div class="fh5co-top-logo">
-				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
-			</div>
-			<div class="fh5co-top-menu menu-1 text-center">
-				<ul>
-						<!-- Link Menu Write here (Web)-->
-					<li class="has-dropdown">
-						
-						<ul class="dropdown">
-							<!-- Link Menu Write here (mobile)-->
+		<div id="page">
+			<nav class="fh5co-nav" role="navigation">
+				<div class="container">
+					<div class="fh5co-top-logo">
+				
+						<div> <a href="index.php">Logout</a></div>
+					</div>
+					<div class="fh5co-top-menu menu-1 text-center">
+						<ul>
+								<!-- Link Menu Write here (Web)-->
+							<li class="has-dropdown">
+								
+								<ul class="dropdown">
+									<!-- Link Menu Write here (mobile)-->
+								</ul>
+							</li>
+							
 						</ul>
-					</li>
+					</div>
+					<div class="fh5co-top-social menu-1 text-right">
 					
-				</ul>
-			</div>
-			<div class="fh5co-top-social menu-1 text-right">
-			
 
-				<ul class="fh5co-social">
-					
-					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
-	<div id="fh5co-work">
-			<div class="container">
-			<?php
-					include 'config.php';
-					mysqli_set_charset($conn, "utf8");
-					$sql = "SELECT * FROM `class2/2` ";  
-					$rs_result = mysqli_query($conn, $sql);  
-					
-					?>
-				<h3> <font face="verdana" > Name   LastName</font></h3>
-				<div class="item">
-
-					<a href="#">
-					<img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
-					<h3> <font face="verdana" > upload </font></h3>
-					</a>
+						<ul class="fh5co-social">
+							
+							<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
+						</ul>
+					</div>
 				</div>
-					
-				<div class="row">
-
-			<!-- CARD -->
-
+			</nav>
 			
-			<!-- END CARD -->
+		
+				<div class="container">
+			
+					<div class="item">
+	<!-- run pi -- >
+						<a href="#">
+							<img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
+							<h3> <font face="verdana" > upload </font></h3>
+						</a>
 
+						
+					</div>
 
-			</div>
-		</div>
-	</div>
+				
+				</div>
+					<form action = "commentToDB.php" method="post" >
+						<div align="center" >				
+									<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
+									<br>
+									<div  align = "5px" ><button type="submit">Click Me!</button> </div>
+						</div>
+						
+					</form>
+				</div>
+				<!-- comment box -- >
+					
+		
 	
 	
 
@@ -144,7 +163,7 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<script $.reel.def.indicator = 5; </script>
 
 	</body>
 </html>
