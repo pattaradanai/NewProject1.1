@@ -4,6 +4,28 @@
 ?>
 <html>
 	<head>
+			<style>
+			.item{
+				width:100px;
+				text-align:center;
+				display:block;
+				background-color: transparent;
+				border: 1px solid transparent;
+				margin-right: 0px;
+				padding : 20px;
+				margin-bottom: 1px;
+				float:left;
+				
+				}
+
+			textarea{	
+					
+					margin-right : 20px ;
+					color: black;
+				}
+			
+			</style>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
@@ -36,6 +58,7 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
+	<meta charset='utf-8' content='text/html' http-equiv='Content-type' />
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
 	
@@ -52,7 +75,7 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!--  Object  -->
 	<script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
-<script src='jquery.reel.js' type='text/javascript'></script>
+	<script src='jquery.reel.js' type='text/javascript'></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -103,22 +126,44 @@
 				<?php
 					include 'config.php';
 					mysqli_set_charset($conn, "utf8");
-					$sql = "SELECT * FROM `class2/2`";  
-        			$rs_result = mysqli_query($conn, $sql);  
-       				while($row = mysqli_fetch_array($rs_result)){
-       					?> 
+					$sql = "SELECT `name` FROM `student` WHERE 1";  
+					$img = "SELECT `img`,studentid FROM `workdata` WHERE `imgno`='1'";
+					$rs_result = mysqli_query($conn, $sql);  
+						$imgstd =   mysqli_query($conn, $img);  
+       				while($row = mysqli_fetch_array($imgstd)){
+						//$imgName = "161110002";
+						$studentid = $row['studentid'];
+						$name = "SELECT `name` FROM `student` WHERE `stuid`='$studentid'";
+						$rs_name = mysqli_query($conn, $name);   
+						   while($row2 = mysqli_fetch_array($rs_name)){
+						
+						   ?> 
+						   
+						  
        						<div class="col-md-4 text-center animate-box">
-								<a class="work" href="portfolio_detail.html">
+								   	<!--  link to box-->
+								<a class="work" href="Object.php">
 									<div class="work-grid" style="background-color: white">
 										
 											<div class="desc" align="center" style="color: black;">
-												<?php echo $row["name"]; ?>
-											</div>
+												
+												<div class="item">
+													 <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row[0] ).'"  width="200" height="200" />'; ?> 
+													 <h3 align = 'center'> <font face="verdana" > <?php echo $row2['name'];?> </font></h3>
+													
+												</div>
+												
+											
+
+											</div> 
+											
+										
 										
 									</div>
 								</a>
 							</div>
-       					<?php
+						   <?php
+						   }
        				}  
 				?>
 

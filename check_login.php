@@ -31,7 +31,7 @@
 			
 			if($_SESSION["status"] == "0")
 			{
-				header("Location:sentWork.php");
+				header("Location:teacher.php");
 			}
 			else if ($_SESSION["status"] == "1")
 			{
