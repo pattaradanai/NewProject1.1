@@ -50,7 +50,7 @@
   <!-- Theme style  -->
   <link rel="stylesheet" href="css/style.css">
   <!-- Specified style-->
-  <link rel="stylesheet" href="css/teacher.css">
+  <link rel="stylesheet" href="css/teacher_editer.css">
 
   <!-- Modernizr JS -->
   <script src="js/modernizr-2.6.2.min.js"></script>
@@ -101,37 +101,61 @@
     <div class="contentBox">
       <?php include 'add_teacher_name.php' ?>
       <div style="margin-bottom: 5px;">
-      <form class="accform" action="acc_add_subject.php" method="POST">
-        <div>
-          <label for="subname">Subject: </label>
-          <input class="subinput" type="text" name="subname" placeholder="Subject name" required>  
-        </div>
-        <div>
-          <label for="year">Year: </label>
-          <input class="subinput" type="text" name="year" placeholder="Year" required>  
-        </div>
-        <div>
-          <label for="term">Term: </label>
-          <input class="subinput" type="text" name="term" placeholder="Term" required>  
-        </div>
-        <div>
-          <label for="term">Section: </label>
-          <input class="subinput" type="text" name="section" placeholder="Section" required>  
-        </div>
-        <div>
-          <label for="year1-6">Year1-6: </label>
-          <input class="subinput" type="text" name="year1-6" placeholder="Year1-6" required>  
-        </div>
-        <div class="createacc">
-          <button type"submit">
-            Add Subject
-          </button>
-        </div>
-      </from>
+      
       </div>
-      <?php
+      <div class='tablv1'>
+        <input class='input_tablv1' id='tabno-lv1' type='checkbox' name='panel' />
+        <label class='label-tablv1' for='tabno-lv1'>asd</label>
+        <div class='edit_box'>
+          <form class="work_form" action="" method="POST">
+            <div class='form_table'>
+              <table>
+              <tbody>
+                <tr>
+                  <th>Subject</th>
+                  <th>Score</th>
+                </tr>
+                <?php 
+                  echo "
+                  <tr>
+                    <td>
+                      <div>
+                        <p>Subject name</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <p>my score</P>  
+                      </div>
+                    </td>
+                  </tr>";
+                ?>
+                <tr>
+                  <td>
+                    <div>
+                      <input type="text" name="subject_name" placeholder="subject name" required>  
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input type="text" name="score" placeholder="score" required>  
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+          <div class="createacc">
+            <button type"submit">
+              Add Subject
+            </button>
+          </div>
+          </from>
+        </div>
+      </div>
+      <!-- <?php
         include 'generate_acc_teacher.php';
-      ?> 
+      ?>  -->
   </div>
   <footer id="fh5co-footer" role="contentinfo">
 

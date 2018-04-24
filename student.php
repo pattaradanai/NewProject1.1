@@ -50,7 +50,7 @@
   <!-- Theme style  -->
   <link rel="stylesheet" href="css/style.css">
   <!-- Specified style-->
-  <link rel="stylesheet" href="css/teacher.css">
+  <link rel="stylesheet" href="css/student.css">
 
   <!-- Modernizr JS -->
   <script src="js/modernizr-2.6.2.min.js"></script>
@@ -99,39 +99,8 @@
       </div>
     </nav>
     <div class="contentBox">
-      <?php include 'add_teacher_name.php' ?>
-      <div style="margin-bottom: 5px;">
-      <form class="accform" action="acc_add_subject.php" method="POST">
-        <div>
-          <label for="subname">Subject: </label>
-          <input class="subinput" type="text" name="subname" placeholder="Subject name" required>  
-        </div>
-        <div>
-          <label for="year">Year: </label>
-          <input class="subinput" type="text" name="year" placeholder="Year" required>  
-        </div>
-        <div>
-          <label for="term">Term: </label>
-          <input class="subinput" type="text" name="term" placeholder="Term" required>  
-        </div>
-        <div>
-          <label for="term">Section: </label>
-          <input class="subinput" type="text" name="section" placeholder="Section" required>  
-        </div>
-        <div>
-          <label for="year1-6">Year1-6: </label>
-          <input class="subinput" type="text" name="year1-6" placeholder="Year1-6" required>  
-        </div>
-        <div class="createacc">
-          <button type"submit">
-            Add Subject
-          </button>
-        </div>
-      </from>
-      </div>
-      <?php
-        include 'generate_acc_teacher.php';
-      ?> 
+    <?php include 'add_student_name.php';?>
+    <?php include 'generate_acc_student.php';?> 
   </div>
   <footer id="fh5co-footer" role="contentinfo">
 

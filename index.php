@@ -1,9 +1,36 @@
 <!DOCTYPE HTML>
+<?php 
+		session_start();
+		$_SESSION["status"] = "teacher";
+		$_SESSION["id"] = "101";
+		$_SESSION["sid"] = "61002";
+	?>
 <html>
 	<head>
+			<style>
+			.item{
+				width:100px;
+				text-align:center;
+				display:block;
+				background-color: transparent;
+				border: 1px solid transparent;
+				margin-right: 0px;
+				padding : 20px;
+				margin-bottom: 1px;
+				float:left;
+				
+				}
+			textarea{	
+					
+					margin-right : 20px ;
+					color: black;
+				}
+			
+			</style>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+	<title>Silpakorn</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -11,7 +38,6 @@
 
 	<!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -19,7 +45,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -33,6 +58,7 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
+	<meta charset='utf-8' content='text/html' http-equiv='Content-type' />
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
 	
@@ -90,120 +116,96 @@
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
-				<div class="col-md-7 col-md-push-5 text-left intro">
-					<h2> Welcome To PortFolio Student  <i class="icon-heart2"></i> </h2>
+				<div class="col-md-12 text-center intro">
+					<h2> Welcome To  Student Portfolio <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				
 			</div>
 			<div class="row">
+				<?php
+					include 'config.php';
+					$block_no = 1;
+					$temp_workid = 0;
+					$block_full = false;
+					$count = 1;
+					mysqli_set_charset($conn, "utf8");
+					// $sql = "SELECT `name` FROM `student` WHERE 1";  
+					// $rs_result = mysqli_query($conn, $sql);  
+
+					##### query lastest workid and display image no 1 for each student amount 12 image #####
+					$img = "SELECT DISTINCT 'workid' FROM `workdata` WHERE `imgno`='1' ORDER BY `workid` DESC";
+					$imgstd = mysqli_query($conn, $img);  
+       				while($workid = $imgstd -> fetch_assoc()){
+						//$imgName = "161110002";
+						// while($row2 = mysqli_fetch_array($rs_name)){
+							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
+						$img = "SELECT * FROM `workdata` WHERE `workid`={$workid['workid']} AND `imgno`='1' ORDER BY `workid` DESC";
+						$imgstd = mysqli_query($conn, $img);
+						while($row = $imgstd -> fetch_assoc()){
+							// while($block_no<12){
+							$studentid = $row['studentid'];
+							$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+							$name = mysqli_query($conn, $sql);
+								// session_write_close();
+						
+				?> 
 				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-color: white">
-							
-								<div class="desc" align="center">
-									<?php include 'Object.html'; ?>
+					<!--  link to box-->
+					<!-- <a class='work' href='showstudent.php?<?php echo "data=$studentid"; ?>' name='studentid_form_index'> -->
+					<a class='work' href='showstudent.php
+						<?php 
+							$_SESSION['subjectid_form_index'] = $row['subjectid'];
+							$_SESSION['workid_form_index'] = $row['workid'];
+							$_SESSION['studentid_form_index'] = $studentid;
+						?>' name='studentid_form_index'>
+					<div class="work-grid" style="background-color: white">
+						<div class="desc" align="center" style="color: black;">
+							<div class="item">
+							<?php 
+								echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
+							?> 
+								<h3 align = 'center'> 
+									<font face="verdana" > 
+									<?php 
+									while($name_data = $name -> fetch_assoc()){
+										echo $name_data['name']." ".$name_data['surname'];
+										$_SESSION['studentid_no_1'] = $studentid;
+										$count++;
+										break;
+									}
+									?> 
+									</font>
+								</h3>
 								</div>
-							
+							</div> 
 						</div>
 					</a>
 				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-2.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Power Led Light</h3>
-									<span class="cat">Illustration</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-3.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Elephant Origami</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-4.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Electric Kick Scooter</h3>
-									<span class="cat">Web Design</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-5.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Shark Diver</h3>
-									<span class="cat">Branding</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-6.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Objekte Unserer Tage Berlin</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-7.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Aloha Shirt</h3>
-									<span class="cat">Web Design</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-8.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Olafur Elliasson Waterfall Versailles</h3>
-									<span class="cat">Branding</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-9.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Hand Care</h3>
-									<span class="cat">Logo</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
+				<?php
+							if($temp_workid == 0 )
+							{
+								$temp_workid = $workid['workid'];
+							} else 
+							{
+								if($temp_workid == $workid['workid'])
+								{
+									$block_no++;
+								} else {
+									$temp_workid = $workid['workid'];
+									$block_no = 0;
+								}
+							}
+							if($block_no == 12)
+							{
+								$block_full = true;
+							}
+						}
+						if($block_full==true){
+							break;
+						}
+					}
+				?>
 			</div>
 		</div>
 	</div>
@@ -229,8 +231,7 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<!-- <script> $.reel.def.indicator = 5; </script> -->
 
 	</body>
 </html>
-
