@@ -4,6 +4,8 @@
 include 'config.php';
  
 session_start();
+
+
 ?>
 
 <html>
@@ -117,7 +119,17 @@ session_start();
                     <h3> <font face="verdana" > upload </font></h3>
                 </a>
             </div>
-        </div>
+		</div>
+		<?php
+			$workid = '161110002';
+			$studentid = '61002';
+			$imgno = '2';
+			$comment = "SELECT * FROM `workdata` WHERE `workid`='$workid' AND `imgno`='$imgno' AND studentid = '$studentid'";
+			$re_comment = mysqli_query($conn, $comment);
+			$row_comment = mysqli_fetch_array($re_comment);
+
+			if($row_comment["comment"] == "none comment"){
+		?>
         <form action = "commentToDB.php" method="post" >				
 
 				<div class="form-group">
@@ -146,7 +158,40 @@ session_start();
                         </div>
                 </div>
 				
-        </form>
+		</form>
+			<?php }
+			else{
+			?>
+				<form action = "commentToDB.php" method="post" >				
+
+					<div class="form-group">
+						<label class="control-label col-sm-5" align = 'right'>comment :</label>
+							<div class="col-sm-7" align = 'left'>
+												
+								<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
+
+							</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-5" align = 'right'>Point :</label>
+							<div class="col-sm-7" align = 'left'>
+												
+							<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
+
+							</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-5" align = 'right'></label>
+							<div class="col-sm-7" align = 'left'>
+												
+							<div  align = "5px" ><br><button type="submit">submit</button> </div>
+
+							</div>
+					</div>
+
+					</form>
+			<?php } ?>
 				<!-- comment box -- >
 			
 				
