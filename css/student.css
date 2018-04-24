@@ -70,6 +70,11 @@ h2 {
 /*
 accordion.js
 */
+.worklist ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
 .contentBox {
   /* background: rgb(56, 56, 56); */
   margin-right: 7%;
@@ -87,10 +92,6 @@ accordion.js
   width: 100%;
   color: snow;
   margin-bottom: 5px;
-}
-
-.tablv1 a {
-  color: snow;
 }
 
 .createSubBtn {

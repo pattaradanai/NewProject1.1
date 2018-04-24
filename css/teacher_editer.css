@@ -1,0 +1,138 @@
+.example {
+    font-size: 50px;
+    background-color: rgb(92, 179, 66);
+    color: tomato;
+  }
+
+body {
+  /*background: url("http://flashwallpapers.com/wp-content/uploads/2015/09/digital-nature-1600x900.jpg") no-repeat;*/
+  background-size: auto;
+}
+
+/*
+accordion.js
+*/
+.contentBox {
+  /* background: rgb(56, 56, 56); */
+  margin-right: 7%;
+  margin-left: 7%;
+  border-radius: 10px;
+  padding-right: 5%;
+  padding-left: 5%; 
+  padding-top: 5%;
+  padding-bottom: 100%;
+}
+
+.tablv1 {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: snow;
+  margin-bottom: 5px;
+}
+
+.tablv1 a {
+  color: snow;
+}
+
+.tablv1 .input_tablv1 {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tablv1 .label-tablv1 {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background-color: rgb(30, 30, 30);
+  box-shadow: 3px 3px 3px 0px rgb(17, 17, 17);
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.tablv1 .label-tablv1:hover {
+  background-color: rgb(17, 17, 17);
+}
+
+.edit_box {
+  max-height: 0;
+  overflow: hidden;
+  background-color: rgb(40, 40, 40);
+  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+  border-radius: 5px;
+}
+
+.tablv1 .label-tablv1 {
+  margin-bottom: 0;
+}
+
+/* :checked */
+.tablv1 input:checked ~ .edit_box {
+  max-height: fit-content;
+}
+.tablv1 input:checked ~ .label-tablv1 {
+  background-color: rgb(17, 17, 17);
+}
+
+/* Icon */
+.tablv1 .label-tablv1::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+
+.tablv1 input[type=checkbox] + .label-tablv1::after {
+  content: "\25BC";
+}
+
+.tablv1 input[type=checkbox]:checked + .label-tablv1::after {
+  transform: rotateX(180deg);
+}
+
+/* Create Accordion List */
+.accform .subjectname {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 29px 0;
+}
+
+.accform .subjectname .subinput {
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0 10px 0 10px;
+}
+
+/* Work Form */
+.form_table table, .form_table th, .form_table td{
+  border: none;
+}
+
+
+.work_form {
+    margin: 1em;
+}
+
+.work_form button {
+    color: black;
+}
