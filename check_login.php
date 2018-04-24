@@ -5,7 +5,6 @@
 	$sql = "SELECT * FROM user WHERE username = '".$_POST['uname']."' ";
 	$query = mysqli_query($conn,$sql);
 	$objResult = mysqli_fetch_array($query);
-
 	if(!$objResult)
 	{
 		echo '<script type="text/javascript">'; 
@@ -28,19 +27,19 @@
 		{
 			$_SESSION["status"] = $objResult["status"];
 			$_SESSION["name"] = $objResult["username"];
-			$_SESSION["stuid"] = $objResult["stuid"];
 			
 			if($_SESSION["status"] == "0")
 			{
+				$_SESSION["id"] = $objResult["id"];
 				header("Location:teacher.php");
 			}
 			else if ($_SESSION["status"] == "1")
 			{
+				$_SESSION["id"] = $objResult["id"];
 				header("Location:student.php");
 			}
 		}
 	}
-
 	session_write_close();
 	mysqli_close($conn);
 	

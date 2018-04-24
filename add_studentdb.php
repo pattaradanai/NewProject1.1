@@ -15,15 +15,15 @@
             // echo $class_no;
             if($no<10){
                 $student = "INSERT INTO `student` 
-                (`stuid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
+                (`studentid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
                 ('6100$no', 'student', '61no00$no', '{$class[$class_no]}', '{}', '', '{$age}')";
             } else if($no<100){
                 $student = "INSERT INTO `student` 
-                (`stuid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
+                (`studentid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
                 ('610$no', 'student', '61no0$no', '{$class[$class_no]}', '{}', '', '{$age}')";
             } else {
                 $student = "INSERT INTO `student` 
-                 (`stuid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
+                 (`studentid`, `name`, `surname`, `class`, `sex`, `no`, `age`) VALUES 
                 ('61$no', 'student', '61no$no', '{$class[$class_no]}', '{}', '', '{$age}')";        
             }
             // $query = mysqli_query($conn,$student);

@@ -9,7 +9,7 @@
     for($i=0; $i<32; $i++){
         $image = addslashes(file_get_contents('C:/Student Portfolio Project/image/bottle/tissue'.$seq.'.jpg'));
         // echo var_dump($image);
-        $sql = "INSERT INTO `workdata`(`workid`, `studentid`, `comment`, `score`, `img`, `imgno`) VALUE ('161110002', '61012', 'none comment', '70', '{$image}', $seq)";
+        $sql = "INSERT INTO `workdata`(`workid`, `subjectid`, `studentid`, `comment`, `score`, `img`, `imgno`) VALUE ('161110003', '1612101', '61012', 'none comment', '60', '{$image}', $seq)";
         // echo $sql;
         if(!mysqli_query($conn,$sql)){
             // echo "wrong";

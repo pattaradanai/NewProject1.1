@@ -4,7 +4,6 @@
 include 'config.php';
  
 session_start();
-
 ?>
 
 <html>
@@ -19,8 +18,6 @@ session_start();
 
 	<!-- 
 	//////////////////////////////////////////////////////
-
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -72,7 +69,6 @@ session_start();
 		float:left;
 		
 		}
-
 	 textarea{	
 		 	
 		 	margin-right : 20px ;
@@ -85,7 +81,6 @@ session_start();
 	<body>
 		
 	<div class="fh5co-loader"></div>
-	
 		<div id="page">
 			<nav class="fh5co-nav" role="navigation">
 				<div class="container">
@@ -115,34 +110,45 @@ session_start();
 					</div>
 				</div>
 			</nav>
-			
-		
-				<div class="container">
-			
+			<div class="container">
 			<!-- RUN HARDWHERE -->
-						<a href="#">
-							<img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
-							<h3> <font face="verdana" > upload </font></h3>
-							
-						</a>
+                <a href="run_hardware.php">
+                    <img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
+                    <h3> <font face="verdana" > upload </font></h3>
+                </a>
+            </div>
+        </div>
+        <form action = "commentToDB.php" method="post" >				
 
-						
-					</div>
+				<div class="form-group">
+                    <label class="control-label col-sm-5" align = 'right'>comment :</label>
+                        <div class="col-sm-7" align = 'left'>
+                                              
+                            <textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
 
-				
-					</div>
-						<form action = "commentToDB.php" method="post" >
-							<div align="center" >				
-										<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
-										<br>
-										<div  align = "5px" ><button type="submit">Click Me!</button> </div>
-							</div>
-							
-						</form>
-					</div>
+                        </div>
 				</div>
+				<div class="form-group">
+                    <label class="control-label col-sm-5" align = 'right'>Point :</label>
+                        <div class="col-sm-7" align = 'left'>
+                                              
+						<input type="number" name="quantity" min="0" max="100">
+
+                        </div>
+				</div>
+				
+				<div class="form-group">
+                    <label class="control-label col-sm-5" align = 'right'></label>
+                        <div class="col-sm-7" align = 'left'>
+                                              
+						<div  align = "5px" ><br><button type="submit">submit</button> </div>
+
+                        </div>
+                </div>
+				
+        </form>
 				<!-- comment box -- >
-			\
+			
 				
 
 	<div class="gototop js-top">
@@ -161,7 +167,5 @@ session_start();
 	<script src="js/main.js"></script>
 	<!-- Object -->
 	<script $.reel.def.indicator = 5; </script>
-
 	</body>
 </html>
-

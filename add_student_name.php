@@ -2,7 +2,7 @@
     session_start();
     include("config.php");
 
-    $sql = "SELECT * FROM student WHERE stuid = {$_SESSION["sid"]}";
+    $sql = "SELECT * FROM student WHERE studentid = {$_SESSION["sid"]}";
     $query = mysqli_query($conn, $sql);
     while($data = $query->fetch_assoc())
     {
