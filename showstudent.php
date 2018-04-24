@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+session_start();
 
 ?>
 <html>
@@ -123,38 +124,16 @@
 				
 			</div>
 			<div class="row">
-				<?php
-					include 'config.php';
-					mysqli_set_charset($conn, "utf8");
-					$sql = "SELECT `name` FROM `student` WHERE 1";  
-					$img = "SELECT `img`,studentid FROM `workdata` WHERE `imgno`='1'";
-					$rs_result = mysqli_query($conn, $sql);  
-						$imgstd =   mysqli_query($conn, $img);  
-       				while($row = mysqli_fetch_array($imgstd)){
-						//$imgName = "161110002";
-						$studentid = $row['studentid'];
-						$name = "SELECT `name` FROM `student` WHERE `studentid`='$studentid'";
-						$rs_name = mysqli_query($conn, $name);   
-						   while($row2 = mysqli_fetch_array($rs_name)){
-							$_SESSION["studentid"] = $row2['name'];
-							session_write_close();
-						
-						   ?> 
-						   
+			
 						  
        						<div class="col-md-4 text-center animate-box">
 								   	<!--  link to box-->
-								<a class="work" href="showstudent.php">
+								<a class="work" href="Object.php">
 									<div class="work-grid" style="background-color: white">
 										
 											<div class="desc" align="center" style="color: black;">
 												
-												<div class="item">
-													 <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row[0] ).'"  width="200" height="200" />'; ?> 
-													 <h3 align = 'center'> <font face="verdana" > <?php echo $row2['name'];?> </font></h3>
-													
-												</div>
-												
+											
 											
 
 											</div> 
@@ -164,10 +143,7 @@
 									</div>
 								</a>
 							</div>
-						   <?php
-						   }
-       				}  
-				?>
+					
 
 			</div>
 		</div>

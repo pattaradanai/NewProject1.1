@@ -119,34 +119,31 @@ session_start();
 		
 				<div class="container">
 			
-					<div class="item">
-	<!-- run pi -- >
+			<!-- RUN HARDWHERE -->
 						<a href="#">
 							<img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
 							<h3> <font face="verdana" > upload </font></h3>
+							
 						</a>
 
 						
 					</div>
 
 				
-				</div>
-					<form action = "commentToDB.php" method="post" >
-						<div align="center" >				
-									<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
-									<br>
-									<div  align = "5px" ><button type="submit">Click Me!</button> </div>
-						</div>
-						
-					</form>
+					</div>
+						<form action = "commentToDB.php" method="post" >
+							<div align="center" >				
+										<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
+										<br>
+										<div  align = "5px" ><button type="submit">Click Me!</button> </div>
+							</div>
+							
+						</form>
+					</div>
 				</div>
 				<!-- comment box -- >
-					
-		
-	
-	
-
-	</div>
+			\
+				
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

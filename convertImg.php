@@ -15,36 +15,40 @@
     
 
    while($idstu = mysqli_fetch_array($stu) ){
-                
-                $dir = "images/'$idstu[0]'";
+                 $idstu  =  (string)($idstu[0]);
+                $dir = 'images/'.$idstu;
+                echo   $idstu ;
+                echo ' ';
                 if( is_dir($dir) === false )
                 {
                     mkdir($dir);
                 } 
 
-        while($imageData = mysqli_fetch_array($data)){
+        while($imageData = $data -> fetch_assoc()){
             $count = 1;
             if($count > 9){
                      $countName = $count;
-                     
+                  
                     (String)$countName;
                     $nameimg = '0'.$countName;
-
-                    
+                    echo  $nameimg;
+                    $success = file_put_contents('C:/xampp/htdocs/NewProject1.2/images/'.$nameimg, $imageData['img']);
                     $count ++;
-                    $path = "C:/xampp/htdocs/NewProject1.2/images/".$nameimg;     
-                    echo $path;
-                     echo ' ';                             
-                    $success = file_put_contents($path, $imageData[0]);
-            $count++;
+                    echo ' ';
+                                           
+                    
+                    
         }  else{
                     $nameimg =  '00'.$count;
-                    (String)$nameimg;
                    
-                    $count ++;
+                  
+                    
                     $name = (String)$nameimg;
-                    $path = "C:/xampp/htdocs/NewProject1.2/images/".$nameimg;         
-                    $success = file_put_contents($path, $imageData[0]);
+                    echo   $name;
+                    echo ' ';
+                           
+                    $success = file_put_contents('C:/xampp/htdocs/NewProject1.2/images/'.$name, $imageData['img']);
+                    $count ++;
          
         }
     }

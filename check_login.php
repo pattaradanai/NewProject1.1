@@ -28,6 +28,7 @@
 		{
 			$_SESSION["status"] = $objResult["status"];
 			$_SESSION["name"] = $objResult["username"];
+			$_SESSION["stuid"] = $objResult["stuid"];
 			
 			if($_SESSION["status"] == "0")
 			{
@@ -35,7 +36,7 @@
 			}
 			else if ($_SESSION["status"] == "1")
 			{
-				header("Location:.php");
+				header("Location:student.php");
 			}
 		}
 	}
