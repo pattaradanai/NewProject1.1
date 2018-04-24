@@ -90,8 +90,13 @@ session_start();
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
-			<div class="fh5co-top-logo">
-				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
+			<div class="fh5co-top-logo" >
+				
+			
+				<a   id="fh5co-logo"  href="index.php">Home </a>
+				
+				<a style="margin-left:30px;" id="fh5co-logo" href="Login.html">Login</a>
+				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -118,34 +123,59 @@ session_start();
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
-					<h2> Welcome To  Student PortFolio <i class="icon-heart2"></i> </h2>
+
+					
+					<h1>  <?php  echo $_SESSION["test"];  ?>   <i class="icon-heart2"></i> </h1>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
+				<?php
+					$img = $_SESSION["image"];
+				
+					$img = (string)$img;
+					$src = 'images/'.$img.'/001.jpeg';
+					$src1 = 'images/'.$img.'/###.jpeg';
+
+				
+					
+				?>
 				
 			</div>
-			<div class="row">
-			
-						  
-       						<div class="col-md-4 text-center animate-box">
-								   	<!--  link to box-->
-								<a class="work" href="Object.php">
-									<div class="work-grid" style="background-color: white">
-										
-											<div class="desc" align="center" style="color: black;">
-												
-											
-											
+					<div  align = "center">
+					<?php echo "
+						<img src= $src width='200' height='200'
+						class='reel'
+						id='image'
+						data-images=$src1 
+						data-frames='32'
+						data-frame='32'
+						data-rows='2'
+						data-row='2'
+						data-speed='0.3'>
+						"
+						?>
+							<div class="reel-annotation"
+						id="last_row"
+						data-start="1"
+						data-end="32"
+						data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
+						data-y="2"
+						data-for="image">
+						
+						</div>
 
-											</div> 
-											
-										
-										
-									</div>
-								</a>
-							</div>
-					
+						<div class="reel-annotation"
+						id="first_row"
+						data-start="33"
+						data-end="64"
+						data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
+						data-y="33"
+						data-for="image">
+						
+						</div>
+													
+					</div>
 
-			</div>
+
 		</div>
 	</div>
 	
