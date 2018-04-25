@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-session_start();
+// session_start();
 include('config.php');
 ?>
 <html>
@@ -88,9 +88,7 @@ include('config.php');
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo" >
-				<a   id="fh5co-logo"  href="student.php">Back </a>
-				<a style="margin-left:30px;" id="fh5co-logo" href="index.php">Logout</a>
-				
+				<a   id="fh5co-logo"  href="index.php">Home </a>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -101,12 +99,10 @@ include('config.php');
 							<!-- Link Menu Write here (mobile)-->
 						</ul>
 					</li>
-					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					
 					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
 				</ul>
 			</div>
@@ -115,17 +111,16 @@ include('config.php');
 	
 	<div id="fh5co-work">
 		<div class="container">
-			<div >
+			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
 					<h1>  
                     <?php  
-                        $sql = "SELECT * FROM `student` WHERE `studentid`={$_GET['subjectid_from_index']}";
+                        $sql = "SELECT * FROM `student` WHERE `studentid`={$_GET['studentid_form_index']}";
                         $query = mysqli_query($conn, $sql);
                         while($student_name = $query -> fetch_assoc())
                         {
                             echo $student_name['name']." ".$student_name['surname'];
                         }
-                    
                     ?> 
                     </h1>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
@@ -134,18 +129,17 @@ include('config.php');
                     // $subjectid = $_SESSION['subjectid_form_index'];
                     // $workid = $_SESSION['workid_form_index'];
                     // $studentid = $_SESSION['studentid_form_index'];
-                    $subjectid = $_GET['subjectid_from_index'];
-                    $workid = $_GET['workid_from_index'];
-                    $studentid = $_GET['studentid_from_index'];
+                    $subjectid = $_GET['subjectid_form_index'];
+                    $workid = $_GET['workid_form_index'];
+                    $studentid = $_GET['studentid_form_index'];
                     $src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-					$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
-					
+                    $src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
                     // $src = "images/img_data/1612101/161110004/61002/001.jpg";
                     // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
 				?>
 			</div>
 			<div  align = "center">
-				<?php echo "
+					<?php echo "
 						<img src= $src width='200' height='200'
 						class='reel'
 						id='image'
@@ -156,7 +150,7 @@ include('config.php');
 						data-row='2'
 						data-speed='0.3'>
 						"
-				?>
+						?>
 				<div class="reel-annotation"
 						id="last_row"
 						data-start="1"
@@ -173,32 +167,16 @@ include('config.php');
 						data-y="33"
 						data-for="image">
 				</div>
-				<?php 
-					$imgno = '1';
-					$comment = "SELECT * FROM `workdata` WHERE `workid`='$workid' AND `imgno`='$imgno' AND studentid = '$studentid'";
-					$re_comment = mysqli_query($conn, $comment);
-					$row_comment = mysqli_fetch_array($re_comment);
-				?>
-				<form >
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'>comment :</label>
-						<div class="col-sm-7" align = 'left'>
-							<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'>Point :</label>
-						<div class="col-sm-7" align = 'left'>
-							<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'></label>
-						<div class="col-sm-7" align = 'left'>
-							<div align = "5px" ><br><button type="submit">submit</button> </div>
-						</div>
-					</div>
-				</form>						
+				<div style='margin-top: 4em '>
+					<a style='color: black'>Score: 
+						<?php  
+							$sql = "SELECT `score` FROM `workdata` WHERE `subjectid`='$subjectid' AND `workid`='$workid' AND `studentid`='$studentid' AND `imgno`='1'";
+							$query = mysqli_query($conn, $sql);
+							$score = $query -> fetch_all();
+							echo $score[0][0];
+						?>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

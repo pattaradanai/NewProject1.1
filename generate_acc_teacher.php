@@ -1,131 +1,160 @@
 <?php
     include("config.php");
-
-    $sql = "SELECT `subjectid` FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']} ORDER BY `subjectid` DESC";
-    $query = mysqli_query($conn,$sql);
+    ini_set('max_execution_time', 500);
+    /*
+    teacher name+surname
+    year+term+subject which that teacher teached
+    class?/? which learn that subject
+    work quantity in that subect
+    student no(in class?/?)+name+surname+workdata(in that subject)
+    */
     $tabno = 0;
     $subtabno = 0;
-    // if($query->num_rows > 0)
-    // {
-        while($data = $query->fetch_assoc())
+    $class_form = 0;
+    ##### year+term+subject which that teacher teached #####
+    # only subjectid #
+    $sql = "SELECT * FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']}";
+    $query_subjectid = mysqli_query($conn,$sql);
+
+    while($subjectid = $query_subjectid->fetch_assoc()){
+        
+        # subject data(include year,term,name) # class?/? which learn that subject #
+        $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
+        $query_subjectdata = mysqli_query($conn,$sql);
+        $temp_subjectdata = mysqli_fetch_array($query_subjectdata);
+
+        ##### add html #####
+        # add accordion lv1 with name #
+        echo "<div class='tablv1'>";
+        echo "<input class='input_tablv1' id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
+        echo "<label class='label-tablv1' for='tabno".$tabno."-lv1'>".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." ".$temp_subjectdata["name"]."</label>";  
+        # add accdion lv2 much as class#
+        
+        # re-query subject data #
+        $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
+        $query_subjectdata = mysqli_query($conn,$sql);
+        while($subjectdata = $query_subjectdata->fetch_assoc())
         {
-            // echo $data['teachesData'].":";
-            $sql2 = "SELECT `class` FROM `subject` WHERE `subjectid`= {$data['subjectid']}";
-            $query2 = mysqli_query($conn,$sql2);
-            echo "<div class='tablv1'>";
-            echo "<input id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
-            
-            $sql0 = "SELECT DISTINCT `year`,`term`,`name` FROM `subject` WHERE `subjectid`= {$data['subjectid']}";
-            $query0 = mysqli_query($conn,$sql0);
-            $objResult = mysqli_fetch_array($query0);
-            // echo var_dump($objResult);
-            echo "<label for='tabno".$tabno."-lv1'>".$objResult["year"]."/".$objResult["term"]." ".$objResult["name"]."</label>";  
-            
-            $subtabno = 0;
-            if($query2->num_rows > 0)
-            {
-                while($class = $query2->fetch_assoc())
-                {
-                    // echo $class['class']." ";
-                    $sql3 = "SELECT c.no, s.name, s.surname FROM `class{$class['class']}` c LEFT JOIN student s ON c.studentid = s.stuid";
-                    $query3 = mysqli_query($conn,$sql3);
-                    echo "<div class='tablv2'>";
-                    echo "<input id='tabno".$tabno."-lv2-".$subtabno."' type='checkbox' name='panel' />";
-                    echo "<label for='tabno".$tabno."-lv2-".$subtabno."'> Class ".$class['class']."</label>";
-                    echo "<div class='acctable'>
-                    <table>
-                    <tbody>";
-                    echo "<tr>
+            if(!$subjectdata['class']==null){
+                $workno = 1;
+                echo "<div class='tablv2'>";
+                if($class_form == 0){
+                    // $sql = "SELECT * FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']} ";
+                    // $query = mysqli_query($conn,$sql);
+                    // $temp_workdata = $query -> fetch_assoc();
+                    echo "<div>
+                    <form class='classform' action='teacher_add_new_class.php?subjectid={$temp_subjectdata['subjectid']}' method='POST'>
+                        <div>
+                            <label class='create_class_label' for='class' 
+                                style='cursor: unset;box-shadow: none;background-color: rgb(40, 40, 40);' >Class: <input class='classinput' type='text' name='class'  placeholder='Class?/?' required></label>
+                            <div class='createacc' style='color: black'>
+                            <button type'submit'>
+                                Add Class
+                            </button>
+                        </div>
+                        </div>
+                    </form>
+                    </div>";
+                    $class_form = 1;
+                }
+                echo "<input class='input_tablv2' id='tabno".$tabno."-lv2-".$subtabno."' type='checkbox' name='panel' />";
+                echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> Class ".$subjectdata['class']."</label>";
+                # create table header #
+                echo "<div class='acctable'>";
+                echo "<table>
+                    <tbody>
+                    <tr>
                         <th class='nocol' rowSpan='2'>No.</th>
                         <th rowSpan='2'>name</th>
                         <th colSpan='20'>work</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>";
-                    if($query3 == true)
-                    {
-                        while($student = $query3->fetch_assoc())
-                        {
-                            // echo $student["name"];
-                            echo "<tr>";
-                            echo "<td class='nocol'>{$student["no"]}</td>";
-                            echo "<td class='namecol'>{$student["name"]} {$student["surname"]}</td>";
-                            // echo var_dump($data['subjectid']);
-                            $sql11 = "SELECT `workid` FROM `work` WHERE `subjectid`='{$data['subjectid']}'";
-                            $query11 = mysqli_query($conn,$sql11);
-                            $sql12 = "SELECT `studentid` FROM `class{$class['class']}` WHERE `year`='{$objResult["year"]}' AND `term`='{$objResult["term"]}'";
-                            $query12 = mysqli_query($conn,$sql12);
-                            $work = $query11->fetch_assoc();
-
-                                // echo $sql;
-                                while($studentid = $query12->fetch_assoc())
-                                {
-                                    $sql = "SELECT * FROM `workdata` WHERE `workid`='{$work["workid"]}' AND `studentid`='{$studentid["studentid"]}'";
-                                    $query = mysqli_query($conn,$sql);
-                                    echo var_dump($studentid);
-                                    // echo var_dump($query);
-                                    if($query){
-                                        // echo var_dump($query);
-                                        while($checkwork = $query->fetch_assoc())
-                                        {
-                                            echo var_dump($checkwork);
-                                            echo "<td>";
-                                            echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' />";
-                                            echo "</td>";
-                                            // break;
-                                        }
-                                    } else {
-                                        echo "<td>";
-                                        echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' />";
-                                        echo "</td>";
-                                    }
-                                    // break;
-                                }
-                                // echo "<td>";
-                                // echo var_dump($work);
-                                // echo "</td>";
-                            
-                            echo "</tr>";
-                        }
-                    } else {}
-                    echo "
-                    </tbody>
-                    </table>
-                    </div>
-                    </div>";
-                    $subtabno++;
+                    </tr>
+                    <tr>";
+                # create work col much as work quantity #
+                $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                $query_work = mysqli_query($conn,$sql);
+                while($work = $query_work->fetch_assoc())
+                {
+                    echo "<td>$workno</td>";
+                    $workno++;
                 }
+                echo "</tr>"; # close header row #
+                # studentid + no in class #
+                $sql = "SELECT * FROM `class{$subjectdata['class']}`";
+                $query_studentid_no = mysqli_query($conn,$sql);
+                # add student row much as student quantity #
+                // $student_count = 0;
+                while($studentid_no = $query_studentid_no->fetch_assoc())
+                {
+                    # create student row #
+                    $sql = "SELECT * FROM `student` WHERE `studentid`='{$studentid_no['studentid']}'";
+                    $query_studentname = mysqli_query($conn,$sql);
+                    $studentname = $query_studentname->fetch_all();
+                    // echo var_dump($studentname[0])."------";
+                    echo "<tr>
+                    <td class='nocol'>{$studentid_no['no']}</td>
+                    <td class='namecol'>{$studentname[0][1]} {$studentname[0][2]}</td>";
+                    
+                    # create student work check #
+                    $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                    $query_check_work = mysqli_query($conn,$sql);
+                    $query_check_work_all = $query_check_work->fetch_all();
+                    // echo var_dump($query_work_all);
+                    if($query_check_work_all==null)
+                    {
+                        echo "<td> No Work Assign </td>";
+                    } else 
+                    {
+                        $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                        $query_work = mysqli_query($conn,$sql);
+                        while($work = $query_work->fetch_assoc()){
+                            # student work in that subject #
+                            $sql = "SELECT DISTINCT 'imgno' FROM `workdata` WHERE `studentid`='{$studentid_no['studentid']}' AND `subjectid`='{$subjectid['subjectid']}' AND `workid`='{$work['workid']}'";
+                            $query_studentworklist = mysqli_query($conn,$sql);
+                            $studentworklist = $query_studentworklist->fetch_all();
+                            // echo $studentid_no['studentid']."----".isset($studentworklist[0]);
+                            echo "<td>";
+                            if(isset($studentworklist[0])>0){
+                                echo "<a href='edit_work.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' /></a>";
+                            } else {
+                                echo "<a href='sentWork.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' /></a>";
+                            }
+                            echo "</td>";
+                        }
+                    }
+                    # close student row #
+                    echo "</tr>";
+                }
+                echo "</tbody>
+                    </table>
+                    </div>";
+                # close tablv2 #
+                echo "</div>";
+            } else 
+            {
+                echo "<div class='tablv2'>";
+                if($class_form == 0){
+                    echo "<div>
+                    <form class='classform' action='teacher_add_new_class.php?subjectid={$temp_subjectdata['subjectid']}' method='POST'>
+                        <div>
+                            <label class='create_class_label' for='class' 
+                                style='cursor: unset;box-shadow: none;background-color: rgb(40, 40, 40);' >Class: <input class='classinput' type='text' name='class'  placeholder='Class?/?' required></label>
+                            <div class='createacc' style='color: black'>
+                            <button type'submit'>
+                                Add Class
+                            </button>
+                        </div>
+                        </div>
+                    </form>
+                    </div>";
+                    $class_form = 1;
+                }
+                echo "</div>";
             }
-            echo "</div>";
-            $tabno++; 
+            $subtabno++;
         }
-    // }
-    // $tabno = 0;
-    // $subtabno = 0;
-    // if($query->num_rows > 0)
-    // {
-    //     while($data = $query->fetch_assoc())
-    //     {
-            // echo "<div class='tablv1'>";
-            // echo "<input id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
-            // echo "<label for='tabno".$tabno."-lv1'>subject01</label>";
-    //         if($query2->num_rows > 0)
-    //         {
-    //             while($data = $query2->fetch_assoc())
-    //             {
-                    // echo "<div class='tablv2'>";
-                    // echo "<input id='tabno".$tabno."-lv2-".$subtabno."' type='checkbox' name='panel' />";
-            
-    //             }
-    //         }
-
-    //         echo "</div>";
-    //         $tabno++;
-    //     }
-    // }
-    session_write_close();
-    mysqli_close($conn);
+        $class_form = 0;
+        $tabno++;
+        # close tablv1 #
+        echo "</div>"; 
+    }
 ?>

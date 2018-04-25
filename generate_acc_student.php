@@ -1,7 +1,9 @@
 <?php
+    // session_start();
     include("config.php");
-
-    $sql = "SELECT `subjectid` FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']} ORDER BY `subjectid` DESC";
+    // echo $_SESSION['id'];
+    // echo "<br>{$_SESSION['status']}";
+    $sql = "SELECT DISTINCT `subjectid` FROM `workdata` WHERE `studentid`= {$_SESSION['id']} ORDER BY `subjectid` DESC";
     $query = mysqli_query($conn,$sql);
     $tabno = 0;
     $subtabno = 0;
@@ -9,8 +11,8 @@
     // {
         while($data = $query->fetch_assoc())
         {
-            // echo $data['teachesData'].":";
-            $sql2 = "SELECT DISTINCT `workid` FROM `workdata` WHERE `studentid`= {$_SESSION['sid']}";
+            // echo $data['subjectid'].":";
+            $sql2 = "SELECT DISTINCT `workid` FROM `workdata` WHERE `studentid`= {$_SESSION['id']}";
             $query2 = mysqli_query($conn,$sql2);
             echo "<div class='tablv1'>";
             echo "<input id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
@@ -22,20 +24,20 @@
             echo "<label for='tabno".$tabno."-lv1'>".$objResult["year"]."/".$objResult["term"]." ".$objResult["name"]."</label>";  
             
             $subtabno = 0;
-            if($query2->num_rows > 0)
-            {
+            // if($query2->num_rows > 0)
+            // {
                 while($workid = $query2->fetch_assoc())
                 {
                     $sql3 = "SELECT * FROM `work` WHERE workid='{$workid["workid"]}'";
                     $query3 = mysqli_query($conn,$sql3);
-                    echo "<div class='tablv2'>";
-                    echo "<div class='worklist'>
-                    <ul>";
                     if($query3 == true)
                     {
                         while($work = $query3->fetch_assoc())
                         {
-                            echo "<li><a href=''> {$work['name']} </a></li>";
+                            echo "<div class='tablv2'>";
+                            echo "<div class='worklist'>
+                            <ul>";
+                            echo "<li><a href='show_work_student.php?subjectid_from_index={$data['subjectid']}&workid_from_index={$workid["workid"]}&studentid_from_index={$_SESSION['id']}'> {$work['name']} </a></li>";
                         }
                     } else {}
                     echo "
@@ -44,7 +46,7 @@
                     </div>";
                     $subtabno++;
                 }
-            }
+            // }
             echo "</div>";
             $tabno++; 
         }

@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+  <title>Student Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
   <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"
@@ -50,7 +50,7 @@
   <!-- Theme style  -->
   <link rel="stylesheet" href="css/style.css">
   <!-- Specified style-->
-  <link rel="stylesheet" href="css/student.css">
+  <link rel="stylesheet" href="css/teacher.css">
 
   <!-- Modernizr JS -->
   <script src="js/modernizr-2.6.2.min.js"></script>
@@ -72,8 +72,7 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-          <?php include 'add_student_name.php';?><br>
-            <a href="index.php">Logout</a>
+            <a href="Login.html">Login</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -100,17 +99,45 @@
       </div>
     </nav>
     <div class="contentBox">
-    <?php include 'generate_acc_student.php';?> 
+      <?php include 'add_teacher_name.php' ?>
+      <div>
+      <form class="accform" action="acc_add_subject.php" method="POST">
+        <div>
+          <label for="subname">Subject: </label>
+          <input class="subinput" type="text" name="subname" placeholder="Subject name" required>  
+        </div>
+        <div>
+          <label for="year">Year: </label>
+          <input class="subinput" type="text" name="year" placeholder="Year" required>  
+        </div>
+        <div>
+          <label for="term">Term: </label>
+          <input class="subinput" type="text" name="term" placeholder="Term" required>  
+        </div>
+        <div class="createacc">
+          <button type"submit">
+            Add Subject
+          </button>
+        </div>
+      </from>
+      </div>
+      <div>
+      <?php
+        include 'temp_gen_teacher_acc.php';
+      ?> 
+      </div>
+  
   </div>
-  <footer id="fh5co-footer" role="contentinfo">
 
-</footer>
+
   <div class="gototop js-top">
     <a href="#" class="js-gotop">
       <i class="icon-arrow-up"></i>
     </a>
   </div>
+  <footer id="fh5co-footer" role="contentinfo">
 
+</footer>
   <!-- jQuery -->
   <script src="js/jquery.min.js"></script>
   <!-- jQuery Easing -->

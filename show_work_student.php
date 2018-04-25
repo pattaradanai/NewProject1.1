@@ -178,27 +178,16 @@ include('config.php');
 					$comment = "SELECT * FROM `workdata` WHERE `workid`='$workid' AND `imgno`='$imgno' AND studentid = '$studentid'";
 					$re_comment = mysqli_query($conn, $comment);
 					$row_comment = mysqli_fetch_array($re_comment);
-				?>
-				<form >
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'>comment :</label>
-						<div class="col-sm-7" align = 'left'>
-							<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'>Point :</label>
-						<div class="col-sm-7" align = 'left'>
-							<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-5" align = 'right'></label>
-						<div class="col-sm-7" align = 'left'>
-							<div align = "5px" ><br><button type="submit">submit</button> </div>
-						</div>
-					</div>
-				</form>						
+                ?>
+                <div style='margin-top:4em;'>
+                    <div align='center'>
+                        <label  >comment :</label>
+                        <a ><?php echo $row_comment["comment"]; ?></a>
+                        <br>
+                        <label  >Point :</label>
+                        <a> <?php echo $row_comment["score"]; ?> </a>
+                    </div>	
+                </div>			
 			</div>
 		</div>
 	</div>

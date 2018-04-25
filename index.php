@@ -1,7 +1,10 @@
 <!DOCTYPE HTML>
-<?php
-
-?>
+<?php 
+		session_start();
+		// $_SESSION["status"] = "teacher";
+		// $_SESSION["id"] = "101";
+		// $_SESSION["sid"] = "61002";
+	?>
 <html>
 	<head>
 			<style>
@@ -17,7 +20,6 @@
 				float:left;
 				
 				}
-
 			textarea{	
 					
 					margin-right : 20px ;
@@ -36,7 +38,6 @@
 
 	<!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -44,7 +45,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -117,7 +117,7 @@
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
-					<h2> Welcome To  Student PortFolio <i class="icon-heart2"></i> </h2>
+					<h2> Welcome To  Student Portfolio <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				
@@ -125,50 +125,86 @@
 			<div class="row">
 				<?php
 					include 'config.php';
+					$block_no = 1;
+					$temp_workid = 0;
+					$block_full = false;
+					$count = 1;
 					mysqli_set_charset($conn, "utf8");
-					$sql = "SELECT `name` FROM `student` WHERE 1";  
-					$img = "SELECT `img`,studentid FROM `workdata` WHERE `imgno`='1'";
-					$rs_result = mysqli_query($conn, $sql);  
-						$imgstd =   mysqli_query($conn, $img);  
-       				while($row = mysqli_fetch_array($imgstd)){
+
+					##### query lastest workid and display image no 1 for each student amount 12 image #####
+					$img = "SELECT DISTINCT 'workid' FROM `workdata` WHERE `imgno`='1' ORDER BY `workid` DESC";
+					$imgstd = mysqli_query($conn, $img);  
+       				while($workid = $imgstd -> fetch_assoc()){
 						//$imgName = "161110002";
-						$studentid = $row['studentid'];
-						$name = "SELECT `name` FROM `student` WHERE `studentid`='$studentid'";
-						$rs_name = mysqli_query($conn, $name);   
-						   while($row2 = mysqli_fetch_array($rs_name)){
-							$_SESSION["studentid"] = $row2['name'];
-							session_write_close();
+						// while($row2 = mysqli_fetch_array($rs_name)){
+							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
+						$img = "SELECT * FROM `workdata` WHERE `workid`={$workid['workid']} AND `imgno`='1' ORDER BY `workid` DESC";
+						$imgstd = mysqli_query($conn, $img);
+						while($row = $imgstd -> fetch_assoc()){
+							// while($block_no<12){
+							$studentid = $row['studentid'];
+							$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+							$name = mysqli_query($conn, $sql);
+								// session_write_close();
 						
-						   ?> 
-						   
-						  
-       						<div class="col-md-4 text-center animate-box">
-								   	<!--  link to box-->
-								<a class="work" href="showstudent.php">
-									<div class="work-grid" style="background-color: white">
-										
-											<div class="desc" align="center" style="color: black;">
-												
-												<div class="item">
-													 <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row[0] ).'"  width="200" height="200" />'; ?> 
-													 <h3 align = 'center'> <font face="verdana" > <?php echo $row2['name'];?> </font></h3>
-													
-												</div>
-												
-											
-
-											</div> 
-											
-										
-										
-									</div>
-								</a>
-							</div>
-						   <?php
-						   }
-       				}  
+				?> 
+				<div class="col-md-4 text-center animate-box">
+					<!--  link to box-->
+					<a class='work' href='index_show_work.php?<?php echo "subjectid_form_index={$row['subjectid']}&workid_form_index={$row['workid']}&studentid_form_index=$studentid"; ?>' name='studentid_form_index'>
+					<!-- <a class='work' href="showstudent.php?subjectid_form_index=".$row['subjectid']."&workid_form_index=161110004&studentid_form_index=61002" name='studentid_form_index'> -->
+						<!-- <?php 
+							$_SESSION['subjectid_form_index'] = $row['subjectid'];
+							$_SESSION['workid_form_index'] = $row['workid'];
+							$_SESSION['studentid_form_index'] = $studentid;
+						?>'  -->
+					<div class="work-grid" style="background-color: white">
+						<div class="desc" align="center" style="color: black;">
+							<div class="item">
+							<?php 
+								echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
+							?> 
+								<h3 align = 'center'> 
+									<font face="verdana" > 
+									<?php 
+									while($name_data = $name -> fetch_assoc()){
+										echo $name_data['name']." ".$name_data['surname'];
+										$_SESSION['studentid_no_1'] = $studentid;
+										$count++;
+										break;
+									}
+									?> 
+									</font>
+								</h3>
+								</div>
+							</div> 
+						</div>
+					</a>
+				</div>
+				<?php
+							if($temp_workid == 0 )
+							{
+								$temp_workid = $workid['workid'];
+							} else 
+							{
+								if($temp_workid == $workid['workid'])
+								{
+									$block_no++;
+								} else {
+									$temp_workid = $workid['workid'];
+									$block_no = 0;
+								}
+							}
+							if($block_no == 12)
+							{
+								$block_full = true;
+							}
+						}
+						if($block_full==true){
+							break;
+						}
+					}
+					session_write_close();
 				?>
-
 			</div>
 		</div>
 	</div>
@@ -194,8 +230,7 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<!-- <script> $.reel.def.indicator = 5; </script> -->
 
 	</body>
 </html>
-
