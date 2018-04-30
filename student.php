@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-
+<?php include('is_login.php') ?>
 
 <html>
 
@@ -73,7 +73,7 @@
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
           <?php include 'add_student_name.php';?><br>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">

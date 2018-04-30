@@ -70,7 +70,7 @@
                     </tr>
                     <tr>";
                 # create work col much as work quantity #
-                $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
                 $query_work = mysqli_query($conn,$sql);
                 while($work = $query_work->fetch_assoc())
                 {
@@ -95,7 +95,7 @@
                     <td class='namecol'>{$studentname[0][1]} {$studentname[0][2]}</td>";
                     
                     # create student work check #
-                    $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                    $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
                     $query_check_work = mysqli_query($conn,$sql);
                     $query_check_work_all = $query_check_work->fetch_all();
                     // echo var_dump($query_work_all);
@@ -104,11 +104,11 @@
                         echo "<td> No Work Assign </td>";
                     } else 
                     {
-                        $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                        $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
                         $query_work = mysqli_query($conn,$sql);
                         while($work = $query_work->fetch_assoc()){
                             # student work in that subject #
-                            $sql = "SELECT DISTINCT 'imgno' FROM `workdata` WHERE `studentid`='{$studentid_no['studentid']}' AND `subjectid`='{$subjectid['subjectid']}' AND `workid`='{$work['workid']}'";
+                            $sql = "SELECT DISTINCT 'score' FROM `work_studentdata` WHERE `studentid`='{$studentid_no['studentid']}' AND `workid`='{$work['workid']}'";
                             $query_studentworklist = mysqli_query($conn,$sql);
                             $studentworklist = $query_studentworklist->fetch_all();
                             // echo $studentid_no['studentid']."----".isset($studentworklist[0]);
