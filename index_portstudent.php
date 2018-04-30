@@ -58,6 +58,24 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style> 
+		input[type=text] {
+			width: 200px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			background-position: 10px 10px; 
+			background-repeat: no-repeat;
+			padding: 12px 20px 12px 40px;
+			margin-right: 30px;
+			
+		}
+
+		
+	</style>
+
 	</head>
 	<body>
 		
@@ -89,6 +107,17 @@
 			</div>
 		</div>
 	</nav>
+		<div align = "right" >	
+		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
+	</div>
+
+		<div align = "right"  margin-right = "50px">	
+		<form>
+			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+			
+			<input type="text" name="search" placeholder="รหัสนักเรียน" >
+		</form>	
+	</div>
 	
 	<div id="fh5co-work">
 		<div class="container">

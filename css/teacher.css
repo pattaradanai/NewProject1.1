@@ -1,11 +1,72 @@
+.example {
+    font-size: 50px;
+    background-color: rgb(92, 179, 66);
+    color: tomato;
+  }
 
 body {
   /*background: url("http://flashwallpapers.com/wp-content/uploads/2015/09/digital-nature-1600x900.jpg") no-repeat;*/
   background-size: auto;
 }
-.btn-7{
-  
+
+.dropdown {
+  font-size: 20px;
+  cursor: pointer;
+  color: snow;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(30, 30, 30);
+  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
 }
+
+.dropdown:hover {
+  background-color: rgb(17, 17, 17);
+  background-clip: border-box;
+}
+
+.dropdown:hover .dropdownContent{
+  display: block;
+  visibility: visible;
+}
+
+.dropdown p {
+  padding: 8px 16px;
+}
+
+.dropdownContent {
+  list-style-type: none;
+  display: none;
+  visibility: hidden;
+  background-color: rgb(40, 40, 40);
+  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
+}
+
+.dropdown p, .dropdownContent p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.dropdownContent p:hover{
+  background-color: rgb(17, 17, 17);
+}
+
+h2 {
+  /* color: snow; */
+  color: black;
+}
+
+.backBtn {
+  position: relative;
+  color: black;
+  padding: 2px 15px 0 15px;
+  width: fit-content;
+  height: fit-content;
+  background-color: snow;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 /*
 accordion.js
 */
@@ -94,15 +155,14 @@ accordion.js
 }
 /* :checked */
 .tablv1 input:checked ~ .tablv2 {
-  max-height: fit-content;
-
+  max-height: 10em;
 }
 .tablv1 input:checked ~ label {
   background-color: rgb(17, 17, 17);
 }
 
 .tablv2 input:checked ~ .acctable {
-  max-height: fit-content;
+  max-height: 10em;
 }
 .tablv2 input:checked ~ label {
   background-color: rgb(17, 17, 17);
@@ -149,7 +209,7 @@ accordion.js
 }
 
 .acctable table{
-  margin: 1em;  
+  margin: 1em;
   width: 96%;
   align-self: center;
 }
@@ -180,4 +240,3 @@ accordion.js
 .acctable img {
   width: 1em;
 }
-

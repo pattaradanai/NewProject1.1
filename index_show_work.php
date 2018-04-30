@@ -79,6 +79,24 @@ include('config.php');
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style> 
+		input[type=text] {
+			width: 200px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			background-position: 10px 10px; 
+			background-repeat: no-repeat;
+			padding: 12px 20px 12px 40px;
+			margin-right: 30px;
+			
+		}
+
+		
+	</style>
+
 	</head>
 	<body>
 		
@@ -93,7 +111,7 @@ include('config.php');
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
 						<!-- Link Menu Write here (Web)-->
-					<li class="has-dropdown">
+					   <li class="has-dropdown">
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
@@ -103,25 +121,29 @@ include('config.php');
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
+					<div id="fh5co-logo"><a href="Login.html">Login</a></div>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<	<div align = "right" >	
+		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
+	</div>
+
+		<div align = "right"  margin-right = "50px">	
+	
+			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+			
+			<input type="text" name="search" placeholder="รหัสนักเรียน" >
+		
+	</div>
 	
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
 					<h1>  
-                    <?php  
-                        $sql = "SELECT * FROM `student` WHERE `studentid`={$_GET['studentid_form_index']}";
-                        $query = mysqli_query($conn, $sql);
-                        while($student_name = $query -> fetch_assoc())
-                        {
-                            echo $student_name['name']." ".$student_name['surname'];
-                        }
-                    ?> 
+                   
                     </h1>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
@@ -129,11 +151,11 @@ include('config.php');
                     // $subjectid = $_SESSION['subjectid_form_index'];
                     // $workid = $_SESSION['workid_form_index'];
                     // $studentid = $_SESSION['studentid_form_index'];
-                    $subjectid = $_GET['subjectid_form_index'];
-                    $workid = $_GET['workid_form_index'];
-                    $studentid = $_GET['studentid_form_index'];
-                    $src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-                    $src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+                    // $subjectid = $_GET['subjectid_form_index'];
+                    // $workid = $_GET['workid_form_index'];
+                    // $studentid = $_GET['studentid_form_index'];
+                    $src = "bottle/001.jpeg";
+                    $src1 = "bottle/###.jpeg";
                     // $src = "images/img_data/1612101/161110004/61002/001.jpg";
                     // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
 				?>
@@ -169,12 +191,7 @@ include('config.php');
 				</div>
 				<div style='margin-top: 4em '>
 					<a style='color: black'>Score: 
-						<?php  
-							$sql = "SELECT `score` FROM `workdata` WHERE `subjectid`='$subjectid' AND `workid`='$workid' AND `studentid`='$studentid' AND `imgno`='1'";
-							$query = mysqli_query($conn, $sql);
-							$score = $query -> fetch_all();
-							echo $score[0][0];
-						?>
+					
 					</a>
 				</div>
 			</div>
