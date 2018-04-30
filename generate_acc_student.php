@@ -37,7 +37,7 @@
                             echo "<div class='tablv2'>";
                             echo "<div class='worklist'>
                             <ul>";
-                            echo "<li><a href='show_work_student.php?subjectid_from_index={$data['subjectid']}&workid_from_index={$workid["workid"]}&studentid_from_index={$_SESSION['id']}'> {$work['name']} </a></li>";
+                            echo "<li><a href='show_work_student.php'</a></li>";
                         }
                     } else {}
                     echo "

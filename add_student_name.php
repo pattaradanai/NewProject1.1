@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    // session_start();
     include("config.php");
 
     $sql = "SELECT * FROM student WHERE studentid = {$_SESSION["id"]}";

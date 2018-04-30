@@ -157,7 +157,7 @@
 				?> 
 				<div class="col-md-4 text-center animate-box">
 					<!--  link to box-->
-					<a class='work' href='index_show_work.php?<?php echo "subjectid_form_index={$row['subjectid']}&workid_form_index={$row['workid']}&studentid_form_index=$studentid"; ?>' name='studentid_form_index'>
+					<a class='work' href='index_show_work.php' name='studentid_form_index'>
 					<!-- <a class='work' href="showstudent.php?subjectid_form_index=".$row['subjectid']."&workid_form_index=161110004&studentid_form_index=61002" name='studentid_form_index'> -->
 						<!-- <?php 
 							// $_SESSION['subjectid_form_index'] = $row['subjectid'];
