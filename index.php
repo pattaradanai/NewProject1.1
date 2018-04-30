@@ -140,7 +140,12 @@
 						//$imgName = "161110002";
 						// while($row2 = mysqli_fetch_array($rs_name)){
 							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
-						$img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
+						// $img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
+						$img = "SELECT `work_studentdata`.`studentid`, `work611001`.`img` 
+								FROM `work_studentdata` 
+								LEFT JOIN `work611001` 
+								ON `work_studentdata`.`studentid`=`work611001`.`studentid` 
+								WHERE `work_studentdata`.`workid`={$workid['workid']}";
 						$imgstd = mysqli_query($conn, $img);
 						while($row = $imgstd -> fetch_assoc()){
 							// while($block_no<12){
