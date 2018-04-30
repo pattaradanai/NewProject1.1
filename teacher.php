@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-
+<?php include('is_login.php') ?>
 
 <html>
 
@@ -72,7 +72,7 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-            <a href="Login.html">Login</a>
+            <a href="logout.php">Logout</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -127,7 +127,7 @@
             Add Subject
           </button>
         </div>
-      </from>
+      </form>
       </div>
       <?php
         include 'generate_acc_teacher.php';

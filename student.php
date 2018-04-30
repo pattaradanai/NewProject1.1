@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-
+<?php include('is_login.php') ?>
 
 <html>
 
@@ -72,7 +72,8 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-            <a href="Login.html">Login</a>
+          <?php include 'add_student_name.php';?><br>
+            <a href="logout.php">Logout</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -99,7 +100,6 @@
       </div>
     </nav>
     <div class="contentBox">
-    <?php include 'add_student_name.php';?>
     <?php include 'generate_acc_student.php';?> 
   </div>
   <footer id="fh5co-footer" role="contentinfo">

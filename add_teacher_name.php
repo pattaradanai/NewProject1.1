@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     include("config.php");
 
     $sql = "SELECT * FROM teacher WHERE teacherid = {$_SESSION["id"]}";
