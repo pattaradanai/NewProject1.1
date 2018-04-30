@@ -28,7 +28,7 @@
             // {
                 while($workid = $query2->fetch_assoc())
                 {
-                    $sql3 = "SELECT * FROM `work_subjectid` WHERE workid='{$workid["workid"]}'";
+                    $sql3 = "SELECT * FROM `work_subjectdata` WHERE workid='{$workid["workid"]}'";
                     $query3 = mysqli_query($conn,$sql3);
                     if($query3 == true)
                     {
