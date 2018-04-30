@@ -28,6 +28,7 @@
 			
 			</style>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Silpakorn</title>
@@ -36,6 +37,23 @@
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
 
+	<style> 
+		input[type=text] {
+			width: 200px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			background-position: 10px 10px; 
+			background-repeat: no-repeat;
+			padding: 12px 20px 12px 40px;
+			margin-right: 30px;
+			
+		}
+
+		
+	</style>
 	<!-- 
 	//////////////////////////////////////////////////////
 	FREE HTML5 TEMPLATE 
@@ -88,10 +106,13 @@
 	
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
+	
 		<div class="container">
+			
 			<div class="fh5co-top-logo">
-				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
+				<div id="fh5co-logo"><a href="index.php">Home</a></div>
 			</div>
+			
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
 						<!-- Link Menu Write here (Web)-->
@@ -104,24 +125,44 @@
 					
 				</ul>
 			</div>
+			
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					
-					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
+					<div id="fh5co-logo"><a href="Login.html">Login</a></div>
+				
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
+
+	<div align = "right" >	
+	<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
+  </div>
+
+	<div align = "right"  margin-right = "50px">	
+	<form>
+		<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+		
+		<input type="text" name="search" placeholder="รหัสนักเรียน" >
+	</form>	
+  </div>
 	<div id="fh5co-work">
+
 		<div class="container">
+	
 			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro">
+				
+				<div class="col-md-12 text-center intro"  >
+					
 					<h2> Welcome To  Student Portfolio <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				
+				
 			</div>
+				<div align = 'center'>
+					<h3 style = " margin-up: 5px;  color:#3b3a3a;"> แสดงผลงานนักเรียนล่าสุด </h3>
+				</div>
 			<div class="row">
 				<?php
 					include 'config.php';
@@ -163,7 +204,7 @@
 							<?php 
 								echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
 							?> 
-								<h3 align = 'center'> 
+								<h3 align = 'center' style = " padding-top: 25px;"> 
 									<font face="verdana" > 
 									<?php 
 									while($name_data = $name -> fetch_assoc()){
