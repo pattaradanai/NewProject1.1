@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <?php 
 		session_start();
-		$_SESSION["status"] = "teacher";
-		$_SESSION["id"] = "101";
-		$_SESSION["sid"] = "61002";
+		// $_SESSION["status"] = "teacher";
+		// $_SESSION["id"] = "101";
+		// $_SESSION["sid"] = "61002";
+		
 	?>
 <html>
 	<head>
@@ -90,6 +91,7 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
+			<?php include('index_is_login.php');?>
 				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
@@ -130,17 +132,15 @@
 					$block_full = false;
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
-					// $sql = "SELECT `name` FROM `student` WHERE 1";  
-					// $rs_result = mysqli_query($conn, $sql);  
 
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$img = "SELECT DISTINCT 'workid' FROM `workdata` WHERE `imgno`='1' ORDER BY `workid` DESC";
+					$img = "SELECT 'workid' FROM `work_subjectdata` ORDER BY `workid` DESC";
 					$imgstd = mysqli_query($conn, $img);  
        				while($workid = $imgstd -> fetch_assoc()){
 						//$imgName = "161110002";
 						// while($row2 = mysqli_fetch_array($rs_name)){
 							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
-						$img = "SELECT * FROM `workdata` WHERE `workid`={$workid['workid']} AND `imgno`='1' ORDER BY `workid` DESC";
+						$img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
 						$imgstd = mysqli_query($conn, $img);
 						while($row = $imgstd -> fetch_assoc()){
 							// while($block_no<12){
@@ -152,13 +152,13 @@
 				?> 
 				<div class="col-md-4 text-center animate-box">
 					<!--  link to box-->
-					<!-- <a class='work' href='showstudent.php?<?php echo "data=$studentid"; ?>' name='studentid_form_index'> -->
-					<a class='work' href='showstudent.php
-						<?php 
-							$_SESSION['subjectid_form_index'] = $row['subjectid'];
-							$_SESSION['workid_form_index'] = $row['workid'];
-							$_SESSION['studentid_form_index'] = $studentid;
-						?>' name='studentid_form_index'>
+					<a class='work' href='index_show_work.php?<?php echo "subjectid_form_index={$row['subjectid']}&workid_form_index={$row['workid']}&studentid_form_index=$studentid"; ?>' name='studentid_form_index'>
+					<!-- <a class='work' href="showstudent.php?subjectid_form_index=".$row['subjectid']."&workid_form_index=161110004&studentid_form_index=61002" name='studentid_form_index'> -->
+						<!-- <?php 
+							// $_SESSION['subjectid_form_index'] = $row['subjectid'];
+							// $_SESSION['workid_form_index'] = $row['workid'];
+							// $_SESSION['studentid_form_index'] = $studentid;
+						?>'  -->
 					<div class="work-grid" style="background-color: white">
 						<div class="desc" align="center" style="color: black;">
 							<div class="item">
@@ -205,6 +205,7 @@
 							break;
 						}
 					}
+					session_write_close();
 				?>
 			</div>
 		</div>
