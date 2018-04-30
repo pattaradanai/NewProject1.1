@@ -121,6 +121,7 @@ include('config.php');
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
+					<?php include('index_is_login.php');?>
 					<div id="fh5co-logo"><a href="Login.html">Login</a></div>
 				</ul>
 			</div>

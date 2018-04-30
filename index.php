@@ -112,8 +112,7 @@
 			
 			<div class="fh5co-top-logo">
 				<div id="fh5co-logo"><a href="index.php">Home</a></div>
-			<?php include('index_is_login.php');?>
-				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
+		
 			</div>
 			
 			<div class="fh5co-top-menu menu-1 text-center">
@@ -132,6 +131,8 @@
 			
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
+					<?php include('index_is_login.php');?>
+			
 					<div id="fh5co-logo"><a href="Login.html">Login</a></div>
 				
 				</ul>
