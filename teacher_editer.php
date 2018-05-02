@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE HTML>
 
 
@@ -16,7 +18,6 @@
 
   <!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -24,7 +25,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -99,9 +99,56 @@
       </div>
     </nav>
     <div class="contentBox">
-      <?php include 'add_teacher_name.php' ?>
+      <?php 
+      // include 'add_teacher_name.php' 
+      ?>
       <div style="margin-bottom: 5px;">
-      
+      <div style="margin-bottom: 5px;">
+      <form class="accform" action="acc_add_subject.php" method="POST">
+        <div style='margin-bottom:5px;'>
+          <label for="subname">วิชา: </label>
+          <input class="subinput" type="text" name="subname" placeholder="Subject name" style='margin-left:5px;' required>  
+        </div>
+        <div style='margin-bottom:5px;'>
+          <label for="year">ปีการศึกษา: </label>
+          <input class="subinput" type="text" name="year" placeholder="Year" style='margin-left:5px;' required>  
+        </div>
+        <div style='margin-bottom:5px;'>
+        <label for="term">เทอมที่: </label>
+          <select name="term" style='margin-left:5px;'>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div style='margin-bottom:5px;'>
+          <label for="section">หมวดวิชา: </label>
+          <select name="section" style='margin-left:5px;'>
+            <option value="1">1:</option>
+            <option value="2">2:</option>
+            <option value="2">3:</option>
+            <option value="2">4:</option>
+            <option value="2">5:</option>
+            <option value="2">6:</option>
+          </select>  
+        </div>
+        <div style='margin-bottom:5px;'>
+          <label for="year1-6">นักเรียนช่วงชั้นที่สอน: </label>
+          <select name="year1-6" style='margin-left:5px;'>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="2">3</option>
+            <option value="2">4</option>
+            <option value="2">5</option>
+            <option value="2">6</option>
+          </select>  
+        </div>
+        <div class="createacc">
+          <button type"submit">
+            เพิ่มวิชา
+          </button>
+        </div>
+      </form>
+      </div>
       </div>
       <div class='tablv1'>
         <input class='input_tablv1' id='tabno-lv1' type='checkbox' name='panel' />
@@ -112,8 +159,8 @@
               <table>
               <tbody>
                 <tr>
-                  <th>Subject</th>
-                  <th>Score</th>
+                  <th>ชื่องาน</th>
+                  <th>คะแนนเต็ม</th>
                 </tr>
                 <?php 
                   echo "
@@ -133,12 +180,12 @@
                 <tr>
                   <td>
                     <div>
-                      <input type="text" name="subject_name" placeholder="subject name" required>  
+                      <input type="text" name="subject_name" placeholder="ชื่องาน" required>  
                     </div>
                   </td>
                   <td>
                     <div>
-                      <input type="text" name="score" placeholder="score" required>  
+                      <input type="text" name="score" placeholder="คะแนนเต็ม" required>  
                     </div>
                   </td>
                 </tr>
@@ -147,17 +194,43 @@
             </div>
           <div class="createacc">
             <button type"submit">
-              Add Subject
+              เพิ่มงาน
+            </button>
+          </div>
+          </from>
+        </div>
+        <div class='edit_box'>
+          <form class="work_form" action="" method="POST">
+            <div class='form_table'>
+              <ul style='padding-left: 1em; list-style-type: none;'>
+              <li>
+                <?php 
+                  echo "
+                  <div>
+                    <p>ห้อง 1/1</p>
+                  </div>";
+                ?>
+                <div>
+                  <input type="text" name="subject_name" placeholder="ห้อง" required>  
+                </div>
+              </li>
+              <div>
+                <input type="text" name="subject_name" placeholder="ห้อง" required>  
+              </div>
+              </ul>
+            </div>
+          <div class="createacc" style='margin-left:1em;'>
+            <button type"submit" style='color: black;'>
+              เพิ่มห้อง
             </button>
           </div>
           </from>
         </div>
       </div>
-      <!-- <?php
-        include 'generate_acc_teacher.php';
-      ?>  -->
   </div>
-  
+  <footer id="fh5co-footer" role="contentinfo">
+
+</footer>
   <div class="gototop js-top">
     <a href="#" class="js-gotop">
       <i class="icon-arrow-up"></i>

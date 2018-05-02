@@ -27,7 +27,7 @@
 		{
 			$_SESSION["status"] = $objResult["status"];
 			$_SESSION["username"] = $objResult["username"];
-			$_SESSION["password"] = $objResult["passwoed"];
+			$_SESSION["password"] = $objResult["password"];
 			if($_SESSION["status"] == "0")
 			{
 				$_SESSION["id"] = $objResult["id"];
