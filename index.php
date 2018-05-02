@@ -149,7 +149,6 @@
 			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
 			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
 			<span class="validity"></span>
-
 		</form>		
   </div>
 	<div id="fh5co-work">
