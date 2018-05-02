@@ -80,7 +80,7 @@ include('config.php');
 	<![endif]-->
 
 	<style> 
-		input[type=text] {
+		input[type=search] {
 			width: 200px;
 			box-sizing: border-box;
 			border: 2px solid #ccc;
@@ -106,7 +106,7 @@ include('config.php');
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo" >
-				<a   id="fh5co-logo"  href="index.php">Home </a>
+				<a   id="fh5co-logo"  href="index.php"> Home </a>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -127,25 +127,26 @@ include('config.php');
 			</div>
 		</div>
 	</nav>
-	<	<div align = "right" >	
+		<div align = "right" >	
 		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	</div>
 
 		<div align = "right"  margin-right = "50px">	
-	
-			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-			
-			<input type="text" name="search" placeholder="รหัสนักเรียน" >
+			<form action="search.php" method="post">
+				<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+				<input type="search" name="search" placeholder="รหัสนักเรียน" >
+				<span class="validity"></span>
+			</form>	
 		
 	</div>
 	
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro">
-					<h1>  
-                   
-                    </h1>
+				<div class="col-md-12 text-center intro"> 
+							
+				<p>ชื่อ </p>
+                 
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				<?php
@@ -166,7 +167,7 @@ include('config.php');
 						<img src= $src width='200' height='200'
 						class='reel'
 						id='image'
-						data-images=$src1 
+						data-images=$src1 	
 						data-frames='32'
 						data-frame='32'
 						data-rows='2'
@@ -198,9 +199,7 @@ include('config.php');
 			</div>
 		</div>
 	</div>
-	<footer id="fh5co-footer" role="contentinfo">
-
-	</footer>
+	
 	</div>
 
 	<div class="gototop js-top">
@@ -218,7 +217,7 @@ include('config.php');
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<!-- <script> $.reel.def.indicator = 5; </script> -->
 
 	</body>
 </html>

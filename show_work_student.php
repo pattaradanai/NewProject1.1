@@ -89,7 +89,7 @@ include('config.php');
 		<div class="container">
 			<div class="fh5co-top-logo" >
 				<a   id="fh5co-logo"  href="student.php">Back </a>
-				<a style="margin-left:30px;" id="fh5co-logo" href="index.php">Logout</a>
+				
 				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
@@ -106,8 +106,7 @@ include('config.php');
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					
-					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
+				<a style="margin-left:30px;" id="fh5co-logo" href="index.php">Logout</a>
 				</ul>
 			</div>
 		</div>
@@ -117,28 +116,27 @@ include('config.php');
 		<div class="container">
 			<div >
 				<div class="col-md-12 text-center intro">
-					<h1>  
-                    <?php  
-                        $sql = "SELECT * FROM `student` WHERE `studentid`={$_GET['subjectid_from_index']}";
-                        $query = mysqli_query($conn, $sql);
-                        while($student_name = $query -> fetch_assoc())
-                        {
-                            echo $student_name['name']." ".$student_name['surname'];
-                        }
-                    
-                    ?> 
-                    </h1>
-					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+				
+
+									<?php 
+									$idstd  = $_SESSION["id"];
+									$sql = "SELECT `workid`  FROM `work_studentdata` WHERE `studentid` AND `portfolio` = 1";
+									$id = mysqli_query($conn,$idstd);  
+
+								
+								?>
+								<p> ชื่อ </p>
+	
 				</div>
 				<?php
                     // $subjectid = $_SESSION['subjectid_form_index'];
                     // $workid = $_SESSION['workid_form_index'];
                     // $studentid = $_SESSION['studentid_form_index'];
-                    $subjectid = $_GET['subjectid_from_index'];
-                    $workid = $_GET['workid_from_index'];
-                    $studentid = $_GET['studentid_from_index'];
-                    $src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-					$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+                    // $subjectid = $_GET['subjectid_from_index'];
+                    // $workid = $_GET['workid_from_index'];
+                    // $studentid = $_GET['studentid_from_index'];
+                    $src = "bottle/001.jpeg";
+					$src1 = "bottle/###.jpeg";
 					
                     // $src = "images/img_data/1612101/161110004/61002/001.jpg";
                     // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
@@ -173,27 +171,20 @@ include('config.php');
 						data-y="33"
 						data-for="image">
 				</div>
-				<?php 
-					$imgno = '1';
-					$comment = "SELECT * FROM `workdata` WHERE `workid`='$workid' AND `imgno`='$imgno' AND studentid = '$studentid'";
-					$re_comment = mysqli_query($conn, $comment);
-					$row_comment = mysqli_fetch_array($re_comment);
-                ?>
-                <div style='margin-top:4em;'>
-                    <div align='center'>
-                        <label  >comment :</label>
-                        <a ><?php echo $row_comment["comment"]; ?></a>
-                        <br>
-                        <label  >Point :</label>
-                        <a> <?php echo $row_comment["score"]; ?> </a>
-                    </div>	
-                </div>			
+				
+					<div style='margin-top:4em;'>
+						<div align='center'>
+							<label  >comment :</label>
+						
+							<br>
+							<label  >Point :</label>
+						
+						</div>	
+					</div>			
+				</div>
 			</div>
 		</div>
-	</div>
-	<footer id="fh5co-footer" role="contentinfo">
 
-	</footer>
 	</div>
 
 	<div class="gototop js-top">
@@ -211,7 +202,7 @@ include('config.php');
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<!-- <script> $.reel.def.indicator = 5; </script> -->
 
 	</body>
 </html>

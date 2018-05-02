@@ -59,7 +59,7 @@
 	<![endif]-->
 
 	<style> 
-		input[type=text] {
+		input[type=search] {
 			width: 200px;
 			box-sizing: border-box;
 			border: 2px solid #ccc;
@@ -90,17 +90,16 @@
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
 						<!-- Link Menu Write here (Web)-->
-					<li class="has-dropdown">
-						
+					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
 						</ul>
-					</li>
-					
+					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
+				<?php include('index_is_login.php');?>
 				<div id="fh5co-logo"><a href="Login.html">Login</a></div>
 				
 				</ul>
@@ -108,14 +107,16 @@
 		</div>
 	</nav>
 		<div align = "right" >	
-		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
-	</div>
+	
+			<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
+	
+		</div>
 
 		<div align = "right"  margin-right = "50px">	
-		<form>
+		<form action="search.php" method="post">
 			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-			
-			<input type="text" name="search" placeholder="รหัสนักเรียน" >
+			<input type="search" name="search" placeholder="รหัสนักเรียน" >
+			<span class="validity"></span>
 		</form>	
 	</div>
 	
@@ -129,27 +130,23 @@
 				
 			</div>
 			<div class="row">
-				
-       						<div class="col-md-4 text-center animate-box">
-								<a class="work" >
-									<div class="work-grid" style="background-color: white">
-											<div class="desc" align="center" style="color: black;">
-												
-											</div>
-										
-									</div>
-								</a>
-							</div>
-       			
+	
+				<div class="col-md-4 text-center animate-box">
+					<a class="work" >
+						<div class="work-grid" style="background-color: white">
+								<div class="desc" align="center" style="color: black;">
+									
+								</div>
+							
+						</div>
+					</a>
+				</div>
+	
 
 			</div>
 		</div>
 	</div>
-	
-	
-	<footer id="fh5co-footer" role="contentinfo">
 
-	</footer>
 	</div>
 
 	<div class="gototop js-top">

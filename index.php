@@ -39,7 +39,7 @@
 	<meta name="author" content="FreeHTML5.co" />
 
 	<style> 
-		input[type=text] {
+		input[type=search] {
 			width: 200px;
 			box-sizing: border-box;
 			border: 2px solid #ccc;
@@ -145,11 +145,11 @@
   </div>
 
 	<div align = "right"  margin-right = "50px">	
-	<form>
-		<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-		
-		<input type="text" name="search" placeholder="รหัสนักเรียน" >
-	</form>	
+	<form action="search.php" method="post">
+			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+			<input type="search" name="search" placeholder="รหัสนักเรียน" >
+			<span class="validity"></span>
+		</form>		
   </div>
 	<div id="fh5co-work">
 

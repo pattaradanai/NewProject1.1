@@ -202,9 +202,7 @@ include('config.php');
 			</div>
 		</div>
 	</div>
-	<footer id="fh5co-footer" role="contentinfo">
 
-	</footer>
 	</div>
 
 	<div class="gototop js-top">
