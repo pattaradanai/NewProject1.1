@@ -107,6 +107,7 @@ include('config.php');
 		<div class="container">
 			<div class="fh5co-top-logo" >
 				<a   id="fh5co-logo"  href="index.php"> Home </a>
+				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -132,11 +133,11 @@ include('config.php');
 	</div>
 
 		<div align = "right"  margin-right = "50px">	
-			<form action="search.php" method="post">
-				<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-				<input type="search" name="search" placeholder="รหัสนักเรียน" >
-				<span class="validity"></span>
-			</form>	
+		<form action="search.php" method="post">
+			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
+			<span class="validity"></span>
+		</form>		
 		
 	</div>
 	
