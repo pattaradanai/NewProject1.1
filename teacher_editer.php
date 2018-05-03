@@ -103,7 +103,6 @@
       // include 'add_teacher_name.php' 
       ?>
       <div style="margin-bottom: 5px;">
-      <div style="margin-bottom: 5px;">
       <form class="accform" action="acc_add_subject.php" method="POST">
         <div style='margin-bottom:5px;'>
           <label for="subname">วิชา: </label>
@@ -149,84 +148,9 @@
         </div>
       </form>
       </div>
-      </div>
-      <div class='tablv1'>
-        <input class='input_tablv1' id='tabno-lv1' type='checkbox' name='panel' />
-        <label class='label-tablv1' for='tabno-lv1'>asd</label>
-        <div class='edit_box'>
-          <form class="work_form" action="" method="POST">
-            <div class='form_table'>
-              <table>
-              <tbody>
-                <tr>
-                  <th>ชื่องาน</th>
-                  <th>คะแนนเต็ม</th>
-                </tr>
-                <?php 
-                  echo "
-                  <tr>
-                    <td>
-                      <div>
-                        <p>Subject name</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <p>my score</P>  
-                      </div>
-                    </td>
-                  </tr>";
-                ?>
-                <tr>
-                  <td>
-                    <div>
-                      <input type="text" name="subject_name" placeholder="ชื่องาน" required>  
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <input type="text" name="score" placeholder="คะแนนเต็ม" required>  
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              </table>
-            </div>
-          <div class="createacc">
-            <button type"submit">
-              เพิ่มงาน
-            </button>
-          </div>
-          </from>
-        </div>
-        <div class='edit_box'>
-          <form class="work_form" action="" method="POST">
-            <div class='form_table'>
-              <ul style='padding-left: 1em; list-style-type: none;'>
-              <li>
-                <?php 
-                  echo "
-                  <div>
-                    <p>ห้อง 1/1</p>
-                  </div>";
-                ?>
-                <div>
-                  <input type="text" name="subject_name" placeholder="ห้อง" required>  
-                </div>
-              </li>
-              <div>
-                <input type="text" name="subject_name" placeholder="ห้อง" required>  
-              </div>
-              </ul>
-            </div>
-          <div class="createacc" style='margin-left:1em;'>
-            <button type"submit" style='color: black;'>
-              เพิ่มห้อง
-            </button>
-          </div>
-          </from>
-        </div>
-      </div>
+      <?php 
+        include('generate_teacher_editer.php');
+      ?>
   </div>
   <footer id="fh5co-footer" role="contentinfo">
 
