@@ -23,16 +23,27 @@ accordion.js
   padding-bottom: 100%;
 }
 
+.div-subject-form {
+  width: 50%;
+  background-color: rgba(248, 248, 248, 0.836);
+  border: 2px groove gray;
+  padding: 1em;
+}
+
+.div-subject-form label, .div-subject-form button {
+  color: black;
+}
+
 .tablv1 {
   position: relative;
   margin-bottom: 1px;
   width: 100%;
-  color: snow;
+  color: rgb(0, 0, 0);
   margin-bottom: 5px;
 }
 
 .tablv1 a {
-  color: snow;
+  color: rgb(0, 0, 0);
 }
 
 .tablv1 .input_tablv1 {
@@ -45,28 +56,93 @@ accordion.js
   position: relative;
   display: block;
   padding: 0 0 0 1em;
-  background-color: rgb(30, 30, 30);
-  box-shadow: 3px 3px 3px 0px rgb(17, 17, 17);
+  background-color: rgb(226, 224, 224);
+  /* box-shadow: 3px 3px 3px 0px rgb(17, 17, 17); */
   font-weight: bold;
   line-height: 3;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 0px;
   width: 100%;
 }
 
 .tablv1 .label-tablv1:hover {
-  background-color: rgb(17, 17, 17);
+  background-color: rgba(226, 225, 225, 0.623);
 }
 
-.edit_box {
+.tablv1 .tablv2 {
   max-height: 0;
   overflow: hidden;
-  background-color: rgb(40, 40, 40);
-  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
+  /* background-color: rgb(40, 40, 40); */
+  background-color: rgba(226, 225, 225, 0.623);
+  /* box-shadow: 5px 5px 5px 0px rgb(17, 17, 17); */
   -webkit-transition: max-height .35s;
   -o-transition: max-height .35s;
   transition: max-height .35s;
   /* border-radius: 5px; */
+}
+
+.tablv2 .tablv2-p1 {
+  margin-top: 10px;
+  margin-left: 1em;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+/* ส่วนของงาน */
+.workdata {
+  /* margin-top: 5px; */
+  width: 60%;
+  padding: 0px 10px 0px 10px;
+  margin: 1em;
+  /* background-color: rgba(204, 204, 204, 0.452); */
+  background-color: rgb(241, 241, 241);
+  border: 1px solid rgb(90, 90, 90);
+}
+.workdata table {
+  width: 100%;
+}
+.work_table tr:nth-child(even){
+  background-color: rgba(250, 250, 250, 0.986);
+}
+.workdata p {
+  margin-right: 1em;
+}
+.workdata button {
+  color: black;
+}
+.workdata .a-link {
+  text-decoration: underline;
+}
+.work_form {
+  margin-bottom: 10px;
+}
+.th-name {
+  width: 46%;
+}
+
+/* ส่วนของห้อง */
+.classdata {
+  /* margin-top: 5px; */
+  width: 60%;
+  padding: 5px 10px 10px 10px;
+  margin: 1em;
+  /* background-color: rgba(204, 204, 204, 0.452); */
+  background-color: rgb(241, 241, 241);
+  border: 1px solid rgb(90, 90, 90);
+}
+.class_list {
+  margin-top: 10px;
+}
+.class_list ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.class_list h4 {
+  margin-bottom: 10px;
+  margin-left: 1em;
+}
+.class_list .a-link {
+  text-decoration: underline;
 }
 
 .tablv1 .label-tablv1 {
@@ -74,11 +150,12 @@ accordion.js
 }
 
 /* :checked */
-.tablv1 input:checked ~ .edit_box {
+.tablv1 input:checked ~ .tablv2 {
   max-height: fit-content;
 }
 .tablv1 input:checked ~ .label-tablv1 {
-  background-color: rgb(17, 17, 17);
+  /* background-color: rgb(17, 17, 17); */
+  background-color: rgba(226, 225, 225, 0.623);
 }
 
 /* Icon */
@@ -121,19 +198,4 @@ accordion.js
   width: 100%;
   height: 50px;
   padding: 0 10px 0 10px;
-}
-
-/* Work Form */
-.form_table table, .form_table th, .form_table td{
-  border: none;
-  
-}
-
-
-.work_form {
-    margin: 1em;
-}
-
-.work_form button {
-    color: black;
 }
