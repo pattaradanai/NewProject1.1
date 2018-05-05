@@ -38,35 +38,16 @@
             if(!$subjectdata['class']==null){
                 $workno = 1;
                 echo "<div class='tablv2'>";
-                if($class_form == 0){
-                    // $sql = "SELECT * FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']} ";
-                    // $query = mysqli_query($conn,$sql);
-                    // $temp_workdata = $query -> fetch_assoc();
-                    echo "<div>
-                    <form class='classform' action='teacher_add_new_class.php?subjectid={$temp_subjectdata['subjectid']}' method='POST'>
-                        <div>
-                            <label class='create_class_label' for='class' 
-                                style='cursor: unset;box-shadow: none;background-color: rgb(40, 40, 40);' >Class: <input class='classinput' type='text' name='class'  placeholder='Class?/?' required></label>
-                            <div class='createacc' style='color: black'>
-                            <button type'submit'>
-                                Add Class
-                            </button>
-                        </div>
-                        </div>
-                    </form>
-                    </div>";
-                    $class_form = 1;
-                }
                 echo "<input class='input_tablv2' id='tabno".$tabno."-lv2-".$subtabno."' type='checkbox' name='panel' />";
-                echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> Class ".$subjectdata['class']."</label>";
+                echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> ห้อง ".$subjectdata['class']."</label>";
                 # create table header #
                 echo "<div class='acctable'>";
                 echo "<table>
                     <tbody>
                     <tr>
-                        <th class='nocol' rowSpan='2'>No.</th>
-                        <th rowSpan='2'>name</th>
-                        <th colSpan='20'>work</th>
+                        <th class='nocol' rowSpan='2'>เลขที่</th>
+                        <th rowSpan='2'>ชื่อ-นามสกุล</th>
+                        <th colSpan='20'>งาน</th>
                     </tr>
                     <tr>";
                 # create work col much as work quantity #
@@ -132,22 +113,23 @@
             } else 
             {
                 echo "<div class='tablv2'>";
-                if($class_form == 0){
-                    echo "<div>
-                    <form class='classform' action='teacher_add_new_class.php?subjectid={$temp_subjectdata['subjectid']}' method='POST'>
-                        <div>
-                            <label class='create_class_label' for='class' 
-                                style='cursor: unset;box-shadow: none;background-color: rgb(40, 40, 40);' >Class: <input class='classinput' type='text' name='class'  placeholder='Class?/?' required></label>
-                            <div class='createacc' style='color: black'>
-                            <button type'submit'>
-                                Add Class
-                            </button>
-                        </div>
-                        </div>
-                    </form>
-                    </div>";
-                    $class_form = 1;
-                }
+                echo "ไม่มีข้อมูลห้อง";
+                // if($class_form == 0){
+                //     echo "<div>
+                //     <form class='classform' action='teacher_add_new_class.php?subjectid={$temp_subjectdata['subjectid']}' method='POST'>
+                //         <div>
+                //             <label class='create_class_label' for='class' 
+                //                 style='cursor: unset;box-shadow: none;background-color: rgb(40, 40, 40);' >Class: <input class='classinput' type='text' name='class'  placeholder='Class?/?' required></label>
+                //             <div class='createacc' style='color: black'>
+                //             <button type'submit'>
+                //                 Add Class
+                //             </button>
+                //         </div>
+                //         </div>
+                //     </form>
+                //     </div>";
+                //     $class_form = 1;
+                // }
                 echo "</div>";
             }
             $subtabno++;
