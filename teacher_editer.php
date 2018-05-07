@@ -1,9 +1,8 @@
-<?php session_start() ?>
-
 <!DOCTYPE HTML>
-
-
-
+<?php 
+  session_start();
+  include('is_login.php');
+?>
 <html>
 
 <head>

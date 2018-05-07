@@ -74,7 +74,7 @@
         echo        "<input type='text' name='subject_name' placeholder='ชื่องาน' required>";  
         echo       "</td>";
         echo       "<td>";
-        echo        "<input type='text' name='max_score' placeholder='คะแนนเต็ม 1-100' pattern='[0-9]{1,2}' required>";
+        echo        "<input type='text' name='max_score' placeholder='คะแนนเต็ม 1-99' pattern='[0-9]{1,2}' required>";
         echo       "</td>";
         echo      "</tr>";
         echo     "</tbody>";
@@ -121,16 +121,20 @@
                         // echo "</form>";
                         # เริ่มงานของแต่ละห้อง #
                         echo  "<ul>";
-                        $sql1 = "SELECT `workname`, `class` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} AND `class`='{$classdata['class']}' ORDER BY `class`";
+                        $sql1 = "SELECT `workname`, `class`, `workid`
+                                FROM `work_subjectdata` 
+                                WHERE `subjectid`= {$subjectid['subjectid']} 
+                                AND `class`='{$classdata['class']}' 
+                                ORDER BY `class`";
                         $query1 = mysqli_query($conn,$sql1);
-                        while($class_work = $query1->fetch_assoc())
-                        {
-                                if($class_work['class']!=NULL)
+                        // echo var_dump($query1);
+                        if($query1->num_rows == 0){
+                                echo "<li>ยังไม่ได้สั่งงานให้ห้องนี้</li>";
+                        } else {
+                                while($class_work = $query1->fetch_assoc())
                                 {
-                                        echo "<li>{$class_work['workname']}</li>";
-                                } else 
-                                {
-                                        echo "<li>ยังไม่ได้สั่งงานให้ห้องนี้</li>";
+                                        // echo var_dump($class_work);
+                                        echo "<li>{$class_work['workname']}<a class='a-link' href='teacher_unassign_work.php?editer_unassign_subjectid={$subjectid['subjectid']}&editer_unassign_class={$classdata['class']}&editer_unassign_workid={$class_work['workid']}'>ยกเลิกงานนี้</a></li>";
                                 }
                         }
                         echo   "</ul>";
@@ -153,20 +157,19 @@
                                 }
                         }
                         echo "</select>";
-                        echo "<button type='submit' style='margin-left:5px;'>เพิ่มงานให้ห้องนี้</button>";
+                        echo "<button type='submit' style='margin-left:5px;'>สั่งงานให้ห้องนี้</button>";
                         echo "</form>";
                         echo "</div>";
                         // echo "</li>";
                         # จบลิสของงานที่จะเพิ่มในห้องนี้ #
                 }
-                
         }
         echo     "</ul>";
         # เริ่มฟอร์มเพิ่มห้อง #
         echo "<div>";
         echo "<form name='add_class_to_subject' action='teacher_add_class.php?editer_add_subjectid={$subjectid['subjectid']}' method='POST'>";
         echo  "<label>เลขห้อง: </label>";
-        echo  "<input type='text' name='class' placeholder='เลขห้อง ?/?' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
+        echo  "<input type='text' name='class' placeholder='เลขห้อง เช่น 1/2, 2/5 ' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
         echo  "<button type='submit' style='margin-left:5px;'>เพิ่มห้องที่เรียนวิชานี้</button>";
         echo "</form>";
         echo "</div>";
