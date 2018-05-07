@@ -72,7 +72,7 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-            <a href="logout.php">Logout</a>
+            <a href="index.php">Home</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -90,7 +90,7 @@
         <div class="fh5co-top-social menu-1 text-right">
           <ul class="fh5co-social">
             <li>
-              <a href="https://github.com/pattaradanai/NewProject1.1">
+            <a href="logout.php">Logout</a>
                 <i class="icon-github"></i>
               </a>
             </li>
