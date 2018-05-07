@@ -19,61 +19,62 @@
         echo "<div class='tablv1'>";
         echo  "<input class='input_tablv1' id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
         echo  "<label class='label-tablv1' for='tabno".$tabno."-lv1'>".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." ".$temp_subjectdata["name"]."</label>";  
+        echo  "<div class='tablv2'>";
+        ## เริ่มส่วนของงาน ##
+        echo   "<div class='workdata'>";
         # เริ่มส่วนของตารางแสดงรายการงาน #
-        echo   "<div class='work_table'>";
-        echo    "<table>";
-        echo     "<tbody>";
-        echo      "<tr>";
-        echo       "<th>ชื่องาน</th>";
-        echo       "<th>คะแนนเต็ม</th>";
-        echo       "<th></th>";
-        echo      "</tr>";
-        $sql = "SELECT `workname`, `max_score` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`";
+        echo    "<div class='work_table'>";
+        echo     "<p class='tablv2-p1'>รายชื่องานที่หมอบหมาย</p>";
+        echo      "<table>";
+        echo       "<tbody>";
+        echo        "<tr>";
+        echo         "<th>ชื่องาน</th>";
+        echo         "<th>คะแนนเต็ม</th>";
+        echo         "<th></th>";
+        echo        "</tr>";
+        $sql = "SELECT `workid`,`workname`, `max_score` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`";
         $query = mysqli_query($conn,$sql);
-        while($workdata = $query->fetch_assoc())
+        if(!$query->num_rows>0)
         {
-            echo "<tr>";
-            echo  "<td>";
-    //                   <div>
-            echo   "<p>{$workdata['workname']}</p>";
-    //                   </div>
-            echo  "</td>";
-            echo  "<td>";
-    //                   <div>
-            echo   "<p>{$workdata['max_score']}</P>";
-    //                   </div>
-            echo  "</td>";
-            echo  "<td>";
-    //                   <div>
-            echo   "<button>ลบงานนี้</button>";
-    //                   </div>
-            echo  "</td>";
-            echo "</tr>";
-            
+                echo "<tr><td colSpan='2'>ยังไม่มีข้อมูลงาน</td></tr>";
+        } else
+        {
+                while($workdata = $query->fetch_assoc())
+                {
+                 
+                        echo "<tr>";
+                        echo  "<td>";
+                        echo   "<p>{$workdata['workname']}</p>";
+                        echo  "</td>";
+                        echo  "<td>";
+                        echo   "<p>{$workdata['max_score']}</P>";
+                        echo  "</td>";
+                        echo  "<td>";
+                    //     echo   "<button>ลบงานนี้</button>";
+                        echo   "<a class='a-link' href='teacher_delete_work.php?editer_del_workid={$workdata['workid']}'>ลบงานนี้</a>";
+                        echo  "</td>";
+                        echo "</tr>";
+                }
         }
         echo    "</tbody>";
         echo   "</table>";
-        echo  "</div>";
+        echo  "</div>"; # work_table
         # จบส่วนของตารางแสดงรายการงาน #
         # เริ่มตารางฟอร์มของการเพิ่มงาน #
-        echo  "<form class='work_form' action='' method='POST'>";
+        echo  "<form class='work_form' action='teacher_add_work.php?editer_subjectid={$subjectid['subjectid']}' method='POST'>";
         echo   "<div>";
         echo    "<table>";
         echo     "<tbody>";
         echo      "<tr>";
-        echo       "<th>ชื่องาน</th>";
-        echo       "<th>คะแนนเต็ม</th>";
+        echo       "<th class='th-name'>ชื่องาน</th>";
+        echo       "<th class='th-maxscore'>คะแนนเต็ม</th>";
         echo      "</tr>";
         echo      "<tr>";
         echo       "<td>";
-                    // <div>
         echo        "<input type='text' name='subject_name' placeholder='ชื่องาน' required>";  
-                    // </div>
         echo       "</td>";
         echo       "<td>";
-                    // <div>
-        echo        "<input type='text' name='score' placeholder='คะแนนเต็ม' required>";
-                    // </div>
+        echo        "<input type='text' name='max_score' placeholder='คะแนนเต็ม 1-99' pattern='[0-9]{1,2}' required>";
         echo       "</td>";
         echo      "</tr>";
         echo     "</tbody>";
@@ -81,107 +82,104 @@
         echo   "</div>";
         echo   "<div class='btn_submit_work'>";
         echo    "<button type'submit'>";
-        echo     "เพิ่มงาน";
+        echo     "เพิ่มงานของวิชานี้";
         echo    "</button>";
         echo   "</div>";
         echo  "</form>";
         # จบตารางฟอร์มของการเพิ่มงาน #
-        # เริ่มข้อมูลของแต่ละห้อง #
+        echo "</div>"; # workdata
+        ## จบส่วนของงาน ##
+        ## เริ่มส่วนของห้อง ##
+        echo "<div class='classdata'>";
+        # เริ่มส่วนของข้อมูลห้อง #
+        echo  "<div class='class_list'>";
+        echo  "<h4>ห้องที่เรียนวิชานี้</h4>";
+        echo   "<ul>";
         $sql = "SELECT `class` FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
         $query = mysqli_query($conn,$sql);
-        while($workdata = $query->fetch_assoc())
+        while($classdata = $query->fetch_assoc())
         {
-
+                if($classdata['class']==NULL)
+                {
+                        echo "<li>ไม่มีข้อมูลห้อง</li>";
+                } else 
+                {
+                        // echo "<form>";
+                        echo "<li>ห้อง {$classdata['class']}  <a class='a-link' href='teacher_delete_class.php?editer_del_class={$classdata['class']}&editer_del_subjectid={$subjectid['subjectid']}'>ลบห้องนี้</a> ";
+                        // echo "<select  name='subject_work_list' required>";
+                        // echo  "<option value='' selected>--เลือกงานที่จะสั่ง--</option>";
+                        // $sql0 = "SELECT `workname` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
+                        // $query0 = mysqli_query($conn,$sql0);
+                        // $value = 1;
+                        // while($subject_work_list = $query0->fetch_assoc())
+                        // {
+                        //         echo  "<option value='$value'>{$subject_work_list['workname']}</option>";
+                        // }
+                        // echo "</select>";
+                        // echo "<button type='submit' style='margin-left:5px;'><a class='a-link' href=''>เพิ่มงานให้ห้องนี้<a/></button>";
+                        echo "</li>";
+                        // echo "</form>";
+                        # เริ่มงานของแต่ละห้อง #
+                        echo  "<ul>";
+                        $sql1 = "SELECT `workname`, `class`, `workid`
+                                FROM `work_subjectdata` 
+                                WHERE `subjectid`= {$subjectid['subjectid']} 
+                                AND `class`='{$classdata['class']}' 
+                                ORDER BY `class`";
+                        $query1 = mysqli_query($conn,$sql1);
+                        // echo var_dump($query1);
+                        if($query1->num_rows == 0){
+                                echo "<li>ยังไม่ได้สั่งงานให้ห้องนี้</li>";
+                        } else {
+                                while($class_work = $query1->fetch_assoc())
+                                {
+                                        // echo var_dump($class_work);
+                                        echo "<li>{$class_work['workname']}<a class='a-link' href='teacher_unassign_work.php?editer_unassign_subjectid={$subjectid['subjectid']}&editer_unassign_class={$classdata['class']}&editer_unassign_workid={$class_work['workid']}'>ยกเลิกงานนี้</a></li>";
+                                }
+                        }
+                        echo   "</ul>";
+                        # จบงานของแต่ละห้อง #
+                        # เริ่มลิสของงานที่จะเพิ่มในห้องนี้ #
+                        // echo "<li>";
+                        echo   "<div>";
+                        echo "<form name='add_work_to_class' action='teacher_assign_work.php?editer_assign_class={$classdata['class']}' method='POST'>";
+                        echo "<select  name='subject_work_list' required>";
+                        echo  "<option value='' selected>--เลือกงานที่จะสั่ง--</option>";
+                        $sql0 = "SELECT `workid`, `workname`, `class` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
+                        $query0 = mysqli_query($conn,$sql0);
+                        $value = 1;
+                        while($subject_work_list = $query0->fetch_assoc())
+                        {
+                                if($classdata['class']!=$subject_work_list['class'])
+                                {
+                                        echo  "<option value='{$subject_work_list['workid']}'>{$subject_work_list['workname']}</option>";
+                                        $value++;
+                                }
+                        }
+                        echo "</select>";
+                        echo "<button type='submit' style='margin-left:5px;'>สั่งงานให้ห้องนี้</button>";
+                        echo "</form>";
+                        echo "</div>";
+                        // echo "</li>";
+                        # จบลิสของงานที่จะเพิ่มในห้องนี้ #
+                }
         }
-        # จบข้อมูลของแต่ละห้อง #
-        echo "</div>"; 
+        echo     "</ul>";
+        # เริ่มฟอร์มเพิ่มห้อง #
+        echo "<div>";
+        echo "<form name='add_class_to_subject' action='teacher_add_class.php?editer_add_subjectid={$subjectid['subjectid']}' method='POST'>";
+        echo  "<label>เลขห้อง: </label>";
+        echo  "<input type='text' name='class' placeholder='เลขห้อง เช่น 1/2, 2/5 ' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
+        echo  "<button type='submit' style='margin-left:5px;'>เพิ่มห้องที่เรียนวิชานี้</button>";
+        echo "</form>";
+        echo "</div>";
+        # จบฟอร์มเพิ่มห้อง #
+        echo    "</div>"; # class_list
+        # จบส่วนของข้อมูลห้อง #
+        echo   "</div>"; # classdata
+        ## จบส่วนของห้อง ##
+        echo  "</div>"; # tablv2
+        echo "</div>"; # tablv1
+        $tabno++;
     }
-
-
-    // <div class='tablv1'>
-    //     <input class='input_tablv1' id='tabno-lv1' type='checkbox' name='panel' />
-    //     <label class='label-tablv1' for='tabno-lv1'>asd</label>
-    //     <div class='edit_box'>
-    //       <form class="work_form" action="" method="POST">
-    //         <div class='form_table'>
-    //           <table>
-    //           <tbody>
-    //             <tr>
-    //               <th>ชื่องาน</th>
-    //               <th>คะแนนเต็ม</th>
-    //             </tr>
-    //             <?php 
-    //               echo "
-    //               <tr>
-    //                 <td>
-    //                   <div>
-    //                     <p>Subject name</p>
-    //                   </div>
-    //                 </td>
-    //                 <td>
-    //                   <div>
-    //                     <p>my score</P>  
-    //                   </div>
-    //                 </td>
-    //               </tr>";
-    //             <tr>
-    //               <td>
-    //                 <div>
-    //                   <input type="text" name="subject_name" placeholder="ชื่องาน" required>  
-    //                 </div>
-    //               </td>
-    //               <td>
-    //                 <div>
-    //                   <input type="text" name="score" placeholder="คะแนนเต็ม" required>  
-    //                 </div>
-    //               </td>
-    //             </tr>
-    //           </tbody>
-    //           </table>
-    //         </div>
-    //       <div class="createacc">
-    //         <button type"submit">
-    //           เพิ่มงาน
-    //         </button>
-    //       </div>
-    //       </form>
-    //     </div>
-    //     <div class='edit_box'>
-    //         <div class='form_table'>
-    //           <ul style='padding-left: 1em; list-style-type: none;'>
-    //           <li>
-    //             <div>
-    //               <p style='margin-bottom: 0px;'>ห้อง 1/1</p>
-    //             </div>
-    //             <div>
-    //               <ul style='padding-left: 3px; list-style-type: none;'>
-    //                 <li>
-    //                   งานที่ หนึ่ง
-    //                 </li>
-    //                 <li>
-    //                   <form style='margin-bottom:5px;'>
-    //                     <select name="ห้อง" style='margin-left:5px; color: black; height: 100%'>
-    //                       <option value="1">งานที่ 1</option>
-    //                       <option value="2">งานที่ 2</option>
-    //                     </select>
-    //                     <button type"submit" style='color: black;'>
-    //                       เพิ่มห้อง
-    //                   </button>
-    //                   </form>
-    //                 </li> 
-    //               </ul>
-    //             </div>
-    //           </li>
-    //           <div>
-    //             <input type="text" name="subject_name" placeholder="ห้อง" required>  
-    //           </div>
-    //           </ul>
-    //         </div>
-    //       <div class="createacc" style='margin-left:1em;'>
-    //         <button type"submit" style='color: black;'>
-    //           เพิ่มห้อง
-    //         </button>
-    //       </div>
-    //     </div>
-    //   </div>
 ?>
