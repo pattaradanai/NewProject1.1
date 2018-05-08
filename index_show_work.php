@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-// session_start();
+ session_start();
 include('config.php');
 ?>
 <html>
@@ -145,16 +145,33 @@ include('config.php');
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro"> 
-				<font face="verdana" >  
-				<h3> ชื่อ </h3> 
-				<h3> นามสกุล </h3>
-				<h3> รหัสนักเรียน </h3>
-				<h3> ชื่อวิชา </h3>
-				
-				</font>
-				
-                 
-					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+						
+					<div class = "createborder">
+					<font face="verdana" >  
+								<?php 
+										$stdid = $_SESSION['studentid_no_1'];
+										
+									$sql = "SELECT `studentid`, `name`, `surname`, `class`FROM `student` WHERE `studentid` = $stdid ";
+									$query  = mysqli_query($conn,$sql);
+									$Result = mysqli_fetch_array($query);
+									$name = $Result["name"];
+									$surname = $Result["surname"];
+									$class = $Result["class"];
+									$id = $Result["studentid"];
+								
+								
+								?>
+
+
+							<h3> ชื่อ : <?php echo $name?></h3> 
+							<h3> นามสกุล  : <?php echo $surname?></h3>
+							<h3> รหัสนักเรียน : <?php echo  $id?> </h3>
+							<h3> ห้อง  : <?php echo $class?></h3>
+							
+							</font>
+							
+					</div>		
+							<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				<?php
                     // $subjectid = $_SESSION['subjectid_form_index'];

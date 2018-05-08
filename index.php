@@ -208,7 +208,7 @@
 							// $_SESSION['workid_form_index'] = $row['workid'];
 							// $_SESSION['studentid_form_index'] = $studentid;
 						?>'  -->
-					<div class="work-grid" style="background-color: white">
+					<div class="work-grid" style="background-color: white ;">
 						<div class="desc" align="center" style="color: black;">
 							<div class="item">
 							<?php 

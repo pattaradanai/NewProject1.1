@@ -2,6 +2,7 @@
 <?php
 session_start();
 include('config.php');
+$student_id = $_SESSION['studentid_no_1'];
 ?>
 <html>
 	<head>
@@ -106,9 +107,10 @@ include('config.php');
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
+			<div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
 				<ul class="fh5co-social">
 					
-					<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
+					<li><a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a></li>
 				</ul>
 			</div>
 		</div>
