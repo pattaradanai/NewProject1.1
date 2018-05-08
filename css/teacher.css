@@ -9,48 +9,6 @@ body {
   background-size: auto;
 }
 
-.dropdown {
-  font-size: 20px;
-  cursor: pointer;
-  color: snow;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(30, 30, 30);
-  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
-}
-
-.dropdown:hover {
-  background-color: rgb(17, 17, 17);
-  background-clip: border-box;
-}
-
-.dropdown:hover .dropdownContent{
-  display: block;
-  visibility: visible;
-}
-
-.dropdown p {
-  padding: 8px 16px;
-}
-
-.dropdownContent {
-  list-style-type: none;
-  display: none;
-  visibility: hidden;
-  background-color: rgb(40, 40, 40);
-  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
-}
-
-.dropdown p, .dropdownContent p {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.dropdownContent p:hover{
-  background-color: rgb(17, 17, 17);
-}
-
 h2 {
   /* color: snow; */
   color: black;
@@ -65,6 +23,10 @@ h2 {
   background-color: snow;
   border-radius: 5px;
   cursor: pointer;
+}
+
+label {
+  margin-bottom: unset;
 }
 
 /*
@@ -85,21 +47,8 @@ accordion.js
   position: relative;
   margin-bottom: 1px;
   width: 100%;
-  color: snow;
+  color: rgb(0, 0, 0);
   margin-bottom: 5px;
-}
-
-.tablv1 a {
-  color: snow;
-}
-
-.createSubBtn {
-  position: relative;
-  margin-bottom: 10px;
-  color: black;
-  width: 100%;
-  /* background-color: snow; */
-  border-radius: 5px;
 }
 
 .tablv1 input, .tablv2 input, .createSubBtn input  {
@@ -112,8 +61,8 @@ accordion.js
   position: relative;
   display: block;
   padding: 0 0 0 1em;
-  background-color: rgb(30, 30, 30);
-  box-shadow: 3px 3px 3px 0px rgb(17, 17, 17);
+  background-color: rgb(226, 224, 224);
+  /* box-shadow: 3px 3px 3px 0px rgb(17, 17, 17); */
   font-weight: bold;
   line-height: 3;
   cursor: pointer;
@@ -131,23 +80,20 @@ accordion.js
 }
 
 .tablv1 label:hover {
-  background-color: rgb(17, 17, 17);
+  background-color: rgba(226, 225, 225, 0.623);
+  /* background-color: rgb(17, 17, 17); */
 }
 
 .tablv1 .tablv2 {
   max-height: 0;
   overflow: hidden;
-  background-color: rgb(40, 40, 40);
-  box-shadow: 5px 5px 5px 0px rgb(17, 17, 17);
+  /* background-color: rgb(40, 40, 40); */
+  background-color: rgba(226, 225, 225, 0.623);
+  /* box-shadow: 5px 5px 5px 0px rgb(17, 17, 17); */
   -webkit-transition: max-height .35s;
   -o-transition: max-height .35s;
   transition: max-height .35s;
   margin-left: 1em;
-  border-radius: 5px;
-}
-
-.tablv1 label,.tablv2 label {
-  margin-bottom: 0;
 }
 
 .createSubBtn .content {
@@ -167,15 +113,16 @@ accordion.js
   max-height: fit-content;
 }
 .tablv1 input:checked ~ label {
-  background-color: rgb(17, 17, 17);
+  background-color: rgba(226, 225, 225, 0.623);
+  /* background-color: rgb(17, 17, 17); */
 }
 
 .tablv2 input:checked ~ .acctable {
   max-height: fit-content;
-  
 }
 .tablv2 input:checked ~ label {
-  background-color: rgb(17, 17, 17);
+  background-color: rgba(226, 225, 225, 0.623);
+  /* background-color: rgb(17, 17, 17); */
 }
 
 .createSubBtn input:checked ~ .content {
@@ -212,7 +159,8 @@ accordion.js
 .acctable{
   max-height: 0;
   overflow: hidden;
-  background-color: rgb(40, 40, 40);
+  background-color: rgba(226, 225, 225, 0.623);
+  /* background-color: rgb(40, 40, 40); */
   -webkit-transition: max-height .35s;
   -o-transition: max-height .35s;
   transition: max-height .35s;
@@ -225,12 +173,15 @@ accordion.js
 }
 
 .acctable table, .acctable th, .acctable td{
-  border: 1px solid snow;
+  border: 2px ridge rgb(180, 180, 180);
   border-collapse: collapse;
 }
 
 .acctable th, .acctable td {
   padding: 5px;
+}
+
+.acctable th {
   text-align: center;
 }
 
@@ -250,23 +201,4 @@ accordion.js
 
 .acctable img {
   width: 1em;
-}
-
-/* Create Accordion List */
-.accform .subjectname {
-  width: 100%;
-  position: relative;
-  border-bottom: 1px solid #e6e6e6;
-  padding: 29px 0;
-}
-
-.accform .subjectname .subinput {
-  font-size: 20px;
-  color: #555555;
-  line-height: 1.2;
-
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding: 0 10px 0 10px;
 }
