@@ -153,7 +153,7 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script> $.reel.def.indicator = 5; </script>
+	<!-- <script> $.reel.def.indicator = 5; </script> -->
 
 	</body>
 </html>
