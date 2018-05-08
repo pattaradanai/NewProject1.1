@@ -4,19 +4,19 @@
    $idstn =  $_POST['search'];
 
    $sql = "SELECT `studentid` FROM `student` WHERE `studentid` = $idstn";
-    echo $sql;
+    
    $check = mysqli_query($conn,$sql);
     if($idstn != NULL){
         
-        if(!$check){
-            $sql = "SELECT `workid`  FROM `work_studentdata` WHERE `studentid` AND `portfolio` =  1";
-            $query = mysqli_query($conn,$sql);
+        if($check){
+            $sql1 = "SELECT `workid`  FROM `work_studentdata` WHERE `studentid` = $idstn AND `portfolio` =  1";
+            $query = mysqli_query($conn,$sql1);
             $objResult = mysqli_fetch_array($query);
                     $_SESSION["workid"] = $objResult["workid"];
                     $_SESSION["stdid_search"] = $objResult["studentid"];	
                     header("Location:index_portfolio.php");
                             
-           }else{
+           }else{   
                     echo '<script type="text/javascript">'; 
                     echo 'alert("ไม่มีรหัสนักเรียนนี้");';
                     echo 'window.location.href = "index.php"';

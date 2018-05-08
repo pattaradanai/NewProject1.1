@@ -94,7 +94,7 @@
           <ul class="fh5co-social">
             <li>
             <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
-              </a>
+              
             </li>
           </ul>
         </div>
