@@ -99,37 +99,12 @@
       </div>
     </nav>
     <div class="contentBox">
-      <?php include 'add_teacher_name.php' ?>
-      <div style="margin-bottom: 5px;">
-      <form class="accform" action="acc_add_subject.php" method="POST">
-        <div>
-          <label for="subname">Subject: </label>
-          <input class="subinput" type="text" name="subname" placeholder="Subject name" required>  
-        </div>
-        <div>
-          <label for="year">Year: </label>
-          <input class="subinput" type="text" name="year" placeholder="Year" required>  
-        </div>
-        <div>
-          <label for="term">Term: </label>
-          <input class="subinput" type="text" name="term" placeholder="Term" required>  
-        </div>
-        <div>
-          <label for="term">Section: </label>
-          <input class="subinput" type="text" name="section" placeholder="Section" required>  
-        </div>
-        <div>
-          <label for="year1-6">Year1-6: </label>
-          <input class="subinput" type="text" name="year1-6" placeholder="Year1-6" required>  
-        </div>
-        <div class="createacc">
-          <button type"submit">
-            Add Subject
-          </button>
-        </div>
-      </form>
-      </div>
-      <?php
+    <h3>รายชื่อวิชาที่สอน</h3>
+      <button style='margin-bottom:1em; color:black;'>
+        <a style='color:black;' href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
+      </button>
+      <?php 
+        // include 'add_teacher_name.php';
         include 'generate_acc_teacher.php';
       ?> 
   </div>

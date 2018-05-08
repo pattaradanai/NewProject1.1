@@ -100,7 +100,7 @@
       </div>
     </nav>
     <div class="contentBox">
-    <?php include 'generate_acc_student.php';?> 
+    <?php include('generate_acc_student.php');?> 
   </div>
   <footer id="fh5co-footer" role="contentinfo">
 
@@ -123,7 +123,21 @@
   <script src="js/main.js"></script>
   <!-- Object -->
   <!-- <script> $.reel.def.indicator = 5; </script> -->
+  <script>
+    var image =  document.getElementById("portfolio_img");
+    function changeColor()
+    {
+        if (image.getAttribute('src') == "circleRed.png")
+        {
+            image.src = "circleBlue.png";
+        }
+        else
+        {
+            image.src = "circleRed.png";
+        }
+    }
 
+  </script>
 </body>
 
 </html>

@@ -1,33 +1,26 @@
-<!DOCTYPE HTML>
 <?php 
-		session_start();
-		// $_SESSION["status"] = "teacher";
-		// $_SESSION["id"] = "101";
-		// $_SESSION["sid"] = "61002";
-		
-	?>
+	session_start();
+?>
+<!DOCTYPE HTML>
 <html>
 	<head>
-			<style>
-			.item{
-				width:100px;
-				text-align:center;
-				display:block;
-				background-color: transparent;
-				border: 1px solid transparent;
-				margin-right: 0px;
-				padding : 20px;
-				margin-bottom: 1px;
-				float:left;
-				
-				}
-			textarea{	
-					
-					margin-right : 20px ;
-					color: black;
-				}
-			
-			</style>
+	<style>
+	.item{
+		width:100px;
+		text-align:center;
+		display:block;
+		background-color: transparent;
+		border: 1px solid transparent;
+		margin-right: 0px;
+		padding : 20px;
+		margin-bottom: 1px;
+		float:left;
+		}
+	textarea{	
+		margin-right : 20px ;
+		color: black;
+		}
+	</style>
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +107,18 @@
 			</div>
 		</div>
 	</nav>
-	
+
+	<div align = "right" >	
+	<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
+  </div>
+
+	<div align = "right"  margin-right = "50px">	
+	<form action="search.php" method="post">
+		<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
+		<input type="search" name="search" placeholder="รหัสนักเรียน" required>
+		<span class="validity"></span>
+	</form>		
+  </div>
 	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box">
@@ -122,7 +126,6 @@
 					<h2> Welcome To  Student Portfolio <i class="icon-heart2"></i> </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
-				
 			</div>
 			<div class="row">
 				<?php
@@ -134,13 +137,18 @@
 					mysqli_set_charset($conn, "utf8");
 
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$img = "SELECT 'workid' FROM `work_subjectdata` ORDER BY `workid` DESC";
+					$img = "SELECT `workid` FROM `work_subjectdata` ORDER BY `workid` DESC";
 					$imgstd = mysqli_query($conn, $img);  
        				while($workid = $imgstd -> fetch_assoc()){
 						//$imgName = "161110002";
 						// while($row2 = mysqli_fetch_array($rs_name)){
 							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
-						$img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
+						// $img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
+						$img = "SELECT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`img` 
+								FROM `work_studentdata` 
+								LEFT JOIN `work{$workid['workid']}` 
+								ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
+								WHERE `work_studentdata`.`workid`={$workid['workid']}";
 						$imgstd = mysqli_query($conn, $img);
 						while($row = $imgstd -> fetch_assoc()){
 							// while($block_no<12){
@@ -152,7 +160,7 @@
 				?> 
 				<div class="col-md-4 text-center animate-box">
 					<!--  link to box-->
-					<a class='work' href='index_show_work.php?<?php echo "subjectid_form_index={$row['subjectid']}&workid_form_index={$row['workid']}&studentid_form_index=$studentid"; ?>' name='studentid_form_index'>
+					<?php echo "<a class='work' href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>" ?>
 					<!-- <a class='work' href="showstudent.php?subjectid_form_index=".$row['subjectid']."&workid_form_index=161110004&studentid_form_index=61002" name='studentid_form_index'> -->
 						<!-- <?php 
 							// $_SESSION['subjectid_form_index'] = $row['subjectid'];
@@ -170,7 +178,6 @@
 									<?php 
 									while($name_data = $name -> fetch_assoc()){
 										echo $name_data['name']." ".$name_data['surname'];
-										$_SESSION['studentid_no_1'] = $studentid;
 										$count++;
 										break;
 									}
@@ -205,7 +212,6 @@
 							break;
 						}
 					}
-					session_write_close();
 				?>
 			</div>
 		</div>
