@@ -99,8 +99,11 @@
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
+					<div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
 				<ul class="fh5co-social">
-				<div id="fh5co-logo"><a href="index.php">Home</a></div>
+					<li>
+                     <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+                     </li>
 				
 				</ul>
 			</div>

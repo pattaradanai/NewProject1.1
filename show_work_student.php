@@ -99,6 +99,7 @@ include('config.php');
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
+							<a href="logout.php">Logout</a>
 						</ul>
 					</li>
 					
