@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+  <title>Silpakorn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
   <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"
@@ -71,31 +71,38 @@
     <nav class="fh5co-nav" role="navigation">
       <div class="container">
         <div class="fh5co-top-logo">
-          <div id="fh5co-logo">
-          <?php include 'add_student_name.php';?><br>
-            <a href="logout.php">Logout</a>
+       
+            <div id="fh5co-logo">
+            <a href="index.php">Home</a>
+       
+            
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
           <ul>
+            
             <!-- Link Menu Write here (Web)-->
+           
             <li class="has-dropdown">
 
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
+                <a href="logout.php">Logout</a>
               </ul>
             </li>
 
           </ul>
         </div>
+          
         <div class="fh5co-top-social menu-1 text-right">
-          <ul class="fh5co-social">
-            <li>
-              <a href="https://github.com/pattaradanai/NewProject1.1">
-                <i class="icon-github"></i>
-              </a>
-            </li>
-          </ul>
+          <div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
+      
+            <ul class="fh5co-social">
+                <li>
+                <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+                  
+                </li>
+            </ul>
         </div>
       </div>
     </nav>

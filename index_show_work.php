@@ -145,8 +145,14 @@ include('config.php');
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro"> 
-							
-				<p>ชื่อ </p>
+				<font face="verdana" >  
+				<h3> ชื่อ </h3> 
+				<h3> นามสกุล </h3>
+				<h3> รหัสนักเรียน </h3>
+				<h3> ชื่อวิชา </h3>
+				
+				</font>
+				
                  
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
@@ -193,9 +199,12 @@ include('config.php');
 						data-for="image">
 				</div>
 				<div style='margin-top: 4em '>
-					<a style='color: black'>Score: 
-					
+					<a style='color: black'>ชื่อผลงาน: 			
 					</a>
+					<br>
+					<a style='color: black'>Score: 
+					</a>
+					
 				</div>
 			</div>
 		</div>

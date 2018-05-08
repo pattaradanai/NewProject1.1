@@ -10,7 +10,7 @@
 	<head>
 			<style>
 			.item{
-				width:100px;
+				width:200px;
 				text-align:center;
 				display:block;
 				background-color: transparent;
@@ -178,17 +178,17 @@
 					mysqli_set_charset($conn, "utf8");
 
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$img = "SELECT 'workid' FROM `work_subjectdata` ORDER BY `workid` DESC";
+					$img = "SELECT `workid` FROM `work_subjectdata` ORDER BY `workid` DESC";
 					$imgstd = mysqli_query($conn, $img);  
        				while($workid = $imgstd -> fetch_assoc()){
 						//$imgName = "161110002";
 						// while($row2 = mysqli_fetch_array($rs_name)){
 							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
 						// $img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
-						$img = "SELECT `work_studentdata`.`studentid`, `work611001`.`img` 
+						$img = "SELECT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`img` 
 								FROM `work_studentdata` 
-								LEFT JOIN `work611001` 
-								ON `work_studentdata`.`studentid`=`work611001`.`studentid` 
+								LEFT JOIN `work{$workid['workid']}` 
+								ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
 								WHERE `work_studentdata`.`workid`={$workid['workid']}";
 						$imgstd = mysqli_query($conn, $img);
 						while($row = $imgstd -> fetch_assoc()){
@@ -218,7 +218,7 @@
 									<font face="verdana" > 
 									<?php 
 									while($name_data = $name -> fetch_assoc()){
-										echo $name_data['name']." ".$name_data['surname'];
+										echo "ชื่อ: ".$name_data['name'];
 										$_SESSION['studentid_no_1'] = $studentid;
 										$count++;
 										break;

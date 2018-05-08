@@ -124,8 +124,13 @@
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
-					<h2> Welcome To  Student <i class="icon-heart2"></i> </h2>
-					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+				<font face="verdana" >  
+				<h3> ชื่อ </h3> 
+				<h3> นามสกุล </h3>
+				<h3> รหัสนักเรียน </h3>
+				<h3> ชื่อวิชา </h3>
+				
+				</font>
 				</div>
 				
 			</div>
