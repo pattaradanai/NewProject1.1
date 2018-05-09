@@ -30,6 +30,7 @@ accordion.js
 
 .contentBox {
   /* background: rgb(56, 56, 56); */
+  display: -webkit-box;
   margin-right: 7%;
   margin-left: 7%;
   border-radius: 10px;
@@ -42,7 +43,7 @@ accordion.js
 .tablv1 {
   position: relative;
   margin-bottom: 1px;
-  width: 100%;
+  width: 95%;
   color: black;
   margin-bottom: 5px;
 }
@@ -153,48 +154,20 @@ accordion.js
   transform: rotateX(180deg);
 }
 
-/* table */
-.acctable{
-  max-height: 0;
-  overflow: hidden;
-  background-color: rgba(226, 225, 225, 0.623);
-  -webkit-transition: max-height .35s;
-  -o-transition: max-height .35s;
-  transition: max-height .35s;
+/* work list */
+.worklist table {
+  margin-left: 1em;
+  width: 100%;
+}
+.worklist tr:nth-child(odd){
+  background-color: rgba(247, 247, 247);
+  width: 90%;
 }
 
-.acctable table{
-  margin: 1em;
-  width: 96%;
-  align-self: center;
-}
-
-.acctable table, .acctable th, .acctable td{
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-.acctable th, .acctable td {
-  padding: 5px;
-  text-align: center;
-}
-
-.acctable td {
-  text-align: center;
-  
-}
-
-.acctable .namecol {
-  text-align: left;
-  width: 30%;
-}
-.acctable .nocol {
-  width: 10%;
-
-}
-
-.acctable img {
-  width: 1em;
+.portfolio_icon {
+  cursor: pointer;
+  margin: 0px 5px 0px 5px;
+  width: 3%;
 }
 
 /* Create Accordion List */

@@ -96,18 +96,20 @@ session_start();
 								
 								<ul class="dropdown">
 									<!-- Link Menu Write here (mobile)-->
+									<a href="index.php">Logout</a>
 								</ul>
 							</li>
 							
 						</ul>
 					</div>
 					<div class="fh5co-top-social menu-1 text-right">
-					
-
-						<ul class="fh5co-social">
+						<div style = " font-size: 20px " > Teacher </div>
+							<ul class="fh5co-social">
 							
-							<li><a href="https://github.com/pattaradanai/NewProject1.1"><i class="icon-github"></i></a></li>
-						</ul>
+								<li>
+									<a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+								</li>
+							</ul>
 					</div>
 				</div>
 			</nav>
@@ -127,7 +129,7 @@ session_start();
 			$workid = $_GET['workid_from_index'];
 			$studentid = $_GET['studentid_from_index'];
 			$imgno = '1';
-			$comment = "SELECT * FROM `workdata` WHERE `workid`='$workid' AND `imgno`='$imgno' AND studentid = '$studentid'";
+			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
 			$re_comment = mysqli_query($conn, $comment);
 			$row_comment = mysqli_fetch_array($re_comment);
 			if($row_comment["comment"] == "none comment"){
@@ -137,21 +139,40 @@ session_start();
 			?>
         <!-- <form action = "commentToDB.php" method="post" >	 -->
 			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>comment :</label>
+				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
 				<div class="col-sm-7" align = 'left'>
 					<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>Point :</label>
+				<label class="control-label col-sm-5" align = 'right'>คะแนน :</label>
 				<div class="col-sm-7" align = 'left'>
-				<input type="number" name="quantity" min="0" max="100">
+				<!-- <input type="number" name="quantity" min="0" max="100"> -->
+				<?php
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$row_comment['max_score']}'";
+					$query = mysqli_query($conn, $sql);
+					while($maxscore = $query->fetch_assoc()){
+						$mscore = $maxscore['max_score'];
+						if($mscore<10){
+							echo "<input type='text' name='quantity' pattern='[1-$mscore]{1}'><p>คะแนนเต็ม: $mscore</p>";
+						} else {
+							$two = $mscore/10;
+							$one = $mscore%10;
+							if($two<2){
+								echo "<input type='text' name='quantity' pattern='[1]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
+							} else {
+								echo "<input type='text' name='quantity' pattern='[1-$two]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
+							}
+						}
+					}
+				?>
+				
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'></label>
 				<div class="col-sm-7" align = 'left'>
-					<div  align = "5px" ><br><button type="submit">submit</button> </div>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button> </div>
 				</div>
 			</div>
 		</form>
@@ -198,6 +219,5 @@ session_start();
 	<script src="js/main.js"></script>
 	<!-- Object -->
 	<script $.reel.def.indicator = 5; </script>
-
 	</body>
 </html>

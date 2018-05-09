@@ -90,7 +90,7 @@ $student_id = $_SESSION['studentid_no_1'];
 		<div class="container">
 			<div class="fh5co-top-logo" >
 				<a   id="fh5co-logo"  href="student.php">Back </a>
-				<a style="margin-left:30px;" id="fh5co-logo" href="logout.php">Logout</a>
+				
 				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">

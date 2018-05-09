@@ -116,6 +116,7 @@ include('config.php');
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
+							<a href="Login.html">Login</a>
 						</ul>
 					</li>
 				</ul>
@@ -149,24 +150,25 @@ include('config.php');
 					<div class = "createborder">
 					<font face="verdana" >  
 								<?php 
-										$stdid = $_SESSION['studentid_no_1'];
+									echo $_GET['block_no'];
+									// $stdid = $_SESSION['studentid_no_1'];
 										
-									$sql = "SELECT `studentid`, `name`, `surname`, `class`FROM `student` WHERE `studentid` = $stdid ";
-									$query  = mysqli_query($conn,$sql);
-									$Result = mysqli_fetch_array($query);
-									$name = $Result["name"];
-									$surname = $Result["surname"];
-									$class = $Result["class"];
-									$id = $Result["studentid"];
+									// $sql = "SELECT `studentid`, `name`, `surname`, `class`FROM `student` WHERE `studentid` = $stdid ";
+									// $query  = mysqli_query($conn,$sql);
+									// $Result = mysqli_fetch_array($query);
+									// $name = $Result["name"];
+									// $surname = $Result["surname"];
+									// $class = $Result["class"];
+									// $id = $Result["studentid"];
 								
 								
 								?>
 
 
-							<h3> ชื่อ : <?php echo $name?></h3> 
-							<h3> นามสกุล  : <?php echo $surname?></h3>
-							<h3> รหัสนักเรียน : <?php echo  $id?> </h3>
-							<h3> ห้อง  : <?php echo $class?></h3>
+							<!-- // <h3> ชื่อ : <?php //echo $name?></h3> 
+							// <h3> นามสกุล  : <?php //echo $surname?></h3>
+							// <h3> รหัสนักเรียน : <?php //echo  $id?> </h3>
+							// <h3> ห้อง  :// <?php //echo $class?></h3> -->
 							
 							</font>
 							

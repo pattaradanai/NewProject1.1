@@ -478,8 +478,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .work .work-grid .inner {
   display: table;
-  height: 300px;
-  width: 100.1%;
+  height: 100px;
+  width: 100%;
   opacity: 0;
   background: rgba(237, 235, 232, 0.9);
   -webkit-transition: 0.3s;

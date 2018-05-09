@@ -34,7 +34,6 @@
                      FROM `work_subjectdata` 
                      WHERE `subjectid`= {$data['subjectid']}";
             $query = mysqli_query($conn,$sql);
-
             $subtabno = 0;
             # เช็คว่ามีงานอยู่ไหม #
             if($query->num_rows > 0)
@@ -43,17 +42,34 @@
                 {
                     echo "<div class='tablv2'>";
                     echo "<div class='worklist'> ";
-                    echo "<p style='margin-left:1em; margin-bottom: 0px;'>หมายเหตุ:</p>";
-                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
-                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
-                    echo "<ul>";
+                    echo "<div>";
+                    echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>หมายเหตุ:</p><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
+                    // echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
+                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-left:1em; margin-right:4px; margin-left: 6em ;'/>หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
+                    echo "</div>";
+                    // echo "<ul>";
+                    echo "<table>";
+                    echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
                     $sql = "SELECT * FROM `work_subjectdata` 
                             WHERE subjectid='{$data['subjectid']}'";
                     $query = mysqli_query($conn,$sql);
                     while($work = $query->fetch_assoc())
                     {
-                        echo "<li>";
+                        // echo "<li>";
+                        echo "<tr>";
+                        echo "<td>";
+                        $sql = "SELECT `portfolio` 
+                                FROM `work_studentdata` 
+                                WHERE `studentid`='{$_SESSION['id']}' 
+                                AND `workid`='{$work['workid']}'";
+                        $query = mysqli_query($conn,$sql);
+                        $portfolio = $query->fetch_assoc();
+                        if($portfolio['portfolio']==1){
+                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                        } else {
+                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                        }
                         $sql = "SELECT `imgno` FROM `work{$work['workid']}` 
                             WHERE studentid='{$_SESSION['id']}'";
                         $query = mysqli_query($conn,$sql);
@@ -68,10 +84,13 @@
                         {
                             echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         }
-                        echo "{$work['workname']}</a></li>";
+                        // echo "{$work['workname']}</a></li>";
+                        echo "{$work['workname']}</a></td></tr>";
                     }
-                    echo "</ul>
-                    </div>
+                    echo "</table>";
+                    echo "</tbody>";
+                    // echo "</ul>";
+                    echo "</div>
                     </div>";
                 }
             } else 
@@ -86,9 +105,9 @@
             }
             echo "</div>";
             $tabno++; 
+            
         }
-    // }
-
+            // }
     // $tabno = 0;
     // $subtabno = 0;
     // if($query->num_rows > 0)
@@ -107,7 +126,6 @@
             
     //             }
     //         }
-
     //         echo "</div>";
     //         $tabno++;
     //     }

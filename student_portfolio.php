@@ -94,6 +94,7 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
+							<a href="logout.php">Logout</a>
 						</ul>
 					</li>					
 				</ul>

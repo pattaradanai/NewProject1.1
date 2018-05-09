@@ -1,7 +1,9 @@
 <?php 
     include("config.php");
     ini_set('max_execution_time', 300);
-
+    $workid_index = $_GET['workid_from_index'];
+    $subjectid_index = $_GET['subjectid_from_index'];
+    $studentid_index = $_GET['studentid_from_index'];
     for($i=1;$i<33;$i++){
         $res = file_get_contents('http://192.168.149.106/1st_photo.php');
         $base64 = base64_decode($res);
@@ -25,16 +27,16 @@
             $img_addslashes = addslashes(file_get_contents($dir."00".$i.".jpg"));
             $base64_addslashes = addslashes($base64);
             // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$i')";
-            $sql = "INSERT INTO `workdata`(`workid`, `subjectid`, `studentid`, `comment`, `score`, `img`, `imgno`) 
-                VALUE ('{$_GET['workid_from_index']}', '{$_GET['subjectid_from_index']}', '{$_GET['studentid_from_index']}', 'none comment', '50', '{$base64_addslashes}', $i)";
+            $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
+                VALUE ('$subjectid_index', '{$base64_addslashes}','$i')";
         if(mysqli_query($conn, $sql)){}
         } else {
             $save = file_put_contents($dir."0".$i.".jpg", $base64);
             $img_addslashes = addslashes(file_get_contents($dir."0".$i.".jpg"));
             $base64_addslashes = addslashes($base64);
             // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$i')";
-            $sql = "INSERT INTO `workdata`(`workid`, `subjectid`, `studentid`, `comment`, `score`, `img`, `imgno`) 
-                VALUE ('{$_GET['workid_from_index']}', '{$_GET['subjectid_from_index']}', '{$_GET['studentid_from_index']}', 'none comment', '50', '{$base64_addslashes}', $i)";
+            $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
+                VALUE ('$subjectid_index', '{$base64_addslashes}', '$i')";
             if(mysqli_query($conn, $sql)){}
         }
         $res = file_get_contents('http://192.168.149.106/2nd_photo.php');
@@ -44,8 +46,8 @@
         $img_addslashes = addslashes(file_get_contents($dir."0".$plus_32.".jpg"));
         $base64_addslashes = addslashes($base64);
         // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$plus_32')";
-        $sql = "INSERT INTO `workdata`(`workid`, `subjectid`, `studentid`, `comment`, `score`, `img`, `imgno`) 
-            VALUE ('{$_GET['workid_from_index']}', '{$_GET['subjectid_from_index']}', '{$_GET['studentid_from_index']}', 'none comment', '50', '{$base64_addslashes}', $plus_32)";
+        $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
+            VALUE ('$subjectid_index', '{$base64_addslashes}', '$plus_32')";
         if(mysqli_query($conn, $sql)){}
     }
     echo "<script  type='text/javascript'>window.alert('ถ่ายภาพเสร็จแล้ว');window.location.href='sentWork.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'</script>";
