@@ -8,7 +8,7 @@
 	if(!$objResult)
 	{
 		echo '<script type="text/javascript">'; 
-		echo 'alert("ไม่พบ Email นี้ในระบบ");';
+		echo 'alert("ไม่พบ username นี้ในระบบ");';
 		echo 'window.location.href = "Login.html"';
 		echo '</script>';
 		exit(); 
@@ -18,7 +18,7 @@
 		if($objResult["password"] != $_POST["psw"])
 		{
 			echo '<script type="text/javascript">'; 
-			echo 'alert("Password ไม่ถูกต้อง")';
+			echo 'alert("ไม่พบ password นี้ในระบบ");';
 			echo 'window.location.href = "Login.html"';
 			echo '</script>';
 			exit(); 
