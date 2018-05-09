@@ -165,13 +165,14 @@ accordion.js
   width: 100%;
 }
 .worklist tr:nth-child(odd){
-  background-color: rgba(250, 250, 250, 0.986);
+  background-color: rgba(247, 247, 247);
   width: 90%;
 }
 
 .portfolio_icon {
-  margin: 3px 0px 0px 10px;
-  width: 30%;
+  cursor: pointer;
+  margin: 0px 5px 0px 5px;
+  width: 3%;
 }
 
 /* Create Accordion List */
