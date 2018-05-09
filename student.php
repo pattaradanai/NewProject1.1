@@ -65,6 +65,7 @@
 </head>
 
 <body>
+
   <div class="fh5co-loader"></div>
 
   <div id="page">
@@ -113,6 +114,7 @@
 
   <!-- jQuery -->
   <script src="js/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <!-- jQuery Easing -->
   <script src="js/jquery.easing.1.3.js"></script>
   <!-- Bootstrap -->
@@ -124,19 +126,28 @@
   <!-- Object -->
   <!-- <script> $.reel.def.indicator = 5; </script> -->
   <script>
-    var image =  document.getElementById("portfolio_img");
-    function changeColor()
+    var image =  document.getElementById('portfolio_img');
+    function changePortfolioStatus(workid)
     {
-        if (image.getAttribute('src') == "circleRed.png")
+        if (image.getAttribute('src') == "https://i.imgur.com/pDqvmwb.png")
         {
-            image.src = "circleBlue.png";
+            image.src = "https://i.imgur.com/zpJ2gms.png";
+            $.ajax({
+            type:'POST',
+            url:'switch_portfolio_status.php',
+            data:{status:0,workid:workid}
+            });
         }
         else
         {
-            image.src = "circleRed.png";
+            image.src = "https://i.imgur.com/pDqvmwb.png";
+            $.ajax({
+            url:'switch_portfolio_status.php',
+            method:'post',
+            data:{status:1,workid:workid}
+            });
         }
     }
-
   </script>
 </body>
 
