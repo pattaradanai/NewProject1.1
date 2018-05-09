@@ -32,7 +32,7 @@
         echo         "<th>คะแนนเต็ม</th>";
         echo         "<th></th>";
         echo        "</tr>";
-        $sql = "SELECT `workid`,`workname`, `max_score` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`";
+        $sql = "SELECT DISTINCT `workid`,`workname`, `max_score` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`";
         $query = mysqli_query($conn,$sql);
         if(!$query->num_rows>0)
         {
@@ -121,11 +121,11 @@
                         // echo "</form>";
                         # เริ่มงานของแต่ละห้อง #
                         echo  "<ul>";
-                        $sql1 = "SELECT `workname`, `class`, `workid`
+                        $sql1 = "SELECT DISTINCT `workname`, `class`, `workid`
                                 FROM `work_subjectdata` 
                                 WHERE `subjectid`= {$subjectid['subjectid']} 
                                 AND `class`='{$classdata['class']}' 
-                                ORDER BY `class`";
+                                ORDER BY `workorder`";
                         $query1 = mysqli_query($conn,$sql1);
                         // echo var_dump($query1);
                         if($query1->num_rows == 0){
@@ -134,7 +134,7 @@
                                 while($class_work = $query1->fetch_assoc())
                                 {
                                         // echo var_dump($class_work);
-                                        echo "<li>{$class_work['workname']}<a class='a-link' href='teacher_unassign_work.php?editer_unassign_subjectid={$subjectid['subjectid']}&editer_unassign_class={$classdata['class']}&editer_unassign_workid={$class_work['workid']}'>ยกเลิกงานนี้</a></li>";
+                                        echo "<li>{$class_work['workname']}<a class='a-link' style='margin-left:5px;' href='teacher_unassign_work.php?editer_unassign_subjectid={$subjectid['subjectid']}&editer_unassign_class={$classdata['class']}&editer_unassign_workid={$class_work['workid']}'>ยกเลิกงานนี้</a></li>";
                                 }
                         }
                         echo   "</ul>";
@@ -145,7 +145,10 @@
                         echo "<form name='add_work_to_class' action='teacher_assign_work.php?editer_assign_class={$classdata['class']}' method='POST'>";
                         echo "<select  name='subject_work_list' required>";
                         echo  "<option value='' selected>--เลือกงานที่จะสั่ง--</option>";
-                        $sql0 = "SELECT `workid`, `workname`, `class` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
+                        $sql0 = "SELECT DISTINCT `workid`, `workname`, `class` 
+                                FROM `work_subjectdata` 
+                                WHERE `subjectid`= {$subjectid['subjectid']} 
+                                ORDER BY `workorder`";
                         $query0 = mysqli_query($conn,$sql0);
                         $value = 1;
                         while($subject_work_list = $query0->fetch_assoc())

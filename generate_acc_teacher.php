@@ -47,15 +47,18 @@
                     <tr>
                         <th class='nocol' rowSpan='2'>เลขที่</th>
                         <th rowSpan='2'>ชื่อ-นามสกุล</th>
-                        <th colSpan='20'>งาน</th>
+                        <th colSpan='20'>งานชิ้นที่</th>
                     </tr>
                     <tr>";
                 # create work col much as work quantity #
-                $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                $sql = "SELECT `workid`,`workorder` FROM `work_subjectdata` 
+                        WHERE `subjectid`= '{$subjectid['subjectid']}'
+                        AND `class`= '{$subjectdata['class']}'";
+                // echo $sql;
                 $query_work = mysqli_query($conn,$sql);
                 while($work = $query_work->fetch_assoc())
                 {
-                    echo "<td>$workno</td>";
+                    echo "<td>{$work['workorder']}</td>";
                     $workno++;
                 }
                 echo "</tr>"; # close header row #
@@ -76,20 +79,27 @@
                     <td class='namecol'>{$studentname[0][1]} {$studentname[0][2]}</td>";
                     
                     # create student work check #
-                    $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                    $sql = "SELECT `workid` FROM `work_subjectdata` 
+                            WHERE `subjectid` = '{$subjectid['subjectid']}' 
+                            AND `class` = '{$subjectdata['class']}'";
                     $query_check_work = mysqli_query($conn,$sql);
                     $query_check_work_all = $query_check_work->fetch_all();
                     // echo var_dump($query_work_all);
-                    if($query_check_work_all==null)
+                    if($query_check_work->num_rows == 0)
                     {
                         echo "<td> No Work Assign </td>";
                     } else 
                     {
-                        $sql = "SELECT `workid` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']}";
+                        $sql = "SELECT `workid` FROM `work_subjectdata` 
+                                WHERE `subjectid` = '{$subjectid['subjectid']}' 
+                                AND `class` = '{$subjectdata['class']}'";
                         $query_work = mysqli_query($conn,$sql);
                         while($work = $query_work->fetch_assoc()){
                             # student work in that subject #
-                            $sql = "SELECT DISTINCT 'score' FROM `work_studentdata` WHERE `studentid`='{$studentid_no['studentid']}' AND `workid`='{$work['workid']}'";
+                            $sql = "SELECT DISTINCT 'score' 
+                                    FROM `work_studentdata` 
+                                    WHERE `studentid`='{$studentid_no['studentid']}' 
+                                    AND `workid`='{$work['workid']}'";
                             $query_studentworklist = mysqli_query($conn,$sql);
                             $studentworklist = $query_studentworklist->fetch_all();
                             // echo $studentid_no['studentid']."----".isset($studentworklist[0]);

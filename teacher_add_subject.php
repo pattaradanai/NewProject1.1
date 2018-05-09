@@ -23,8 +23,8 @@
         } else {
             $max_seq = 0;
             while($check_seq=$query->fetch_assoc()){
-                echo var_dump($check_seq['subjectid']);
-                echo "<br>";
+                // echo var_dump($check_seq['subjectid']);
+                // echo "<br>";
                 if($max_seq<substr($check_seq['subjectid'],5)){
                     $max_seq = substr($check_seq['subjectid'],5);
                 }

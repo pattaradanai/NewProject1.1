@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 
 <?php
-include 'config.php';
+include('config.php');
  
 session_start();
 ?>
@@ -79,14 +79,15 @@ session_start();
 	
 	</head>
 	<body>
-		
 	<div class="fh5co-loader"></div>
 		<div id="page">
 			<nav class="fh5co-nav" role="navigation">
 				<div class="container">
 					<div class="fh5co-top-logo">
-				
-						<div> <a href="index.php">Logout</a></div>
+						<div id="fh5co-logo">
+							<a href="teacher.php">Back </a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="index.php">Logout</a>
+						</div>
 					</div>
 					<div class="fh5co-top-menu menu-1 text-center">
 						<ul>
@@ -112,22 +113,93 @@ session_start();
 			</nav>
 			<div class="container">
 			<!-- RUN HARDWHERE -->
-                <a href="run_hardware.php">
+				<?php 
+					echo "<a href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
+				?>
+                <!-- <a href="run_hardware.php?subjectid_from_index={$_GET['submit_subjectid']}&workid_from_index={$_GET['submit_workid']}&studentid_from_index={$_GET['submit_studentid']}"> -->
                     <img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
                     <h3> <font face="verdana" > upload </font></h3>
                 </a>
             </div>
-        </div>
-        <form action = "commentToDB.php" method="post" >
-            <div align="center" >				
-                <textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
-                <br>
-                <div  align = "5px" ><button type="submit">Click Me!</button> </div>
-            </div>
-        </form>
-				<!-- comment box -- >
-			
+		</div>
+		<?php
+			$subjectid = $_GET['subjectid_from_index'];
+			$workid = $_GET['workid_from_index'];
+			$studentid = $_GET['studentid_from_index'];
+			$imgno = '1';
+			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
+			$re_comment = mysqli_query($conn, $comment);
+			$row_comment = mysqli_fetch_array($re_comment);
+			if($row_comment["comment"] == "none comment"){
+		?>
+		<?php 
+                echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
+			?>
+        <!-- <form action = "commentToDB.php" method="post" >	 -->
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
+				<div class="col-sm-7" align = 'left'>
+					<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>คะแนน :</label>
+				<div class="col-sm-7" align = 'left'>
+				<!-- <input type="number" name="quantity" min="0" max="100"> -->
+				<?php
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$row_comment['max_score']}'";
+					$query = mysqli_query($conn, $sql);
+					while($maxscore = $query->fetch_assoc()){
+						$mscore = $maxscore['max_score'];
+						if($mscore<10){
+							echo "<input type='text' name='quantity' pattern='[1-$mscore]{1}'><p>คะแนนเต็ม: $mscore</p>";
+						} else {
+							$two = $mscore/10;
+							$one = $mscore%10;
+							if($two<2){
+								echo "<input type='text' name='quantity' pattern='[1]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
+							} else {
+								echo "<input type='text' name='quantity' pattern='[1-$two]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
+							}
+						}
+					}
+				?>
 				
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'></label>
+				<div class="col-sm-7" align = 'left'>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button> </div>
+				</div>
+			</div>
+		</form>
+			<?php }
+			else{
+				echo "<form action = 'commentToDB.php?subjectid_from_index=$subjectid&workid_from_index=$workid&studentid_from_index=$studentid' method='post' >";
+			?>
+		<!-- <form action = "commentToDB.php?subjectid=$subjectid" method="post" > -->
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>comment :</label>
+				<div class="col-sm-7" align = 'left'>
+					<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>Point :</label>
+				<div class="col-sm-7" align = 'left'>
+					<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'></label>
+				<div class="col-sm-7" align = 'left'>
+					<div align = "5px" ><br><button type="submit">submit</button> </div>
+				</div>
+			</div>
+		</form>
+			<?php } ?>
+			<!-- comment box -- >
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
@@ -145,5 +217,6 @@ session_start();
 	<script src="js/main.js"></script>
 	<!-- Object -->
 	<script $.reel.def.indicator = 5; </script>
+
 	</body>
 </html>
