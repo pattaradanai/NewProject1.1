@@ -60,6 +60,17 @@
                         // echo "<li>";
                         echo "<tr>";
                         echo "<td>";
+                        $sql = "SELECT `portfolio` 
+                                FROM `work_studentdata` 
+                                WHERE `studentid`='{$_SESSION['id']}' 
+                                AND `workid`='{$work['workid']}'";
+                        $query = mysqli_query($conn,$sql);
+                        $portfolio = $query->fetch_assoc();
+                        if($portfolio['portfolio']==1){
+                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                        } else {
+                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                        }
                         $sql = "SELECT `imgno` FROM `work{$work['workid']}` 
                             WHERE studentid='{$_SESSION['id']}'";
                         $query = mysqli_query($conn,$sql);
@@ -95,10 +106,9 @@
             }
             echo "</div>";
             $tabno++; 
+            
         }
-        echo "<img id='' class='portfolio_icon' src='https://i.imgur.com/NH98HhG.png'/>";
-        // echo "<img class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png'/>";
-    // }
+            // }
 
     // $tabno = 0;
     // $subtabno = 0;
