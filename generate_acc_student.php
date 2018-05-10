@@ -43,10 +43,17 @@
                 {
                     echo "<div class='tablv2'>";
                     echo "<div class='worklist'> ";
-                    echo "<div>";
-                    echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>หมายเหตุ:</p><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
+                    echo "<div style='display:-webkit-inline-box;'>";
+                    echo "<div style='height:5em; width:13%;'>";
+                    echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>หมายเหตุ:</p>";
+                    echo "</div>";
+                    echo "<div style='height:5em; left:87%;'>";
+                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em;  margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว";
+                    echo "<img src='https://i.imgur.com/pDqvmwb.png' style='width: 23px; margin-right:4px; margin-left: 23px; word-wrap:break-word;'/>หมายถึง ไม่ให้งานนี้แสดงในหน้าportfolio<br> ";
                     // echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-left:1em; margin-right:4px;'/>หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
-                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-left:1em; margin-right:4px; margin-left: 6em ;'/>หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
+                    echo "<img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right:4px; '/>หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
+                    echo "<img src='https://i.imgur.com/zpJ2gms.png' style='width: 23px; margin-right:4px; margin-left: 1em ;'/>หมายถึง เลือกให้งานนี้แสดงในหน้าportfolio ";
+                    echo "</div>";
                     echo "</div>";
                     // echo "<ul>";
                     echo "<table>";
