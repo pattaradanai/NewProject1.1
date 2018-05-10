@@ -165,10 +165,10 @@ include('config.php');
 								?>
 
 
-							<!-- // <h3> ชื่อ : <?php //echo $name?></h3> 
-							// <h3> นามสกุล  : <?php //echo $surname?></h3>
-							// <h3> รหัสนักเรียน : <?php //echo  $id?> </h3>
-							// <h3> ห้อง  :// <?php //echo $class?></h3> -->
+							 <h3> ชื่อ : <?php echo $name?></h3> 
+							 <h3> นามสกุล  : <?php echo $surname?></h3>
+							 <h3> รหัสนักเรียน : <?php echo  $id?> </h3>
+							 <h3> ห้อง  : <?php echo $class?></h3>
 							
 							</font>
 							

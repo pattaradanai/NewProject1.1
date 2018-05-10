@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php
-
+	session_start();
+	include('config.php');
 ?>
 <html>
 	<head>
@@ -126,10 +127,43 @@
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
 				<font face="verdana" >  
-				<h3> ชื่อ </h3> 
-				<h3> นามสกุล </h3>
-				<h3> รหัสนักเรียน </h3>
-				<h3> ชื่อวิชา </h3>
+				<?php 
+					//$workid =  $_SESSION["workid"] ;
+					
+					$stdid =  $_SESSION["stdid_search"] ;
+					
+					
+					$sql_port = "SELECT  `workid` FROM `work_studentdata` WHERE `studentid` = $stdid ";
+					$sql_name = "SELECT * FROM `student` WHERE `studentid` = $stdid";
+					$query_name =  mysqli_query($conn,$sql_name);
+					$query_port =  mysqli_query($conn,$sql_port);
+
+					//echo var_dump($query_name);
+                   
+					$objName = mysqli_fetch_array($query_name);
+					$objPort = mysqli_fetch_array($query_port);
+
+
+
+
+
+					
+
+
+
+
+				
+				
+				
+				?>
+				<div class = "createborder">
+					<font face="verdana" >  
+						<h3> ชื่อ : <?php  echo $objName["name"] ?> </h3> 
+						<h3> นามสกุล : <?php echo $objName["surname"] ?> </h3>
+						<h3> รหัสนักเรียน : <?php echo $objName["studentid"] ?>  </h3>
+						<h3> ห้อง : <?php echo $objName["class"] ?> </h3>
+				
+
 				
 				</font>
 				</div>
