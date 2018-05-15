@@ -68,7 +68,7 @@ session_start();
 				}
 			};
 			// xhttp.open("GET", "test_2nd_process.php", true);
-			xhttp.open("GET", "test_2nd_process.php", true);
+			xhttp.open("GET", "run_hardware.php", true);
 			xhttp.send();
 		}
 	</script>
