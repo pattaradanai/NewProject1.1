@@ -52,7 +52,49 @@ session_start();
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<script>
+		function move() {
+			$run_hardware_img = document.getElementById("run_hardware_img");
+			$run_hardware_img.src = 'https://media.giphy.com/media/9i3Ax6g0DLlzW/giphy.gif';
+			$run_hardware_img.style.width = '80px';
+			// $run_hardware_img.style.margin-left = '15px';
+			document.getElementById("process_text").innerHTML = 'กำลังถ่ายภาพ กรุณารอสักครู่';
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					$run_hardware_img.src = 'https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png'; 
+					document.getElementById("process_text").innerHTML = 'ถ่ายภาพเสร็จแล้ว';
+				}
+			};
+			// xhttp.open("GET", "test_2nd_process.php", true);
+			xhttp.open("GET", "test_2nd_process.php", true);
+			xhttp.send();
+		}
+	</script>
+	<script>
+		function ping_hw() {
+			$ping_icon = document.getElementById("ping_icon");
+			$ping_icon.src = 'https://media.giphy.com/media/9i3Ax6g0DLlzW/giphy.gif';
+			// $ping_icon.style.width = '80px';
+			document.getElementById("ping_status").innerHTML = "กำลังตรวจสอบการเชื่อมต่อกับอุปกรณ์";
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if(this.responseText == 0){
+						$ping_icon.src = 'https://png.icons8.com/metro/1600/connected.png';
+						document.getElementById("ping_status").innerHTML = "เชื่อมต่อกับอุปกรณ์สำเร็จ";
+					} else {
+						$ping_icon.src = 'https://png.icons8.com/metro/1600/disconnected.png';
+						document.getElementById("ping_status").innerHTML = "ขาดการเชื่อมต่อกับอุปกรณ์";
+					}
+				}
+			};
+			xhttp.open("GET", "ping_hardware.php", true);
+			xhttp.send();
+		}
+	</script>
 	<!-- textarea comment box -->
 
 	
@@ -83,7 +125,7 @@ session_start();
 		<div id="page">
 			<nav class="fh5co-nav" role="navigation">
 				<div class="container">
-					<div class="fh5co-top-logo">
+					<div class="fh5co-top-logo" >
 						<div id="fh5co-logo">
 							<a href="teacher.php">Back </a>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="index.php">Logout</a>
@@ -111,15 +153,29 @@ session_start();
 					</div>
 				</div>
 			</nav>
-			<div class="container">
+			<div class="container" style='margin-top:50px; margin-left:41.6667%;'>
 			<!-- RUN HARDWHERE -->
+				<div style='margin-left:5%;'>
 				<?php 
-					echo "<a href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
+					// echo "<a onclick='move()' href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
+					echo "<a onclick='move()' style='cursor:pointer;'>";
 				?>
-                <!-- <a href="run_hardware.php?subjectid_from_index={$_GET['submit_subjectid']}&workid_from_index={$_GET['submit_workid']}&studentid_from_index={$_GET['submit_studentid']}"> -->
-                    <img src="images/ic_camera_black_24dp_2x.png"  alt=""/> 
-                    <h3> <font face="verdana" > upload </font></h3>
+                    <img id='run_hardware_img' src="images/ic_camera_black_24dp_2x.png" style='width:24dp;padding-left:50px' alt=""/> 
+                    <h4> <font face="verdana" id='process_text'> คลิ้กเพื่อถ่ายภาพผลงาน </font></h4>
                 </a>
+				</div>
+				<div style='display:-webkit-box;'>
+				<?php 
+					$ip = '192.168.149.106';
+					exec("ping -n 1 $ip", $output, $status);
+					if($status==0){
+						echo "<img id='ping_icon' style='width:30px;' src='https://png.icons8.com/metro/1600/connected.png'/><p id='ping_status' style='margin:10px 0px 0px 10px; color:rgb(69, 206, 69);'>เชื่อมต่อกับอุปกรณ์สำเร็จ</p>";
+					} else {
+						echo "<img id='ping_icon' style='width:30px;' src='https://png.icons8.com/metro/1600/disconnected.png'/><p id='ping_status' style='margin:10px 0px 0px 10px; color:rgb(206, 69, 69)'>ขาดการเชื่อมต่อกับอุปกรณ์</p>";
+					}
+				?>
+				</div>
+				<button onclick='ping_hw()' style='margin-top:3px; color:black;'>ตรวจสอบการเชื่อมต่อกับอุปกรณ์</button>
             </div>
 		</div>
 		<?php
@@ -128,18 +184,21 @@ session_start();
 			$studentid = $_GET['studentid_from_index'];
 			$imgno = '1';
 			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
+			// echo $comment;
 			$re_comment = mysqli_query($conn, $comment);
-			$row_comment = mysqli_fetch_array($re_comment);
-			if($row_comment["comment"] == "none comment"){
+			$row_comment = mysqli_fetch_assoc($re_comment);
+			// echo var_dump($row_comment);
+			// if($row_comment["comment"] == "none comment"){
+			if($row_comment == NULL){
+			# กรณีที่ยังไม่มีข้อมูล
 		?>
 		<?php 
                 echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
 			?>
-        <!-- <form action = "commentToDB.php" method="post" >	 -->
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
 				<div class="col-sm-7" align = 'left'>
-					<textarea rows="4" cols="50" name = "comment" >  comment here ...</textarea>
+					<textarea rows="4" cols="50" name = "comment" placeholder="พิมพ์คำอธิบายที่นี้ ..." required> </textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -147,60 +206,58 @@ session_start();
 				<div class="col-sm-7" align = 'left'>
 				<!-- <input type="number" name="quantity" min="0" max="100"> -->
 				<?php
-					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$row_comment['max_score']}'";
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='$workid'";
 					$query = mysqli_query($conn, $sql);
 					while($maxscore = $query->fetch_assoc()){
-						$mscore = $maxscore['max_score'];
-						if($mscore<10){
-							echo "<input type='text' name='quantity' pattern='[1-$mscore]{1}'><p>คะแนนเต็ม: $mscore</p>";
-						} else {
-							$two = $mscore/10;
-							$one = $mscore%10;
-							if($two<2){
-								echo "<input type='text' name='quantity' pattern='[1]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
-							} else {
-								echo "<input type='text' name='quantity' pattern='[1-$two]{1}[0-$one]{1}'><p>คะแนนเต็ม: $mscore</p>";
-							}
-						}
+						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนน</p>";
+						break;
 					}
 				?>
-				
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'></label>
 				<div class="col-sm-7" align = 'left'>
-					<div  align = "5px" ><br><button type="submit">ยืนยัน</button> </div>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button></div>
 				</div>
 			</div>
 		</form>
 			<?php }
 			else{
+				# กรณีที่มีข้อมูลแล้ว
+				while($data = $re_comment->fetch_assoc()){
 				echo "<form action = 'commentToDB.php?subjectid_from_index=$subjectid&workid_from_index=$workid&studentid_from_index=$studentid' method='post' >";
 			?>
 		<!-- <form action = "commentToDB.php?subjectid=$subjectid" method="post" > -->
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'>comment :</label>
 				<div class="col-sm-7" align = 'left'>
-					<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
+					<textarea rows="4" cols="50" name = "comment" ><?php echo $data["comment"]; ?></textarea>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'>Point :</label>
 				<div class="col-sm-7" align = 'left'>
-					<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
+					<!-- <input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>"> -->
+					<?php
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$data['max_score']}'";
+					$query = mysqli_query($conn, $sql);
+					while($maxscore = $query->fetch_assoc()){
+						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนนss</p>";
+						break;
+					}
+				?>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'></label>
 				<div class="col-sm-7" align = 'left'>
-					<div align = "5px" ><br><button type="submit">submit</button> </div>
+					<div align = "5px" ><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
 				</div>
 			</div>
 		</form>
-			<?php } ?>
+			<?php }} ?>
 			<!-- comment box -- >
-
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
@@ -216,7 +273,7 @@ session_start();
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<script $.reel.def.indicator = 5; </script>
+	<script $.reel.def.indicator = 5;> </script>
 
 	</body>
 </html>
