@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<?php include('is_login.php') ?>
+
 
 <html>
 
@@ -82,7 +82,13 @@
 
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
-                <a href="logout.php">Logout</a>
+                
+              <?php 
+                   include('is_login.php');
+                   include('index_is_login.php');
+            
+              ?>
+                <!-- <a href="logout.php">Logout</a> -->
               </ul>
             </li>
 
@@ -90,7 +96,8 @@
         </div>
         <div class="fh5co-top-social menu-1 text-right">
               <!-- ชื่อ อาจารย์ -->
-           <div style = " font-size: 20px " > ชื่อ </div>
+          
+         <?php include("teacher_login.php"); ?>
           <ul class="fh5co-social">
             <li>
             <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
@@ -102,7 +109,7 @@
     </nav>
     <div class="contentBox">
       <button style='margin-bottom:1em;'>
-        <a href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
+        <a style = "color : black;" href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
       </button>
       <?php 
         // include 'add_teacher_name.php';

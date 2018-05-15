@@ -122,7 +122,7 @@
 					
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.html">Login</a>
+							<?php include('index_is_login.php');?>
 
 						
 						</ul>
@@ -134,9 +134,6 @@
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
 					<?php include('index_is_login.php');?>
-			
-					<div id="fh5co-logo"><a href="Login.html">Login</a></div>
-				
 				</ul>
 			</div>
 		</div>

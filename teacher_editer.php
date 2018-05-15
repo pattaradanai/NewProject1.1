@@ -89,7 +89,7 @@
           </ul>
         </div>
         <div class="fh5co-top-social menu-1 text-right">
-        <div style = " font-size: 20px " > ชื่อ </div>
+          <?php include("teacher_login.php"); ?>
           <ul class="fh5co-social">
             <li>
                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
