@@ -57,6 +57,30 @@
   <!--  Object  -->
   <script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
   <script src='jquery.reel.js' type='text/javascript'></script>
+  <script>
+    function changePortfolioStatus(workid)
+    {
+      var image =  document.getElementById('portfolio_img');
+      var xhttp = new XMLHttpRequest();
+      if (image.src == "https://i.imgur.com/pDqvmwb.png"){
+        $.post('switch_portfolio_status.php', 
+          { portfolio_status: '0', portfolio_workid: workid })
+          .done(function(data) {
+            // alert(data);
+            image.src = 'https://i.imgur.com/zpJ2gms.png';
+          });
+      }
+      else{
+        $.post('switch_portfolio_status.php', 
+          { portfolio_status: '1', portfolio_workid: workid })
+          .done(function(data) {
+            // alert(data);
+            image.src = 'https://i.imgur.com/pDqvmwb.png';
+          });
+      }
+    }
+  </script>
+
   <!-- FOR IE9 below -->
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -125,30 +149,7 @@
   <script src="js/main.js"></script>
   <!-- Object -->
   <!-- <script> $.reel.def.indicator = 5; </script> -->
-  <script>
-    var image =  document.getElementById('portfolio_img');
-    function changePortfolioStatus(workid)
-    {
-        if (image.getAttribute('src') == "https://i.imgur.com/pDqvmwb.png")
-        {
-            image.src = "https://i.imgur.com/zpJ2gms.png";
-            $.ajax({
-            type:'POST',
-            url:'switch_portfolio_status.php',
-            data:{status:0,workid:workid}
-            });
-        }
-        else
-        {
-            image.src = "https://i.imgur.com/pDqvmwb.png";
-            $.ajax({
-            url:'switch_portfolio_status.php',
-            method:'post',
-            data:{status:1,workid:workid}
-            });
-        }
-    }
-  </script>
+  
 </body>
 
 </html>

@@ -1,7 +1,8 @@
 <?php 
-echo '<script type="text/javascript"> alert("เพิ่มงานสำเร็จแล้ว"); window.location.href = "student.php" </script>';
-    $status = $_POST['status'];
-    $workid = $_POST['workid'];
+    session_start();
+    include('config.php');
+    $status = $_POST['portfolio_status'];
+    $workid = $_POST['portfolio_workid'];
     if($status==0){
         $sql = "UPDATE `work_studentdata` 
                 SET `portfolio`='1'
