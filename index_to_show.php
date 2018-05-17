@@ -43,7 +43,7 @@
             } else 
             {
                 if($temp_workid == $workid['workid'])
-                {
+                { 
                     $block_no++;
                 } else {
                     $temp_workid = $workid['workid'];

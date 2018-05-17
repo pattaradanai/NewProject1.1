@@ -71,7 +71,13 @@ session_start();
 	 textarea{	
 		 	
 		 	margin-right : 20px ;
-    		color: black;
+			color: black;
+			float:left;
+			width: 100%;
+			min-height: 35px;
+			outline: none;
+			resize: none;
+			
 		}
 	
 	</style>
@@ -112,88 +118,95 @@ session_start();
 					</div>
 				</div>
 			</nav>
+			<div id="fh5co-work">
 			<div class="container">
-			<div  align = "center">
-                
-				<?php 
-				$subjectid = $_GET['subjectid_from_index'];
-				$workid = $_GET['workid_from_index'];
-				$studentid = $_GET['studentid_from_index'];
-				$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-				$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
-				echo "
-					<img src= $src width='200' height='200'
-					class='reel'
-					id='image'
-					data-images=$src1 
-					data-frames='32'
-					data-frame='32'
-					data-rows='2'
-					data-row='2'
-					data-speed='0.3'>
-					"
-					?>
-						<div class="reel-annotation"
-					id="last_row"
-					data-start="1"
-					data-end="32"
-					data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
-					data-y="2"
-					data-for="image">
-					</div>
+				<div class="row top-line animate-box">
+							<div class="col-md-12 text-center intro"> 
+							
+										<div  align = "center">
+										
+											<?php 
+											$subjectid = $_GET['subjectid_from_index'];
+											$workid = $_GET['workid_from_index'];
+											$studentid = $_GET['studentid_from_index'];
+											$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+											$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+											echo "
+												<img src= $src width='200' height='200'
+												class='reel'
+												id='image'
+												data-images=$src1 
+												data-frames='32'
+												data-frame='32'
+												data-rows='2'
+												data-row='2'
+												data-speed='0.3'>
+												"
+												?>
+													<div class="reel-annotation"
+												id="last_row"
+												data-start="1"
+												data-end="32"
+												data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
+												data-y="2"
+												data-for="image">
+												</div>
 
-					<div class="reel-annotation"
-					id="first_row"
-					data-start="33"
-					data-end="64"
-					data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
-					data-y="33"
-					data-for="image">
-					
-					</div>
-												
+												<div class="reel-annotation"
+												id="first_row"
+												data-start="33"
+												data-end="64"
+												data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
+												data-y="33"
+												data-for="image">
+											
+												</div>
+																		
+										</div>
+							</div>
+				 </div>
+					<?php
+						$subjectid = $_GET['subjectid_from_index'];
+						$workid = $_GET['workid_from_index'];
+						$studentid = $_GET['studentid_from_index'];
+						$imgno = '1';
+						$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
+						$re_comment = mysqli_query($conn, $comment);
+						$row_comment = mysqli_fetch_array($re_comment);
+						// if($row_comment["comment"] == "none comment"){
+					?>
+						<?php 
+						// }
+						// else{
+						echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
+							?>
+						<!-- <form action = "commentToDB.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}" method="post" > -->
+							<div class="form-group">
+								<label class="control-label col-sm-5" align = 'right'>comment :</label>
+								<div class="col-sm-7" align = 'left'>
+									<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-5" align = 'right'>Point :</label>
+								<div class="col-sm-7" align = 'left'>
+									<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-5" align = 'right'></label>
+								<div class="col-sm-7" align = 'left'>
+									<div align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
+								</div>
+							</div>
+						</form>
 				</div>
 		</div>
 	</div>
-	<?php
-		$subjectid = $_GET['subjectid_from_index'];
-		$workid = $_GET['workid_from_index'];
-		$studentid = $_GET['studentid_from_index'];
-		$imgno = '1';
-		$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
-		$re_comment = mysqli_query($conn, $comment);
-		$row_comment = mysqli_fetch_array($re_comment);
-		// if($row_comment["comment"] == "none comment"){
-	?>
-		<?php 
-		// }
-		// else{
-			echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
-		?>
-	<!-- <form action = "commentToDB.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}" method="post" > -->
-		<div class="form-group">
-			<label class="control-label col-sm-5" align = 'right'>comment :</label>
-			<div class="col-sm-7" align = 'left'>
-				<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-5" align = 'right'>Point :</label>
-			<div class="col-sm-7" align = 'left'>
-				<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-5" align = 'right'></label>
-			<div class="col-sm-7" align = 'left'>
-				<div align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
-			</div>
-		</div>
-	</form>
+	
 	</div>
-		<?php 
-	// } 
-	?>
+
+	
 		<!-- comment box -->
 <!-- <footer id="fh5co-footer" role="contentinfo">
 </footer> -->

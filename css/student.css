@@ -166,8 +166,9 @@ accordion.js
 
 .portfolio_icon {
   cursor: pointer;
-  margin: 0px 5px 0px 5px;
-  width: 3%;
+  margin: 0px 5px 3px 5px;
+  width: 23px;
+  height: 23px;
 }
 
 /* Create Accordion List */
