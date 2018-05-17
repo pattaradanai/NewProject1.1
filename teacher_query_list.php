@@ -11,12 +11,10 @@ include("config.php");
     $tabno = 0;
     $subtabno = 0;
     $workno = 1;
-
     ##### teacher name+surname #####
     $sql = "SELECT * FROM `teacher` WHERE `teacherid`= {$_SESSION['id']}";
     $query_teacherdata = mysqli_query($conn,$sql);
     $teacherdata = $query_teacherdata->fetch_assoc();
-
     ##### year+term+subject which that teacher teached #####
     # only subjectid #
     $sql = "SELECT * FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']}";
@@ -26,12 +24,10 @@ include("config.php");
     $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
     $query_subjectdata = mysqli_query($conn,$sql);
     $subjectdata = $query_subjectdata->fetch_assoc();
-
     ##### work quantity in that subject #####
     $sql = "SELECT DISTINCT `workid` FROM `workdata` WHERE `subjectid`= {$subjectid['subjectid']}";
     $query_work = mysqli_query($conn,$sql);
     $work = $query_work->fetch_all();
-
     ##### student no(in class?/?)+name+surname+work(in that subject) #####
     # studentid + no in class #
     $sql = "SELECT * FROM `class{$subjectdata['class']}`";

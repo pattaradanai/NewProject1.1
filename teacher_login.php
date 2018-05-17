@@ -6,8 +6,10 @@
     $sql = "SELECT * FROM `teacher` WHERE `teacherid` =   $teacher_id ";
     $query = mysqli_query($conn,$sql);
     $objResult = mysqli_fetch_array($query);
+
+   
     
-    echo "<div style = ' font-size: 20px' color : 'black' > ".$objResult['name']." ".$objResult['surname']."</div>";
+    echo "<a style = ' font-size: 20px' color : 'black' href='teacher.php'> ".$objResult['name']." ".$objResult['surname']."</a>";
 
 
 

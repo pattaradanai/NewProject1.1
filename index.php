@@ -176,7 +176,7 @@
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$img = "SELECT DISTINCT `workid` FROM `work_subjectdata` ORDER BY `workid` ";
+					$img = "SELECT `workid` FROM `work_subjectdata` ORDER BY `workid` ";
 					$imgstd = mysqli_query($conn, $img);  
 					// echo var_dump($imgstd);
        				while($workid = $imgstd -> fetch_assoc()){
@@ -185,14 +185,14 @@
 						// while($row2 = mysqli_fetch_array($rs_name)){
 							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
 						// $img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
-						$sql = "SELECT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`img` 
+						$img = "SELECT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`img` 
 								FROM `work_studentdata` 
 								LEFT JOIN `work{$workid['workid']}` 
 								ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
 								WHERE `work_studentdata`.`workid`='{$workid['workid']}'";
 						// echo $img;
-						$query = mysqli_query($conn, $sql);
-						while($row = $query -> fetch_assoc()){
+						$imgstd = mysqli_query($conn, $img);
+						while($row = $imgstd -> fetch_assoc()){
 							// while($block_no<12){
 							$studentid = $row['studentid'];
 							$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
@@ -209,17 +209,17 @@
 									// $_SESSION['workid_form_index'] = $row['workid'];
 									// $_SESSION['studentid_form_index'] = $studentid;
 								?>'  -->
-							<div class="work-grid" style="background-color: white; ">
+							<div class="work-grid" style="background-color: white">
 								<div class="desc" align="center" style="color: black;">
 									<div class="item">
 									<?php 
 										echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
 									?> 
-										<h3 align = 'center' style = " padding-top: 25px;"> 
+										<h3 align = 'center'> 
 											<font face="verdana" > 
 											<?php 
 											while($name_data = $name -> fetch_assoc()){
-												echo "ชื่อ: ".$name_data['name'];
+												echo $name_data['name']." ".$name_data['surname'];
 												$count++;
 												break;
 											}

@@ -1,13 +1,8 @@
 <?
-
 require("../config.php");
-
-
 $Subject_ID = $_GET["Subject_ID"];
 //$Subject_Name = $_SESSION["Subject_Name"];
-
 $sql = "SELECT * FROM subject WHERE Subject_ID = '$Subject_ID'";
-
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 ?>
