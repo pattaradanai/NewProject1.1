@@ -15,14 +15,12 @@
     # only subjectid #
     $sql = "SELECT * FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']}";
     $query_subjectid = mysqli_query($conn,$sql);
-
     while($subjectid = $query_subjectid->fetch_assoc()){
         
         # subject data(include year,term,name) # class?/? which learn that subject #
         $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
         $query_subjectdata = mysqli_query($conn,$sql);
         $temp_subjectdata = mysqli_fetch_array($query_subjectdata);
-
         ##### add html #####
         # add accordion lv1 with name #
         echo "<div class='tablv1'>";
@@ -105,9 +103,9 @@
                             // echo $studentid_no['studentid']."----".isset($studentworklist[0]);
                             echo "<td>";
                             if(isset($studentworklist[0])>0){
-                                echo "<a href='edit_work.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' /></a>";
+                                echo "<a href='edit_work.php?subjectid_edit_work={$subjectid['subjectid']}&workid_edit_work={$work['workid']}&studentid_edit_work={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' /></a>";
                             } else {
-                                echo "<a href='sentWork.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' /></a>";
+                                echo "<a href='sentWork.php?subjectid_add_work={$subjectid['subjectid']}&workid_add_work={$work['workid']}&studentid_add_work={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' /></a>";
                             }
                             echo "</td>";
                         }

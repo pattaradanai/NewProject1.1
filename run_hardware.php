@@ -1,23 +1,23 @@
 <?php 
     include("config.php");
     ini_set('max_execution_time', 300);
-    $workid_index = $_GET['workid_from_index'];
-    $subjectid_index = $_GET['subjectid_from_index'];
-    $studentid_index = $_GET['studentid_from_index'];
+    $workid = $_GET['workid_sent_work'];
+    $subjectid = $_GET['subjectid_sent_work'];
+    $studentid = $_GET['studentid_sent_work'];
     for($i=1;$i<33;$i++){
         $res = file_get_contents('http://192.168.149.106/1st_photo.php');
         $base64 = base64_decode($res);
-        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/{$_GET['subjectid_from_index']}/";
+        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/$subjectid/";
         if( is_dir($dir) === false )
         {
             mkdir($dir);
         }
-        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/{$_GET['subjectid_from_index']}/{$_GET['workid_from_index']}/";
+        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/$subjectid/$workid/";
         if( is_dir($dir) === false )
         {
             mkdir($dir);
         }
-        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/{$_GET['subjectid_from_index']}/{$_GET['workid_from_index']}/{$_GET['studentid_from_index']}/";
+        $dir = "C:/xampp/htdocs/NewProject1.1/images/img_data/$subjectid/$workid/$studentid/";
         if( is_dir($dir) === false )
         {
             mkdir($dir);
@@ -50,6 +50,6 @@
             VALUE ('$subjectid_index', '{$base64_addslashes}', '$plus_32')";
         if(mysqli_query($conn, $sql)){}
     }
-    echo "<script  type='text/javascript'>window.alert('ถ่ายภาพเสร็จแล้ว');window.location.href='sentWork.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'</script>";
+    // echo "<script  type='text/javascript'>window.alert('ถ่ายภาพเสร็จแล้ว');window.location.href='sentWork.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'</script>";
     // echo "ALL DONE!!";
 ?>

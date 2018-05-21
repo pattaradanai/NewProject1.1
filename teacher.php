@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 
-<?php include('is_login.php') ?>
+
 
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Shift &mdash; Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+  <title>Silpakorn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
   <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"
@@ -60,7 +60,17 @@
   <!-- FOR IE9 below -->
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+  <![endif]-->
+  <style>
+    /* @media (min-width: 992px) {
+      .container {
+        width: 1170px;
+      }
+      #top-menu-center{
+        width:50%;
+      }
+    } */
+  </style>
 
 </head>
 
@@ -72,36 +82,39 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-            <a href="logout.php">Logout</a>
+            <a href="index.php">Home</a>
           </div>
         </div>
-        <div class="fh5co-top-menu menu-1 text-center">
+        <div id='top-menu-center' class="fh5co-top-menu menu-1 text-center">
           <ul>
             <!-- Link Menu Write here (Web)-->
             <li class="has-dropdown">
-
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
+              <?php 
+                   include('is_login.php');
+                   include('index_is_login.php');
+              ?>
+                <!-- <a href="logout.php">Logout</a> -->
               </ul>
             </li>
-
           </ul>
         </div>
         <div class="fh5co-top-social menu-1 text-right">
+              <!-- ชื่อ อาจารย์ -->
+         <?php include("teacher_login.php"); ?>
           <ul class="fh5co-social">
             <li>
-              <a href="https://github.com/pattaradanai/NewProject1.1">
-                <i class="icon-github"></i>
-              </a>
+            <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+              
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="contentBox">
-    <h3>รายชื่อวิชาที่สอน</h3>
-      <button style='margin-bottom:1em; color:black;'>
-        <a style='color:black;' href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
+      <button style='margin-bottom:1em;'>
+        <a style = "color : black;" href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
       </button>
       <?php 
         // include 'add_teacher_name.php';
