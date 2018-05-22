@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 
-<?php include('is_login.php') ?>
+<?php 
+session_start();
+include('is_login.php') ?>
 
 <html>
 
