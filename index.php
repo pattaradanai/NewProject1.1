@@ -22,9 +22,13 @@
 				
 				}
 			textarea{	
-					
-					margin-right : 20px ;
-					color: black;
+				margin-right : 20px ;
+			color: black;
+			float:left;
+			width: 100%;
+			min-height: 35px;
+			outline: none;
+			resize: none;
 				}
 			
 			</style>
@@ -164,89 +168,60 @@
 				
 				
 			</div>
-				<div align = 'center'>
+			<div align = 'center'>
 					<h3 style = " margin-up: 5px;  color:#3b3a3a;"> แสดงผลงานนักเรียนล่าสุด </h3>
 				</div>
 				<div class="row">
 				<?php
-					include 'config.php';
+					include('config.php');
 					$block_no = 1;
 					$temp_workid = 0;
 					$block_full = false;
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$img = "SELECT `workid` FROM `work_subjectdata` ORDER BY `workid` ";
-					$imgstd = mysqli_query($conn, $img);  
-					// echo var_dump($imgstd);
-       				while($workid = $imgstd -> fetch_assoc()){
-						// echo var_dump($workid);
-						//$imgName = "161110002";
-						// while($row2 = mysqli_fetch_array($rs_name)){
-							// $_SESSION["studentid_for_index"] = $row2["$studentid"];
-						// $img = "SELECT * FROM `work_studentdata` WHERE `workid`={$workid['workid']} ORDER BY `workid` DESC";
-						$img = "SELECT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`img` 
+					$sql = "SELECT DISTINCT `workid` FROM `work_subjectdata` ORDER BY `workid` ";
+					
+					$query = mysqli_query($conn, $sql);
+					while($workid_worksubdata = $query -> fetch_assoc()){
+						$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid_worksubdata['workid']}`.`imgno`, `work{$workid_worksubdata['workid']}`.`img`
 								FROM `work_studentdata` 
-								LEFT JOIN `work{$workid['workid']}` 
-								ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
-								WHERE `work_studentdata`.`workid`='{$workid['workid']}'";
-						// echo $img;
-						$imgstd = mysqli_query($conn, $img);
-						while($row = $imgstd -> fetch_assoc()){
-							// while($block_no<12){
-							$studentid = $row['studentid'];
-							$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-							$name = mysqli_query($conn, $sql);
-								// session_write_close();
-						
-						?> 
-						<div class="col-md-4 text-center animate-box">
-							<!--  link to box-->
-							<?php echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>" ?>
-							<!-- <a class='work' href="showstudent.php?subjectid_form_index=".$row['subjectid']."&workid_form_index=161110004&studentid_form_index=61002" name='studentid_form_index'> -->
-								<!-- <?php 
-									// $_SESSION['subjectid_form_index'] = $row['subjectid'];
-									// $_SESSION['workid_form_index'] = $row['workid'];
-									// $_SESSION['studentid_form_index'] = $studentid;
-								?>'  -->
-							<div class="work-grid" style="background-color: white">
-								<div class="desc" align="center" style="color: black;">
-									<div class="item">
-									<?php 
-										echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
-									?> 
-										<h3 align = 'center'> 
-											<font face="verdana" > 
-											<?php 
-											while($name_data = $name -> fetch_assoc()){
-												echo $name_data['name']." ".$name_data['surname'];
-												$count++;
-												break;
-											}
-											?> 
-											</font>
-										</h3>
-										</div>
-									</div> 
+								LEFT JOIN `work{$workid_worksubdata['workid']}` 
+								ON `work_studentdata`.`studentid`=`work{$workid_worksubdata['workid']}`.`studentid` 
+								WHERE `work_studentdata`.`workid`='{$workid_worksubdata['workid']}'
+								AND `work{$workid_worksubdata['workid']}`.`imgno`='33'";
+						$query2 = mysqli_query($conn, $sql2);
+						while($studentid_img = $query2 -> fetch_assoc()){
+							$studentid = $studentid_img['studentid'];
+							$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+							$name = mysqli_query($conn, $sql3);
+							echo "<div class='col-md-4 text-center animate-box'>";
+							echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
+							echo "<div class='work-grid' style='background-color: white'>";
+							echo "<div class='desc' align='center' style='color: black;'>";
+							echo "<div class='item'>";
+							echo '<img src="data:image/jpeg;base64,'.base64_encode( $studentid_img['img'] ).'"  width="200" height="200" />'; 
+							echo "<p align = 'center'>";
+							echo "<font face='verdana' >";
+							while($name_data = $name -> fetch_assoc()){
+								echo "ชิ้นงาน {$workid_worksubdata['workname']} ของ {$name_data['name']} {$name_data['surname']}";
+								$count++;
+								break;
+							}			
+							echo"</font>
+								</p>
 								</div>
-							</a>
-						</div>
-						<?php
-							if($temp_workid == 0 )
-							{
-								$temp_workid = $workid['workid'];
-							} else 
-							{
-								if($temp_workid == $workid['workid'])
-								{
-									$block_no++;
-								} else {
-									$temp_workid = $workid['workid'];
-									$block_no = 0;
-								}
+								</div> 
+								</div>
+								</a>
+								</div>";
+							if($temp_workid == 0 ){
+								$temp_workid = $workid_worksubdata['workid'];
+								$block_no++;
+							} else {
+								$block_no++;
 							}
-							if($block_no == 12)
-							{
+							if($block_no == 12){
 								$block_full = true;
 							}
 						}
@@ -258,6 +233,7 @@
 			</div>
 		</div>
 	</div>
+	
 	
 	<footer id="fh5co-footer" role="contentinfo">
 

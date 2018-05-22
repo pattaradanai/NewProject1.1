@@ -19,9 +19,13 @@ include('config.php');
 				
 				}
 			textarea{	
-					
-					margin-right : 20px ;
-					color: black;
+				margin-right : 20px ;
+				color: black;
+				float:left;
+				width: 100%;
+				min-height: 35px;
+				outline: none;
+				resize: none;
 				}
 			
 			</style>
@@ -142,65 +146,28 @@ include('config.php');
 		
 	</div>
 	
-	<div id="fh5co-work">
+	<div id="fh5co-work" style='padding:0px;' >
 		<div class="container">
-			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro"> 
-						
-					<div class = "createborder">
-					<font face="verdana" >  
-								<?php 
-									echo $_GET['block_no'];
-									// $stdid = $_SESSION['studentid_no_1'];
-										
-									// $sql = "SELECT `studentid`, `name`, `surname`, `class`FROM `student` WHERE `studentid` = $stdid ";
-									// $query  = mysqli_query($conn,$sql);
-									// $Result = mysqli_fetch_array($query);
-									// $name = $Result["name"];
-									// $surname = $Result["surname"];
-									// $class = $Result["class"];
-									// $id = $Result["studentid"];
-								
-								
-								?>
-
-
-							 <h3> ชื่อ : <?php echo $name?></h3> 
-							 <h3> นามสกุล  : <?php echo $surname?></h3>
-							 <h3> รหัสนักเรียน : <?php echo  $id?> </h3>
-							 <h3> ห้อง  : <?php echo $class?></h3>
-							
-							</font>
-							
-					</div>		
-							<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
-				</div>
-				<?php
-                    // $subjectid = $_SESSION['subjectid_form_index'];
-                    // $workid = $_SESSION['workid_form_index'];
-                    // $studentid = $_SESSION['studentid_form_index'];
-                    // $subjectid = $_GET['subjectid_form_index'];
-                    // $workid = $_GET['workid_form_index'];
-                    // $studentid = $_GET['studentid_form_index'];
-                    $src = "bottle/001.jpeg";
-                    $src1 = "bottle/###.jpeg";
-                    // $src = "images/img_data/1612101/161110004/61002/001.jpg";
-                    // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
-				?>
-			</div>
-			<div  align = "center">
-					<?php echo "
-						<img src= $src width='200' height='200'
-						class='reel'
-						id='image'
-						data-images=$src1 	
-						data-frames='32'
-						data-frame='32'
-						data-rows='2'
-						data-row='2'
-						data-speed='0.3'>
-						"
-						?>
+		<div  align = "center">
+					<?php 
+						$studentid = $_SESSION['index_show_studentid'];
+						$subjectid = $_SESSION['index_show_subjectid'];
+						$workid = $_SESSION['index_show_workid'];
+						// $src = "bottle/001.jpeg";
+						// $src1 = "bottle/###.jpeg";
+						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+						$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+						echo "<img src= $src width='200' height='200'
+							class='reel'
+							id='image'
+							data-images=$src1 	
+							data-frames='32'
+							data-frame='32'
+							data-rows='2'
+							data-row='2'
+							data-speed='0.3'>
+							"
+					?>
 				<div class="reel-annotation"
 						id="last_row"
 						data-start="1"
@@ -217,19 +184,50 @@ include('config.php');
 						data-y="33"
 						data-for="image">
 				</div>
-				<div style='margin-top: 4em '>
-					<a style='color: black'>ชื่อผลงาน: 			
-					</a>
-					<br>
-					<a style='color: black'>Score: 
-					</a>
-					
+				<div class="row top-line animate-box" style='padding-top:2em;'>
+					<div class="col-md-12 text-center intro"> 
+						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
+							<font face="verdana" >  
+							<?php 
+								$sql = "SELECT `name`, `surname`, `class` 
+										FROM `student` 
+										WHERE `studentid` = $studentid ";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								$name = $Result["name"];
+								$surname = $Result["surname"];
+								$class = $Result["class"];
+							?>
+							<?php 
+								$sql = "SELECT `workname` 
+										FROM `work_subjectdata` 
+										WHERE `workid` = '$workid'
+										AND `subjectid` = '$subjectid'";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								echo "<h3> ชื่องาน: {$Result['workname']}</h3>";
+								$sql = "SELECT `score` 
+										FROM `work_studentdata` 
+										WHERE `workid` = '$workid'
+										AND `studentid` = '$studentid'";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								echo "<h3> ชื่อ : $name</h3>" ;
+								echo "<h3> นามสกุล  : $surname</h3>";
+								echo "<h3> รหัสนักเรียน : $studentid</h3>";
+								echo "<h3> ห้อง  : $class</h3>";
+								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
+							?> 
+							</font>
+						</div>		
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	</div>
+
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

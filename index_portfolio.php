@@ -59,6 +59,32 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style>
+			.item{
+				width:200px;
+				text-align:center;
+				display:block;
+				background-color: transparent;
+				border: 1px solid transparent;
+				margin-right: 0px;
+				padding : 20px;
+				margin-bottom: 1px;
+				float:left;
+				
+				}
+			textarea{	
+				margin-right : 20px ;
+				color: black;
+				float:left;
+				width: 100%;
+				min-height: 35px;
+				outline: none;
+				resize: none;
+				}
+			
+			</style>
+
+
 	<style> 
 		input[type=search] {
 			width: 200px;
@@ -127,62 +153,92 @@
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
 				<font face="verdana" >  
-				<?php 
-					//$workid =  $_SESSION["workid"] ;
-					
-					$stdid =  $_SESSION["stdid_search"] ;
-					
-					
-					$sql_port = "SELECT  `workid` FROM `work_studentdata` WHERE `studentid` = $stdid ";
-					$sql_name = "SELECT * FROM `student` WHERE `studentid` = $stdid";
-					$query_name =  mysqli_query($conn,$sql_name);
-					$query_port =  mysqli_query($conn,$sql_port);
+							<?php 
+								//$workid =  $_SESSION["workid"] ;
+								
+								$stdid =  $_SESSION["stdid_search"] ;
+								
+								
+								$sql_port = "SELECT  `workid` FROM `work_studentdata` WHERE `studentid` = $stdid ";
+								$sql_name = "SELECT * FROM `student` WHERE `studentid` = $stdid";
+								$query_name =  mysqli_query($conn,$sql_name);
+								$query_port =  mysqli_query($conn,$sql_port);
 
-					//echo var_dump($query_name);
-                   
-					$objName = mysqli_fetch_array($query_name);
-					$objPort = mysqli_fetch_array($query_port);
+								//echo var_dump($query_name);
+							
+								$objName = mysqli_fetch_array($query_name);
+								$objPort = mysqli_fetch_array($query_port);
 
+							
+							?>
+							<div class = "createborder">
+								<font face="verdana" >  
+									<h3> ชื่อ : <?php  echo $objName["name"] ?> </h3> 
+									<h3> นามสกุล : <?php echo $objName["surname"] ?> </h3>
+									<h3> รหัสนักเรียน : <?php echo $objName["studentid"] ?>  </h3>
+									<h3> ห้อง : <?php echo $objName["class"] ?> </h3>
+							
 
-
-
-
-					
-
-
-
-
-				
-				
-				
-				?>
-				<div class = "createborder">
-					<font face="verdana" >  
-						<h3> ชื่อ : <?php  echo $objName["name"] ?> </h3> 
-						<h3> นามสกุล : <?php echo $objName["surname"] ?> </h3>
-						<h3> รหัสนักเรียน : <?php echo $objName["studentid"] ?>  </h3>
-						<h3> ห้อง : <?php echo $objName["class"] ?> </h3>
-				
-
-				
-				</font>
-				</div>
+							
+							</font>
+							</div>
 				
 			</div>
 			<div class="row">
 	
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" >
-						<div class="work-grid" style="background-color: white">
-								<div class="desc" align="center" style="color: black;">
-								<!-- ใส่ตามช่างงาน  -->
-									
-								</div>
-							
-						</div>
-					</a>
-				</div>
-	
+						
+													<!-- ใส่ตามช่างงาน  -->
+														<?php
+																$stdid =  $_SESSION["stdid_search"] ;
+															//	echo $stdid;
+																$sqlWork = "SELECT `workid` FROM `work_studentdata` WHERE `studentid` = $stdid AND `portfolio` = 1";
+																
+																
+																
+																$query_work =  mysqli_query($conn,$sqlWork);
+																// $objWork = mysqli_fetch_array($query_work );
+
+																while($workid = $query_work -> fetch_assoc()){
+
+																	$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`imgno`, `work{$workid['workid']}`.`img`
+																	FROM `work_studentdata` 
+																	LEFT JOIN `work{$workid['workid']}` 
+																	ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
+																	WHERE `work_studentdata`.`workid`='{$workid['workid']}'
+																	AND `work{$workid['workid']}`.`imgno`='0'";
+																	$query2 = mysqli_query($conn, $sql2);
+																			while($studentid_img = $query2 -> fetch_assoc()){
+																				$studentid = $studentid_img['studentid'];
+																				$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+																				$name = mysqli_query($conn, $sql3);
+																				echo "<div class='col-md-4 text-center animate-box'>";
+																				// echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
+																				echo "<div class='work-grid' style='background-color: white'>";
+																				echo "<div class='desc' align='center' style='color: black;'>";
+																				echo "<div class='item'>";
+																				echo '<img src="data:image/jpeg;base64,'.base64_encode( $studentid_img['img'] ).'"  width="200" height="200" />'; 
+																				echo "<p align = 'center'>";
+																				echo "<font face='verdana' >";
+																			$sql_subject = "SELECT * FROM `work_subjectdata` WHERE workid = {$workid['workid']}";
+																				$query_sub =  mysqli_query($conn,$sql_subject);
+																						while($name_data = $query_sub  -> fetch_assoc()){
+																							echo "ชิ้นงาน {$name_data['workname']} ";
+																							
+																						}	
+																						echo"</font>
+																							</p>
+																							</div>
+																							</div> 
+																							</div>
+																							</a>
+																							</div>";		
+
+
+																				}
+																			}
+														?>
+
+													
 
 			</div>
 		</div>

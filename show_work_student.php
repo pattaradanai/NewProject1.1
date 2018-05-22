@@ -21,8 +21,13 @@ $student_id = $_SESSION['studentid_no_1'];
 				}
 			textarea{	
 					
-					margin-right : 20px ;
-					color: black;
+				margin-right : 20px ;
+				color: black;
+				float:left;
+				width: 100%;
+				min-height: 35px;
+				outline: none;
+				resize: none;
 				}
 			
 			</style>

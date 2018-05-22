@@ -19,9 +19,13 @@ include('config.php');
 				
 				}
 			textarea{	
-					
-					margin-right : 20px ;
-					color: black;
+				margin-right : 20px ;
+				color: black;
+				float:left;
+				width: 100%;
+				min-height: 35px;
+				outline: none;
+				resize: none;
 				}
 			
 			</style>
