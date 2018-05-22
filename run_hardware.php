@@ -28,7 +28,7 @@
             $base64_addslashes = addslashes($base64);
             // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$i')";
             $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
-                VALUE ('$subjectid_index', '{$base64_addslashes}','$i')";
+                VALUE ('$studentid', '{$base64_addslashes}','$i')";
         if(mysqli_query($conn, $sql)){}
         } else {
             $save = file_put_contents($dir."0".$i.".jpg", $base64);
@@ -36,7 +36,7 @@
             $base64_addslashes = addslashes($base64);
             // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$i')";
             $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
-                VALUE ('$subjectid_index', '{$base64_addslashes}', '$i')";
+                VALUE ('$studentid', '{$base64_addslashes}', '$i')";
             if(mysqli_query($conn, $sql)){}
         }
         $res = file_get_contents('http://192.168.149.106/2nd_photo.php');
@@ -47,7 +47,7 @@
         $base64_addslashes = addslashes($base64);
         // $sql = "INSERT INTO `testimg` (`image`,`no`) VALUE ('$base64_addslashes','$plus_32')";
         $sql = "INSERT INTO `work$workid_index`(`studentid`, `img`, `imgno`) 
-            VALUE ('$subjectid_index', '{$base64_addslashes}', '$plus_32')";
+            VALUE ('$studentid', '{$base64_addslashes}', '$plus_32')";
         if(mysqli_query($conn, $sql)){}
     }
     // echo "<script  type='text/javascript'>window.alert('ถ่ายภาพเสร็จแล้ว');window.location.href='sentWork.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'</script>";
