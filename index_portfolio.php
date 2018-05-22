@@ -134,7 +134,7 @@
 			</div>
 		</div>
 	</nav>
-		<div align = "right" >	
+		<div align = "right" style = "padding-top: 5%;" >	
 	
 			<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	
@@ -182,11 +182,11 @@
 							
 							</font>
 							</div>
-				
-			</div>
-			<div class="row">
-	
-						
+								
+							</div>
+							<div class="row">
+					
+										
 													<!-- ใส่ตามช่างงาน  -->
 														<?php
 																$stdid =  $_SESSION["stdid_search"] ;
@@ -212,7 +212,7 @@
 																				$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 																				$name = mysqli_query($conn, $sql3);
 																				echo "<div class='col-md-4 text-center animate-box'>";
-																				// echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
+																				 echo "<a  href='student_portfolio.php'>";
 																				echo "<div class='work-grid' style='background-color: white'>";
 																				echo "<div class='desc' align='center' style='color: black;'>";
 																				echo "<div class='item'>";

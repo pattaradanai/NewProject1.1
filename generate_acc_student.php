@@ -58,10 +58,10 @@
                     echo "<table>";
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
-                    $sql = "SELECT * FROM `work_subjectdata` 
+                    $sql2 = "SELECT * FROM `work_subjectdata` 
                             WHERE subjectid='{$data['subjectid']}'";
-                    $query = mysqli_query($conn,$sql);
-                    while($work = $query->fetch_assoc())
+                    $query2 = mysqli_query($conn,$sql2);
+                    while($work = $query2->fetch_assoc())
                     {
                         // echo "<li>";
                         echo "<tr>";

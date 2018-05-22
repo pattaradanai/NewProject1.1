@@ -133,7 +133,7 @@ include('config.php');
 			</div>
 		</div>
 	</nav>
-		<div align = "right" >	
+		<div align = "right" style = "padding-top: 5%;">	
 		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	</div>
 

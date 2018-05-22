@@ -97,7 +97,7 @@ include('is_login.php') ?>
         </div>
           
         <div class="fh5co-top-social menu-1 text-right">
-          <div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
+          <div style = " font-size: 18px " > <?php include 'add_student_name.php';?> </div>
       
             <ul class="fh5co-social">
                 <li>

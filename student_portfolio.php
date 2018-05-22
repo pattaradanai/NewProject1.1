@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php
-
+	session_start();
+	include('config.php');
 ?>
 <html>
 	<head>
@@ -86,7 +87,7 @@
 		<div class="container">
 			<div class="fh5co-top-logo">
             
-            <div id="fh5co-logo"><a href="student.php">Back</a></div>
+			<div id="fh5co-logo"><a href="index.php">Home</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -94,17 +95,15 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="logout.php">Logout</a>
+							<?php include('index_is_login.php');?>
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-					<div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
+					
 				<ul class="fh5co-social">
-					<li>
-                     <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
-                     </li>
+					<?php include('index_is_login.php');?>
 				
 				</ul>
 			</div>
@@ -117,8 +116,7 @@
 		<div class="container">
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
-					<h2> Welcome To  Student <i class="icon-heart2"></i> </h2>
-					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+				
 				</div>
 				
 			</div>

@@ -6,7 +6,7 @@
     $query = mysqli_query($conn, $sql);
     while($data = $query->fetch_assoc())
     {
-        echo "<a href='student.php'> {$data["name"]} {$data["surname"]} </a>";
+        echo "<a  style = 'font-size: 18px' href='student.php'> {$data["name"]} {$data["surname"]} </a>";
     }
 
 ?>

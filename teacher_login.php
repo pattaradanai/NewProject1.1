@@ -7,7 +7,7 @@
     $objResult = mysqli_fetch_array($query);
    
     
-    echo "<a style = ' font-size: 20px' color : 'black' href='teacher.php'> ".$objResult['name']." ".$objResult['surname']."</a>";
+    echo "<a style = ' font-size: 18px' color : 'black' href='teacher.php'> ".$objResult['name']." ".$objResult['surname']."</a>";
 
 
 
