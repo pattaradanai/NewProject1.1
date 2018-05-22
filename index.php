@@ -22,13 +22,9 @@
 				
 				}
 			textarea{	
-				margin-right : 20px ;
-			color: black;
-			float:left;
-			width: 100%;
-			min-height: 35px;
-			outline: none;
-			resize: none;
+					
+					margin-right : 20px ;
+					color: black;
 				}
 			
 			</style>
@@ -180,8 +176,7 @@
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$sql = "SELECT DISTINCT `workid` FROM `work_subjectdata` ORDER BY `workid` ";
-					
+					$sql = "SELECT DISTINCT `workid`, `workname` FROM `work_subjectdata` ORDER BY `workid` ";
 					$query = mysqli_query($conn, $sql);
 					while($workid_worksubdata = $query -> fetch_assoc()){
 						$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid_worksubdata['workid']}`.`imgno`, `work{$workid_worksubdata['workid']}`.`img`
@@ -233,7 +228,6 @@
 			</div>
 		</div>
 	</div>
-	
 	
 	<footer id="fh5co-footer" role="contentinfo">
 
