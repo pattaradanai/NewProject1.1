@@ -124,11 +124,10 @@ session_start();
 							<div class="col-md-12 text-center intro"> 
 							
 										<div  align = "center">
-										
-											<?php 
-											$subjectid = $_GET['subjectid_from_index'];
-											$workid = $_GET['workid_from_index'];
-											$studentid = $_GET['studentid_from_index'];
+										<?php 
+											$subjectid = $_GET['subjectid_edit_work'];
+											$workid = $_GET['workid_edit_work'];
+											$studentid = $_GET['studentid_edit_work'];
 											$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
 											$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
 											echo "
@@ -166,9 +165,9 @@ session_start();
 							</div>
 				 </div>
 					<?php
-						$subjectid = $_GET['subjectid_from_index'];
-						$workid = $_GET['workid_from_index'];
-						$studentid = $_GET['studentid_from_index'];
+						$subjectid = $_GET['subjectid_edit_work'];
+						$workid = $_GET['workid_edit_work'];
+						$studentid = $_GET['studentid_edit_work'];
 						$imgno = '1';
 						$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
 						$re_comment = mysqli_query($conn, $comment);
@@ -178,7 +177,7 @@ session_start();
 						<?php 
 						// }
 						// else{
-						echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
+						echo "<form action = 'commentToDB.php?subjectid_to_db={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
 							?>
 						<!-- <form action = "commentToDB.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}" method="post" > -->
 							<div class="form-group">

@@ -53,7 +53,7 @@ session_start();
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	<script>
-		function move() {
+		function move(workid, studentid, subjectid) {
 			$run_hardware_img = document.getElementById("run_hardware_img");
 			$run_hardware_img.src = 'https://media.giphy.com/media/9i3Ax6g0DLlzW/giphy.gif';
 			$run_hardware_img.style.width = '80px';
@@ -68,7 +68,7 @@ session_start();
 				}
 			};
 			// xhttp.open("GET", "test_2nd_process.php", true);
-			xhttp.open("GET", "run_hardware.php", true);
+			xhttp.open("GET", "run_hardware.php?workid_sent_work="+workid+"&studentid_sent_work="+studentid+"&subjectid_sent_work="+subjectid, true);
 			xhttp.send();
 		}
 	</script>
@@ -112,9 +112,13 @@ session_start();
 		
 		}
 	 textarea{	
-		 	
-		 	margin-right : 20px ;
-    		color: black;
+			margin-right : 20px ;
+			color: black;
+			float:left;
+			width: 100%;
+			min-height: 35px;
+			outline: none;
+			resize: none;
 		}
 	
 	</style>
@@ -154,12 +158,12 @@ session_start();
 					</div>
 				</div>
 			</nav>
-			<div class="container" style='margin-top:50px; margin-left:41.6667%;'>
+			<div class="container" style='margin-top:50px; margin-left:41.6667%; padding-top: 2%'>
 			<!-- RUN HARDWHERE -->
-				<div style='margin-left:5%;'>
+			<div style='margin-left:5%;'>
 				<?php 
 					// echo "<a onclick='move()' href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
-					echo "<a onclick='move()' style='cursor:pointer;'>";
+					echo "<a onclick='move({$_GET['workid_add_work']}, {$_GET['studentid_add_work']}, {$_GET['subjectid_add_work']})' style='cursor:pointer;'>";
 				?>
                     <img id='run_hardware_img' src="images/ic_camera_black_24dp_2x.png" style='width:24dp;padding-left:50px' alt=""/> 
                     <h4> <font face="verdana" id='process_text'> คลิ้กเพื่อถ่ายภาพผลงาน </font></h4>
@@ -180,9 +184,9 @@ session_start();
             </div>
 		</div>
 		<?php
-			$subjectid = $_GET['subjectid_from_index'];
-			$workid = $_GET['workid_from_index'];
-			$studentid = $_GET['studentid_from_index'];
+			$subjectid = $_GET['subjectid_add_work'];
+			$workid = $_GET['workid_add_work'];
+			$studentid = $_GET['studentid_add_work'];
 			$imgno = '1';
 			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
 			// echo $comment;
@@ -194,7 +198,7 @@ session_start();
 			# กรณีที่ยังไม่มีข้อมูล
 		?>
 		<?php 
-                echo "<form action = 'commentToDB.php?subjectid_from_index={$subjectid}&workid_from_index={$workid}&studentid_from_index={$studentid}' method='post' >";
+                echo "<form action = 'commentToDB.php?subjectid_to_db={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
 			?>
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
@@ -219,7 +223,7 @@ session_start();
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'></label>
 				<div class="col-sm-7" align = 'left'>
-					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button></div>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><button type='button' style='margin-left:10px;'>ยกเลิก</button></div>
 				</div>
 			</div>
 		</form>

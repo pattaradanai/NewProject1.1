@@ -1,5 +1,11 @@
 <!DOCTYPE HTML>
-
+<?php 
+		session_start();
+		// $_SESSION["status"] = "teacher";
+		// $_SESSION["id"] = "101";
+		// $_SESSION["sid"] = "61002";
+		
+	?>
 
 
 <html>

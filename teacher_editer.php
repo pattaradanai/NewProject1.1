@@ -99,11 +99,9 @@
         </div>
       </div>
     </nav>
-    <div class="contentBox">
-      <?php 
-      // include 'add_teacher_name.php' 
-      ?>
-      <div class='div-subject-form' style="margin-bottom: 5px;">
+    <div class="contentBox" style = "padding-top: auto;">
+    
+      <div class='div-subject-form' style="margin-bottom: 5px;  ">
         <h4>กรอกข้อมูลด้านล่างเพื่อเพิ่มวิชา</h4>
       <form class="accform" action="teacher_add_subject.php" method="POST">
         <div style='margin-bottom:5px;'>

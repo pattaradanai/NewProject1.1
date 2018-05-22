@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+		<?php 
+		session_start();
+		// $_SESSION["status"] = "teacher";
+		// $_SESSION["id"] = "101";
+		// $_SESSION["sid"] = "61002";
+		
+	?>
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8">

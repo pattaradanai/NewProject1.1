@@ -1,4 +1,10 @@
 
+.example {
+    font-size: 50px;
+    background-color: rgb(92, 179, 66);
+    color: tomato;
+  }
+
 body {
   /*background: url("http://flashwallpapers.com/wp-content/uploads/2015/09/digital-nature-1600x900.jpg") no-repeat;*/
   background-size: auto;
@@ -36,7 +42,7 @@ accordion.js
   border-radius: 10px;
   padding-right: 5%;
   padding-left: 5%; 
-  padding-top: 5%;
+  padding-top: 6%;
   padding-bottom: 100%;
 }
 
@@ -166,9 +172,8 @@ accordion.js
 
 .portfolio_icon {
   cursor: pointer;
-  margin: 0px 5px 3px 5px;
-  width: 23px;
-  height: 23px;
+  margin: 0px 5px 0px 5px;
+  width: 3%;
 }
 
 /* Create Accordion List */

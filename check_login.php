@@ -9,7 +9,7 @@
 	{
 		echo '<script type="text/javascript">'; 
 		echo 'alert("ไม่พบ username นี้ในระบบ");';
-		echo 'window.location.href = "Login.html"';
+		echo 'window.location.href = "Login.php"';
 		echo '</script>';
 		exit(); 
 	}
@@ -19,7 +19,7 @@
 		{
 			echo '<script type="text/javascript">'; 
 			echo 'alert("ไม่พบ password นี้ในระบบ");';
-			echo 'window.location.href = "Login.html"';
+			echo 'window.location.href = "Login.php"';
 			echo '</script>';
 			exit(); 
 		}

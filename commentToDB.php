@@ -1,10 +1,9 @@
 <?php
     include("config.php");
     mysqli_set_charset($conn, "utf8");
-    $subjectid = $_GET['subjectid_from_index'];
-    $workid = $_GET['workid_from_index'];
-    $studentid = $_GET['studentid_from_index'];
-    $imgno = '1';
+    $subjectid = $_GET['subjectid_to_db'];
+    $workid = $_GET['workid_to_db'];
+    $studentid = $_GET['studentid_to_db'];
     $comment = $_POST["comment"];
     $quantity = $_POST["quantity"];
     $sql = "SELECT `comment` 
@@ -13,16 +12,17 @@
             AND `workid`='$workid'";
     $query = mysqli_query($conn, $sql);
     if($query->num_rows > 0){
-      $sql1 = "UPDATE work_studentdata SET  
-      comment = '$comment',
-      score = '$quantity'
-      WHERE workid = '$workid'
-      AND studentid = '$studentid'";
+      $sql = "UPDATE `work_studentdata` SET  
+      `comment` = '$comment',
+      `score` = '$quantity'
+      WHERE `workid` = '$workid'
+      AND `studentid` = '$studentid'";
       // echo $sql1;
-      $result = mysqli_query($conn, $sql1);
+      $query = mysqli_query($conn, $sql);
     } else {
-      $sql1 = "INSERT INTO `work_studentdata`(`workid`, `studentid`, `comment`, `score`, `portfolio`) 
-      VALUES ('$workid', '$studentid', '$comment', '$quantity', s'0')";
+      $sql = "INSERT INTO `work_studentdata`(`workid`, `studentid`, `comment`, `score`, `portfolio`) 
+      VALUES ('$workid', '$studentid', '$comment', '$quantity', '0')";
+      $query = mysqli_query($conn, $sql);
     }
     
     header("Location:teacher.php");

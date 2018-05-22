@@ -28,6 +28,6 @@
 
     }else{
     
-      echo  "<div id='fh5co-logo'><a href='Login.html'>Login</a></div>";
+      echo  "<div id='fh5co-logo'><a href='Login.php'>Login</a></div>";
     }
 ?>
