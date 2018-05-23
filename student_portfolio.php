@@ -73,6 +73,29 @@
 			margin-right: 30px;
 			
 		}
+		.item{
+			width:100px;
+			text-align:center;
+			display:block;
+			background-color: transparent;
+			border: 1px solid transparent;
+			margin-right: 0px;
+			padding : 20px;
+			margin-bottom: 1px;
+			float:left;
+			
+			}
+		textarea{	
+			margin-right : 20px ;
+			color: black;
+			float:left;
+			width: 100%;
+			min-height: 35px;
+			outline: none;
+			resize: none;
+			}
+	
+		
 
 		
 	</style>
@@ -87,7 +110,7 @@
 		<div class="container">
 			<div class="fh5co-top-logo">
             
-			<div id="fh5co-logo"><a href="index.php">Home</a></div>
+			<div id="fh5co-logo"><a href="index_portfolio.php">Back</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -110,36 +133,89 @@
 		</div>
 	</nav>
 		
-
 	
-	<div id="fh5co-work">
+	
+	<div id="fh5co-work" style='padding:0px; padding-top: 5%;' >
 		<div class="container">
-			<div class="row top-line animate-box">
-				<div class="col-md-12 text-center intro">
-				
+		<div  align = "center" >
+					<?php 
+						$studentid = $_SESSION['index_portfolio_stdid'];
+						$subjectid = $_SESSION['index_portfolio_subjectid'];
+						$workid = $_SESSION['index_portfolio_workid'];
+						// $src = "bottle/001.jpeg";
+						// $src1 = "bottle/###.jpeg";
+						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+						$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+						echo "<img src= $src width='200' height='200'
+							class='reel'
+							id='image'
+							data-images=$src1 	
+							data-frames='32'
+							data-frame='32'
+							data-rows='2'
+							data-row='2'
+							data-speed='0.3'>
+							"
+					?>
+				<div class="reel-annotation"
+						id="last_row"
+						data-start="1"
+						data-end="32"
+						data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
+						data-y="2"
+						data-for="image">
 				</div>
-				
-			</div>
-			<div class="row">
-	
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" >
-						<div class="work-grid" style="background-color: white">
-								<div class="desc" align="center" style="color: black;">
-									
-								</div>
-							
-						</div>
-					</a>
+				<div class="reel-annotation"
+						id="first_row"
+						data-start="33"
+						data-end="64"
+						data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
+						data-y="33"
+						data-for="image">
 				</div>
-	
-
+				<div class="row top-line animate-box" style='padding-top:2em;'>
+					<div class="col-md-12 text-center intro"> 
+						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
+							<font face="verdana" >  
+							<?php 
+								$sql = "SELECT `name`, `surname`, `class` 
+										FROM `student` 
+										WHERE `studentid` = $studentid ";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								$name = $Result["name"];
+								$surname = $Result["surname"];
+								$class = $Result["class"];
+							?>
+							<?php 
+								$sql = "SELECT `workname` 
+										FROM `work_subjectdata` 
+										WHERE `workid` = '$workid'
+										AND `subjectid` = '$subjectid'";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								echo "<h3> ชื่องาน: {$Result['workname']}</h3>";
+								$sql = "SELECT `score` 
+										FROM `work_studentdata` 
+										WHERE `workid` = '$workid'
+										AND `studentid` = '$studentid'";
+								$query  = mysqli_query($conn,$sql);
+								$Result = mysqli_fetch_array($query);
+								echo "<h3> ชื่อ : $name</h3>" ;
+								echo "<h3> นามสกุล  : $surname</h3>";
+								echo "<h3> รหัสนักเรียน : $studentid</h3>";
+								echo "<h3> ห้อง  : $class</h3>";
+								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
+							?> 
+							</font>
+						</div>		
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	</div>
-
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>

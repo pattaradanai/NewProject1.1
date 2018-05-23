@@ -2,7 +2,11 @@
 
 <?php 
 session_start();
-include('is_login.php') ?>
+include('is_login.php') ;
+
+?>
+
+
 
 <html>
 
@@ -18,7 +22,6 @@ include('is_login.php') ?>
 
   <!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -26,7 +29,6 @@ include('is_login.php') ?>
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -63,6 +65,27 @@ include('is_login.php') ?>
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+      <style>
+          .btn {
+            border: none;
+            background-color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 10%;
+        }
+
+        /* On mouse-over */
+        .btn:hover {background: #eee;}
+
+        .success {color: green;}
+        .info {color: red;}
+        .warning {color: orange;}
+        .danger {color: red;}
+        .default {color: black;}
+
+    </style>
 
 </head>
 
@@ -108,7 +131,14 @@ include('is_login.php') ?>
         </div>
       </div>
     </nav>
-    <div class="contentBox">
+    <div style = 'padding-top: 5%; padding-left: 12%;'>
+
+          <a class='btn info' href ="index_portfolio.php">
+            แฟ้มสะสมข้อมูลของนักเรียน
+          </a>;
+      </div>
+	
+    <div class="contentBox" style = 'padding-top: 0px;' >
     <?php include('generate_acc_student.php');?> 
   </div>
   <footer id="fh5co-footer" role="contentinfo">
@@ -154,7 +184,6 @@ include('is_login.php') ?>
           });
       }
     }
-
 </script>
 
 </body>

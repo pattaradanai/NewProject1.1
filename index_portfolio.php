@@ -223,6 +223,10 @@
 																				$query_sub =  mysqli_query($conn,$sql_subject);
 																						while($name_data = $query_sub  -> fetch_assoc()){
 																							echo "ชิ้นงาน {$name_data['workname']} ";
+
+																							 $_SESSION['index_portfolio_stdid'] = $stdid ;
+																							 $_SESSION['index_portfolio_subjectid'] = $name_data['subjectid'];
+																							 $_SESSION['index_portfolio_workid'] = $workid['workid'] ;
 																							
 																						}	
 																						echo"</font>

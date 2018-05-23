@@ -148,7 +148,7 @@ include('config.php');
 	
 	<div id="fh5co-work" style='padding:0px;' >
 		<div class="container">
-		<div  align = "center">
+		<div  align = "center" style = "padding-top: 5%;">
 					<?php 
 						$studentid = $_SESSION['index_show_studentid'];
 						$subjectid = $_SESSION['index_show_subjectid'];
