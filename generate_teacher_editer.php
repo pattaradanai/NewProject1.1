@@ -12,6 +12,7 @@
     $query_subjectid = mysqli_query($conn,$sql);
     while($subjectid = $query_subjectid->fetch_assoc())
     {
+        echo "<div style='display:-webkit-box;'>";
         $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
         $query_subjectdata = mysqli_query($conn,$sql);
         $temp_subjectdata = mysqli_fetch_array($query_subjectdata);
@@ -40,7 +41,6 @@
         {
                 while($workdata = $query->fetch_assoc())
                 {
-                 
                         echo "<tr>";
                         echo  "<td>";
                         echo   "<p>{$workdata['workname']}</p>";
@@ -171,7 +171,16 @@
         echo "<div>";
         echo "<form name='add_class_to_subject' action='teacher_add_class.php?editer_add_subjectid={$subjectid['subjectid']}' method='POST'>";
         echo  "<label>เลขห้อง: </label>";
-        echo  "<input type='text' name='class' placeholder='เลขห้อง เช่น 1/2, 2/5 ' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
+        // echo  "<input type='text' name='class' placeholder='เลขห้อง เช่น 1/2, 2/5 ' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
+        echo  "<select name='class' requried>";
+        echo   "<option value='' selected>--เลือกเลขห้อง--</option>";
+        echo   "<option value='1'>1</option>";
+        echo   "<option value='2'>2</option>";
+        echo   "<option value='3'>3</option>";
+        echo   "<option value='4'>4</option>";
+        echo   "<option value='5'>5</option>";
+        echo   "<option value='6'>6</option>";
+        echo  "</select>";
         echo  "<button type='submit' style='margin-left:5px;'>เพิ่มห้องที่เรียนวิชานี้</button>";
         echo "</form>";
         echo "</div>";
@@ -182,6 +191,13 @@
         ## จบส่วนของห้อง ##
         echo  "</div>"; # tablv2
         echo "</div>"; # tablv1
+        # เริ่มส่วนของปุ่มลบวิชา #
+        echo "<div style=' margin:0.8% 0px 0px 1%;'>";
+        echo  "<a class='a-link' href='teacher_delete_subject.php?editer_del_subjectid={$subjectid['subjectid']}' style='color:rgb(206, 69, 69);'>";
+        echo   "ลบวิชานี้";
+        echo  "</a>";
+        echo "</div>";
+        echo "</div>";
         $tabno++;
     }
 ?>
