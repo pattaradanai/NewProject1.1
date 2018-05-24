@@ -58,8 +58,8 @@
                     echo "<table>";
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
-                    $sql2 = "SELECT * FROM `work_subjectdata` 
-                            WHERE subjectid='{$data['subjectid']}'";
+                    $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
+                            WHERE `subjectid`='{$data['subjectid']}'";
                     $query2 = mysqli_query($conn,$sql2);
                     while($work = $query2->fetch_assoc())
                     {
@@ -73,9 +73,9 @@
                         $query = mysqli_query($conn,$sql);
                         $portfolio = $query->fetch_assoc();
                         if($portfolio['portfolio']==1){
-                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                            echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         } else {
-                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                            echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         }
                         $sql = "SELECT `imgno` FROM `work{$work['workid']}` 
                             WHERE studentid='{$_SESSION['id']}'";
@@ -85,7 +85,7 @@
                             echo "<a href='student_to_show.php?
                             studentid_to_show={$_SESSION['id']}
                             &workid_to_show={$work['workid']}
-                            &subjectid_to_show={$work['subjectid']}'>
+                            &subjectid_to_show={$work['subjectid']}' style='color:black;'>
                             <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         } else 
                         {

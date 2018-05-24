@@ -112,13 +112,9 @@ session_start();
 		
 		}
 	 textarea{	
-			margin-right : 20px ;
-			color: black;
-			float:left;
-			width: 100%;
-			min-height: 35px;
-			outline: none;
-			resize: none;
+		 	
+		 	margin-right : 20px ;
+    		color: black;
 		}
 	
 	</style>
@@ -158,9 +154,9 @@ session_start();
 					</div>
 				</div>
 			</nav>
-			<div class="container" style='margin-top:50px; margin-left:41.6667%; padding-top: 2%'>
+			<div class="container" style='margin-top:50px; margin-left:41.6667%;'>
 			<!-- RUN HARDWHERE -->
-			<div style='margin-left:5%;'>
+				<div style='margin-left:5%;'>
 				<?php 
 					// echo "<a onclick='move()' href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
 					echo "<a onclick='move({$_GET['workid_add_work']}, {$_GET['studentid_add_work']}, {$_GET['subjectid_add_work']})' style='cursor:pointer;'>";
@@ -223,7 +219,7 @@ session_start();
 			<div class="form-group">
 				<label class="control-label col-sm-5" align = 'right'></label>
 				<div class="col-sm-7" align = 'left'>
-					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><button type='button' style='margin-left:10px;'>ยกเลิก</button></div>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><a href='teacher.php' style='margin-left:10px; color:rgb(206, 69, 69); cursor:pointer;'>ยกเลิก</a></div>
 				</div>
 			</div>
 		</form>
