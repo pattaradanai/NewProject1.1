@@ -1,6 +1,4 @@
 <?php 
-    
-   
     if(isset($_SESSION['username'])){
 
             if($_SESSION["status"] == "0"){
@@ -28,6 +26,6 @@
 
     }else{
     
-      echo  "<div id='fh5co-logo'><a href='Login.php'>Login</a></div>";
+      echo  "<div id='fh5co-logo'><a href='Login.html'>Login</a></div>";
     }
 ?>

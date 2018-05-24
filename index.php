@@ -140,7 +140,7 @@
 		</div>
 	</nav>
 
-	<div align = "right" style = "padding-top: 5%;" >	
+	<div align = "right" >	
 	<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
   </div>
 
@@ -159,13 +159,13 @@
 				
 				<div class="col-md-12 text-center intro"  >
 					
-					<h2> Welcome To  Student Portfolio <i class="icon-heart2"></i> </h2>
+					<h2> Welcome To  Student Portfolio </h2>
 					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
 				
 				
 			</div>
-			<div align = 'center'>
+				<div align = 'center'>
 					<h3 style = " margin-up: 5px;  color:#3b3a3a;"> แสดงผลงานนักเรียนล่าสุด </h3>
 				</div>
 				<div class="row">

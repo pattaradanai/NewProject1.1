@@ -19,13 +19,9 @@ include('config.php');
 				
 				}
 			textarea{	
-				margin-right : 20px ;
-				color: black;
-				float:left;
-				width: 100%;
-				min-height: 35px;
-				outline: none;
-				resize: none;
+					
+					margin-right : 20px ;
+					color: black;
 				}
 			
 			</style>
@@ -95,7 +91,18 @@ include('config.php');
 			background-repeat: no-repeat;
 			padding: 12px 20px 12px 40px;
 			margin-right: 30px;
-			
+		}
+
+		.breadcrumbs {
+			margin: 30px 0px 0px 90px; 
+			color: rgb(200, 200, 200);
+			display: -webkit-inline-box;
+		}
+		.breadcrumbs a:hover {
+			color: rgb(100, 100, 100);
+		}
+		.breadcrumbs p{
+			margin: 0px;
 		}
 		
 
@@ -113,10 +120,10 @@ include('config.php');
 		<div class="container">
 			<div class="fh5co-top-logo" >
 				<a   id="fh5co-logo"  href="index.php"> Home </a>
-				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
+<<<<<<< HEAD
 						<!-- Link Menu Write here (Web)-->
 					   <li class="has-dropdown">
 						
@@ -124,17 +131,25 @@ include('config.php');
 							<!-- Link Menu Write here (mobile)-->
 							<a href="Login.php">Login</a>
 						</ul>
+=======
+					<!-- Link Menu Write here (Web)-->
+					<li class="has-dropdown">
+					<ul class="dropdown">
+						<!-- Link Menu Write here (mobile)-->
+						<a href="Login.html">Login</a>
+					</ul>
+>>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 					</li>
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
 					<?php include('index_is_login.php');?>
-					
 				</ul>
 			</div>
 		</div>
 	</nav>
+<<<<<<< HEAD
 
 		 
 
@@ -143,22 +158,38 @@ include('config.php');
 
 		<div align = "right" style = "padding-top: 5%;">	
 		
+=======
+	<div class='breadcrumbs' >
+	<?php 
+		$studentid = $_SESSION['index_show_studentid'];
+		$subjectid = $_SESSION['index_show_subjectid'];
+		$workid = $_SESSION['index_show_workid'];
+		$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+		$query = mysqli_query($conn,$sql);
+		$studentdata = mysqli_fetch_array($query);
+		$sql2 = "SELECT `workname` 
+				FROM `work_subjectdata` 
+				WHERE `workid` = '$workid'
+				AND `subjectid` = '$subjectid'";
+		$query2  = mysqli_query($conn,$sql2);
+		$workdata = mysqli_fetch_array($query2);
+		echo "<a href='index.php'>หน้าหลัก </a>> <p> ชิ้นงาน {$workdata['workname']} ของ {$studentdata['name']} {$studentdata['surname']}</p>";
+	?>
+	</div>  
+>>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 	<div align = "right" >	
 		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	</div>
-
 		<div align = "right"  margin-right = "50px">	
 		<form action="search.php" method="post">
 			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
 			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
 			<span class="validity"></span>
-		</form>		
-		
+		</form>	
 	</div>
-	
-	<div id="fh5co-work" style='padding:0px;' >
+	<div id="fh5co-work" style='padding:0px;'>
 		<div class="container">
-		<div  align = "center" style = "padding-top: 5%;">
+			<div  align = "center">
 					<?php 
 						$studentid = $_SESSION['index_show_studentid'];
 						$subjectid = $_SESSION['index_show_subjectid'];
@@ -199,7 +230,11 @@ include('config.php');
 						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 							<font face="verdana" >  
 							<?php 
+<<<<<<< HEAD
 								$sql = "SELECT `name`, `surname`, `class` , `sex` 
+=======
+								$sql = "SELECT `name`, `surname`, `class` , `sex`
+>>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 										FROM `student` 
 										WHERE `studentid` = $studentid ";
 								$query  = mysqli_query($conn,$sql);
@@ -222,10 +257,17 @@ include('config.php');
 								$query  = mysqli_query($conn,$sql);
 								$Result = mysqli_fetch_array($query);
 								if($sex==0){
+<<<<<<< HEAD
 										echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
 									}else{
 								     	echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
 																}
+=======
+									echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
+								}else{
+									echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
+								}
+>>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 								echo "<h3> รหัสนักเรียน : $studentid</h3>";
 								echo "<h3> ห้อง  : $class</h3>";
 								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
@@ -239,7 +281,6 @@ include('config.php');
 	</div>
 	
 	</div>
-
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
 
 <?php 
-session_start();
-include('is_login.php') ;
-
+include('is_login.php');
+session_start(); 
 ?>
-
-
 
 <html>
 
@@ -22,6 +19,7 @@ include('is_login.php') ;
 
   <!-- 
 	//////////////////////////////////////////////////////
+
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -29,6 +27,7 @@ include('is_login.php') ;
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
+
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -64,108 +63,31 @@ include('is_login.php') ;
   <!-- FOR IE9 below -->
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
-      <style>
-          .btn {
-            border: none;
-            background-color: white;
-            padding: 14px 28px;
-            font-size: 16px;
-            cursor: pointer;
-            display: inline-block;
-            border-radius: 10%;
-        }
+  <![endif]-->
+  <style>
+    .btn {
+      border: none;
+      background-color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-block;
+      border-radius: 10%;
+    }
+      /* On mouse-over */
+    .btn:hover {background: #eee;}
 
-        /* On mouse-over */
-        .btn:hover {background: #eee;}
+    .success {color: green;}
+    .info {color: red;}
+    .warning {color: orange;}
+    .danger {color: red;}
+    .default {color: black;}
+  </style>
 
-        .success {color: green;}
-        .info {color: red;}
-        .warning {color: orange;}
-        .danger {color: red;}
-        .default {color: black;}
-
-    </style>
-
-</head>
-
-<body>
-  <div class="fh5co-loader"></div>
-
-  <div id="page">
-    <nav class="fh5co-nav" role="navigation">
-      <div class="container">
-        <div class="fh5co-top-logo">
-       
-            <div id="fh5co-logo">
-            <a href="index.php">Home</a>
-       
-            
-          </div>
-        </div>
-        <div class="fh5co-top-menu menu-1 text-center">
-          <ul>
-            
-            <!-- Link Menu Write here (Web)-->
-           
-            <li class="has-dropdown">
-
-              <ul class="dropdown">
-                <!-- Link Menu Write here (mobile)-->
-                <a href="logout.php">Logout</a>
-              </ul>
-            </li>
-
-          </ul>
-        </div>
-          
-        <div class="fh5co-top-social menu-1 text-right">
-          <div style = " font-size: 18px " > <?php include 'add_student_name.php';?> </div>
-      
-            <ul class="fh5co-social">
-                <li>
-                <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
-                  
-                </li>
-            </ul>
-        </div>
-      </div>
-    </nav>
-    <div style = 'padding-top: 5%; padding-left: 12%;'>
-
-          <a class='btn info' href ="index_portfolio.php">
-            แฟ้มสะสมข้อมูลของนักเรียน
-          </a>;
-      </div>
-	
-    <div class="contentBox" style = 'padding-top: 0px;' >
-    <?php include('generate_acc_student.php');?> 
-  </div>
-  <footer id="fh5co-footer" role="contentinfo">
-
-</footer>
-  <div class="gototop js-top">
-    <a href="#" class="js-gotop">
-      <i class="icon-arrow-up"></i>
-    </a>
-  </div>
-
-  <!-- jQuery -->
-  <script src="js/jquery.min.js"></script>
-  <!-- jQuery Easing -->
-  <script src="js/jquery.easing.1.3.js"></script>
-  <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- Waypoints -->
-  <script src="js/jquery.waypoints.min.js"></script>
-  <!-- Main -->
-  <script src="js/main.js"></script>
-  <!-- Object -->
-  <!-- <script> $.reel.def.indicator = 5; </script> -->
   <script>
     function changePortfolioStatus(workid)
     {
-      var image =  document.getElementById('portfolio_img');
+      var image =  document.getElementById('portfolio_img_'+workid);
       var xhttp = new XMLHttpRequest();
       if (image.src == "https://i.imgur.com/pDqvmwb.png"){
         $.post('switch_portfolio_status.php', 
@@ -184,7 +106,75 @@ include('is_login.php') ;
           });
       }
     }
+
 </script>
+
+</head>
+
+<body>
+  <div class="fh5co-loader"></div>
+  <div id="page">
+    <nav class="fh5co-nav" role="navigation">
+      <div class="container">
+        <div class="fh5co-top-logo">
+            <div id="fh5co-logo">
+            <a href="index.php">Home</a>
+          </div>
+        </div>
+        <div class="fh5co-top-menu menu-1 text-center">
+          <ul>
+            <!-- Link Menu Write here (Web)-->
+            <li class="has-dropdown">
+              <ul class="dropdown">
+                <!-- Link Menu Write here (mobile)-->
+                <a href="logout.php">Logout</a>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="fh5co-top-social menu-1 text-right">
+          <div style = " font-size: 20px " > 
+          <?php 
+            include 'add_student_name.php';
+          ?> 
+          </div>
+            <ul class="fh5co-social">
+                <li>
+                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div style = 'padding-top: 5%; padding-left: 12%;'>
+      <a class='btn info' href ="portfolio_home.php">
+        แฟ้มสะสมข้อมูลของนักเรียน
+      </a>;
+    </div>
+    <div class="contentBox" style='padding-top:0px;'>
+    <?php include('generate_acc_student.php');?> 
+  </div>
+  <footer id="fh5co-footer" role="contentinfo">
+  </footer>
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop">
+      <i class="icon-arrow-up"></i>
+    </a>
+  </div>
+
+  <!-- jQuery -->
+  <script src="js/jquery.min.js"></script>
+  <!-- jQuery Easing -->
+  <script src="js/jquery.easing.1.3.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- Waypoints -->
+  <script src="js/jquery.waypoints.min.js"></script>
+  <!-- Main -->
+  <script src="js/main.js"></script>
+  <!-- Object -->
+  <!-- <script> $.reel.def.indicator = 5; </script> -->
+  
 
 </body>
 

@@ -59,7 +59,11 @@
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
                     $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
+<<<<<<< HEAD
                                                WHERE `subjectid`='{$data['subjectid']}'";
+=======
+                            WHERE `subjectid`='{$data['subjectid']}'";
+>>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
                     $query2 = mysqli_query($conn,$sql2);
                     while($work = $query2->fetch_assoc())
                     {
@@ -85,7 +89,7 @@
                             echo "<a href='student_to_show.php?
                             studentid_to_show={$_SESSION['id']}
                             &workid_to_show={$work['workid']}
-                            &subjectid_to_show={$work['subjectid']}'>
+                            &subjectid_to_show={$work['subjectid']}' style='color:black;'>
                             <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         } else 
                         {

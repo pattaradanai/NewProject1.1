@@ -1,11 +1,7 @@
 <!DOCTYPE HTML>
-<?php 
-		session_start();
-		// $_SESSION["status"] = "teacher";
-		// $_SESSION["id"] = "101";
-		// $_SESSION["sid"] = "61002";
-		
-	?>
+<?php
+  session_start();
+?>
 
 
 <html>
@@ -66,7 +62,17 @@
   <!-- FOR IE9 below -->
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+  <![endif]-->
+  <style>
+    /* @media (min-width: 992px) {
+      .container {
+        width: 1170px;
+      }
+      #top-menu-center{
+        width:50%;
+      }
+    } */
+  </style>
 
 </head>
 
@@ -81,28 +87,23 @@
             <a href="index.php">Home</a>
           </div>
         </div>
-        <div class="fh5co-top-menu menu-1 text-center">
+        <div id='top-menu-center' class="fh5co-top-menu menu-1 text-center">
           <ul>
             <!-- Link Menu Write here (Web)-->
             <li class="has-dropdown">
-
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
-                
               <?php 
                    include('is_login.php');
                    include('index_is_login.php');
-            
               ?>
                 <!-- <a href="logout.php">Logout</a> -->
               </ul>
             </li>
-
           </ul>
         </div>
-        <div class="fh5co-top-social menu-1 text-right">
+        <div class="fh5co-top-social menu-1 text-right" >
               <!-- ชื่อ อาจารย์ -->
-          
          <?php include("teacher_login.php"); ?>
           <ul class="fh5co-social">
             <li>
