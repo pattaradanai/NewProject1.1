@@ -59,11 +59,7 @@
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
                     $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
-<<<<<<< HEAD
                                                WHERE `subjectid`='{$data['subjectid']}'";
-=======
-                            WHERE `subjectid`='{$data['subjectid']}'";
->>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
                     $query2 = mysqli_query($conn,$sql2);
                     while($work = $query2->fetch_assoc())
                     {

@@ -93,17 +93,7 @@ include('config.php');
 			margin-right: 30px;
 		}
 
-		.breadcrumbs {
-			margin: 30px 0px 0px 90px; 
-			color: rgb(200, 200, 200);
-			display: -webkit-inline-box;
-		}
-		.breadcrumbs a:hover {
-			color: rgb(100, 100, 100);
-		}
-		.breadcrumbs p{
-			margin: 0px;
-		}
+	
 		
 
 	
@@ -123,7 +113,6 @@ include('config.php');
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
-<<<<<<< HEAD
 						<!-- Link Menu Write here (Web)-->
 					   <li class="has-dropdown">
 						
@@ -131,14 +120,6 @@ include('config.php');
 							<!-- Link Menu Write here (mobile)-->
 							<a href="Login.php">Login</a>
 						</ul>
-=======
-					<!-- Link Menu Write here (Web)-->
-					<li class="has-dropdown">
-					<ul class="dropdown">
-						<!-- Link Menu Write here (mobile)-->
-						<a href="Login.html">Login</a>
-					</ul>
->>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 					</li>
 				</ul>
 			</div>
@@ -149,34 +130,8 @@ include('config.php');
 			</div>
 		</div>
 	</nav>
-<<<<<<< HEAD
-
-		 
-
-
-
-
 		<div align = "right" style = "padding-top: 5%;">	
 		
-=======
-	<div class='breadcrumbs' >
-	<?php 
-		$studentid = $_SESSION['index_show_studentid'];
-		$subjectid = $_SESSION['index_show_subjectid'];
-		$workid = $_SESSION['index_show_workid'];
-		$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-		$query = mysqli_query($conn,$sql);
-		$studentdata = mysqli_fetch_array($query);
-		$sql2 = "SELECT `workname` 
-				FROM `work_subjectdata` 
-				WHERE `workid` = '$workid'
-				AND `subjectid` = '$subjectid'";
-		$query2  = mysqli_query($conn,$sql2);
-		$workdata = mysqli_fetch_array($query2);
-		echo "<a href='index.php'>หน้าหลัก </a>> <p> ชิ้นงาน {$workdata['workname']} ของ {$studentdata['name']} {$studentdata['surname']}</p>";
-	?>
-	</div>  
->>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 	<div align = "right" >	
 		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	</div>
@@ -230,11 +185,7 @@ include('config.php');
 						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 							<font face="verdana" >  
 							<?php 
-<<<<<<< HEAD
 								$sql = "SELECT `name`, `surname`, `class` , `sex` 
-=======
-								$sql = "SELECT `name`, `surname`, `class` , `sex`
->>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 										FROM `student` 
 										WHERE `studentid` = $studentid ";
 								$query  = mysqli_query($conn,$sql);
@@ -257,17 +208,10 @@ include('config.php');
 								$query  = mysqli_query($conn,$sql);
 								$Result = mysqli_fetch_array($query);
 								if($sex==0){
-<<<<<<< HEAD
 										echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
 									}else{
 								     	echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
 																}
-=======
-									echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
-								}else{
-									echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
-								}
->>>>>>> 1eeab8fdf615f6df0052960713ca6da6b03b0222
 								echo "<h3> รหัสนักเรียน : $studentid</h3>";
 								echo "<h3> ห้อง  : $class</h3>";
 								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
