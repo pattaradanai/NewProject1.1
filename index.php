@@ -200,7 +200,7 @@
 							echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
 							echo "<font face='verdana' >";
 							while($name_data = $name -> fetch_assoc()){
-								echo "ชิ้นงาน {$workid_worksubdata['workname']} ของ {$name_data['name']} {$name_data['surname']}";
+								echo "ชิ้นงาน {$workid_worksubdata['workname']} <br> ของ {$name_data['name']} <br> {$name_data['surname']}";
 								$count++;
 								break;
 							}			
