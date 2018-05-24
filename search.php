@@ -19,7 +19,7 @@
                     //echo  $_SESSION["stid_search"];
                    // $_SESSION["stdid_search"] = $objResult["studentid"];
                    // echo 	$_SESSION["stdid_search"];
-                    header("Location:index_portfolio.php");
+                    header("Location:portfolio_home.php");
                             
            }else{   
                     echo '<script type="text/javascript">'; 

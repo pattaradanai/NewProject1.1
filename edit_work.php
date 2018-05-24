@@ -195,7 +195,7 @@ session_start();
 							<div class="form-group">
 								<label class="control-label col-sm-5" align = 'right'></label>
 								<div class="col-sm-7" align = 'left'>
-									<div align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
+								<div align = "5px" ><br><button type="submit">ยืนยัน</button><a href='teacher.php' style='margin-left:10px; color:rgb(206, 69, 69); cursor:pointer;'>ยกเลิก</a></div>
 								</div>
 							</div>
 						</form>

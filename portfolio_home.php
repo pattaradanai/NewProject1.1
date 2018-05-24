@@ -212,7 +212,7 @@
 																				$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 																				$name = mysqli_query($conn, $sql3);
 																				echo "<div class='col-md-4 text-center animate-box'>";
-																				 echo "<a  href='student_portfolio.php'>";
+																				 echo "<a  href='portfolio_show_work.php'>";
 																				echo "<div class='work-grid' style='background-color: white'>";
 																				echo "<div class='desc' align='center' style='color: black;'>";
 																				echo "<div class='item'>";

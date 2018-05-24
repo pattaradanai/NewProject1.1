@@ -97,7 +97,9 @@ include('config.php');
 			margin-right: 30px;
 			
 		}
+		
 
+	
 		
 	</style>
 
@@ -120,7 +122,7 @@ include('config.php');
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.html">Login</a>
+							<a href="Login.php">Login</a>
 						</ul>
 					</li>
 				</ul>
@@ -133,7 +135,15 @@ include('config.php');
 			</div>
 		</div>
 	</nav>
+
+		 
+
+
+
+
 		<div align = "right" style = "padding-top: 5%;">	
+		
+	<div align = "right" >	
 		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
 	</div>
 
@@ -189,7 +199,7 @@ include('config.php');
 						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 							<font face="verdana" >  
 							<?php 
-								$sql = "SELECT `name`, `surname`, `class` 
+								$sql = "SELECT `name`, `surname`, `class` , `sex` 
 										FROM `student` 
 										WHERE `studentid` = $studentid ";
 								$query  = mysqli_query($conn,$sql);
@@ -197,8 +207,7 @@ include('config.php');
 								$name = $Result["name"];
 								$surname = $Result["surname"];
 								$class = $Result["class"];
-							?>
-							<?php 
+								$sex = $Result['sex'];
 								$sql = "SELECT `workname` 
 										FROM `work_subjectdata` 
 										WHERE `workid` = '$workid'
@@ -212,8 +221,11 @@ include('config.php');
 										AND `studentid` = '$studentid'";
 								$query  = mysqli_query($conn,$sql);
 								$Result = mysqli_fetch_array($query);
-								echo "<h3> ชื่อ : $name</h3>" ;
-								echo "<h3> นามสกุล  : $surname</h3>";
+								if($sex==0){
+										echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
+									}else{
+								     	echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
+																}
 								echo "<h3> รหัสนักเรียน : $studentid</h3>";
 								echo "<h3> ห้อง  : $class</h3>";
 								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
