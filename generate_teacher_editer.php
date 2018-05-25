@@ -12,7 +12,7 @@
     $query_subjectid = mysqli_query($conn,$sql);
     while($subjectid = $query_subjectid->fetch_assoc())
     {
-        echo "<div style='display:-webkit-box;'>";
+        echo "<div style='display:flex;'>";
         $sql = "SELECT * FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`, `class`";
         $query_subjectdata = mysqli_query($conn,$sql);
         $temp_subjectdata = mysqli_fetch_array($query_subjectdata);

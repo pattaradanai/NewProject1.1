@@ -22,7 +22,10 @@
     {
         echo '<script type="text/javascript"> alert("มีห้องนี้อยู่แล้ว"); window.location.href = "teacher_editer.php" </script>';
         // header("Location:teacher_editer.php");
+        exit();
     }    
+    $sql = "SELECT `class` FROM `subject` WHERE `subjectid`='$subjectid'";
+    $query = mysqli_query($conn, $sql);
     $classdata = $query -> fetch_all();
     if($classdata[0][0]==null)
     {

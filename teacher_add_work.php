@@ -7,7 +7,7 @@
                 FROM `work_subjectdata` WHERE `workname`='$work_name' ";
         $query = mysqli_query($conn, $sql);
         if($query->num_rows!=0){
-                // echo '<script type="text/javascript">'.'alert("มีงานชิ้นนี้อยู่แล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
+                echo '<script type="text/javascript">'.'alert("มีงานชิ้นนี้อยู่แล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
         } else {
                 $sql = "SELECT `workid` 
                         FROM `work_subjectdata` WHERE `subjectid`='$subjectid' ORDER BY `workid`";
@@ -46,7 +46,6 @@
                 $sql = "CREATE TABLE `work$workid`(`studentid` int(10) , `img` longblob, `imgno` int(2)) ";
                 // echo $sql;
                 $query = mysqli_query($conn, $sql);
-                // echo '<script type="text/javascript">'.'alert("เพิ่มงานชิ้นนี้สำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
+                echo '<script type="text/javascript">'.'alert("เพิ่มงานชิ้นนี้สำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
         }
-        
 ?>
