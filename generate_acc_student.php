@@ -11,10 +11,20 @@
             WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
             ORDER BY `work_subjectdata`.subjectid DESC";
     $query = mysqli_query($conn,$sql);
+    // echo $sql;
+    $is_subjectid = $query->fetch_assoc();
     $tabno = 0;
     $subtabno = 0;
     // if($query->num_rows > 0)
     // {
+    $sql = "SELECT DISTINCT `work_subjectdata`.subjectid 
+        FROM `work_studentdata` 
+        LEFT JOIN `work_subjectdata` 
+        ON `work_studentdata`.workid = `work_subjectdata`.workid 
+        WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
+        ORDER BY `work_subjectdata`.subjectid DESC";
+    $query = mysqli_query($conn,$sql);
+    if($is_subjectid['subjectid']!=NULL){
         # สร้าง tablv1 ตามจำนวนของวิชาที่เรียน #
         while($data = $query->fetch_assoc())
         {
@@ -34,7 +44,6 @@
                      FROM `work_subjectdata` 
                      WHERE `subjectid`= {$data['subjectid']}";
             $query = mysqli_query($conn,$sql);
-
             $subtabno = 0;
             # เช็คว่ามีงานอยู่ไหม #
             if($query->num_rows > 0)
@@ -59,10 +68,10 @@
                     echo "<table>";
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
-                    $sql = "SELECT * FROM `work_subjectdata` 
-                            WHERE subjectid='{$data['subjectid']}'";
-                    $query = mysqli_query($conn,$sql);
-                    while($work = $query->fetch_assoc())
+                    $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
+                            WHERE `subjectid`='{$data['subjectid']}'";
+                    $query2 = mysqli_query($conn,$sql2);
+                    while($work = $query2->fetch_assoc())
                     {
                         // echo "<li>";
                         echo "<tr>";
@@ -74,9 +83,9 @@
                         $query = mysqli_query($conn,$sql);
                         $portfolio = $query->fetch_assoc();
                         if($portfolio['portfolio']==1){
-                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                            echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         } else {
-                            echo "<img id='portfolio_img' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
+                            echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         }
                         $sql = "SELECT `imgno` FROM `work{$work['workid']}` 
                             WHERE studentid='{$_SESSION['id']}'";
@@ -86,7 +95,7 @@
                             echo "<a href='student_to_show.php?
                             studentid_to_show={$_SESSION['id']}
                             &workid_to_show={$work['workid']}
-                            &subjectid_to_show={$work['subjectid']}'>
+                            &subjectid_to_show={$work['subjectid']}' style='color:black;'>
                             <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         } else 
                         {
@@ -115,8 +124,10 @@
             $tabno++; 
             
         }
-            // }
-
+    } 
+    // else {
+    //     echo "<p>ยัง</p>";
+    // }
     // $tabno = 0;
     // $subtabno = 0;
     // if($query->num_rows > 0)
@@ -135,7 +146,6 @@
             
     //             }
     //         }
-
     //         echo "</div>";
     //         $tabno++;
     //     }

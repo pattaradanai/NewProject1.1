@@ -1,7 +1,6 @@
 <?php
     include("config.php");
     session_start();
-
     $sql = "SELECT `subjectid` FROM `subject` WHERE `name`='{$_POST['subname']}' AND `year`='{$_POST['year']}' AND `term`='{$_POST['term']}' AND `section`='{$_POST['section']}'";
     $query = mysqli_query($conn,$sql);
     $subjectid = $query->fetch_all();
@@ -48,7 +47,7 @@
             }
         }
         // echo '<script type="text/javascript">'.'alert("รายวิชานี้ได้ถูกเพิ่มสำเร็จแล้ว");'.'</script>';
-        echo '<script type="text/javascript">'.'alert("รายวิชานี้ได้ถูกเพิ่มสำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
+        echo '<script type="text/javascript">'.'alert("เพิ่มรายวิชานี้สำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
     } else {
         # already have #
         echo '<script type="text/javascript">'.'alert("มีรายวิชานี้อยู่แล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';

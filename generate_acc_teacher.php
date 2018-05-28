@@ -40,6 +40,25 @@
                 echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> ห้อง ".$subjectdata['class']."</label>";
                 # create table header #
                 echo "<div class='acctable'>";
+                echo "<div style='display:-webkit-inline-box;'>";
+                echo "<div style='height:3em; width:13%;'>";
+                echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>หมายเหตุ:</p>";
+                echo "</div>";
+                echo "<div style='height:5em; left:87%; margin: 0px 0px 0px 25px'>";
+                echo " <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em;  margin: 0px 4px 0px 0px;'/> หมายถึง ได้ส่งและบันทึกงานชิ้นนี้แล้ว<br>";
+                echo " <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right:4px; '/> หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
+                echo " <p>คลิกที่เครื่องหมาย <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em;  margin-right:4px;'/>หรือ <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right:4px; '/> เพื่อจัดเก็บ หรือแก้ไขชิ้นงาน</p>";
+                echo "</div>";
+                echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>รายชื่องานที่มี</p><br>";
+                $sql = "SELECT `workid`,`workorder`,`workname`
+                        FROM `work_subjectdata` 
+                        WHERE `subjectid`= '{$subjectid['subjectid']}'";
+                $query = mysqli_query($conn,$sql);
+                while($worklist = $query->fetch_assoc()){
+                    echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>{$worklist['workorder']}. {$worklist['workname']}";
+                    echo "<br>";
+                }
+                echo "</div>";
                 echo "<table>
                     <tbody>
                     <tr>
@@ -85,7 +104,7 @@
                     // echo var_dump($query_work_all);
                     if($query_check_work->num_rows == 0)
                     {
-                        echo "<td> No Work Assign </td>";
+                        echo "<td> ยังไม่ได้สั่งงาน </td>";
                     } else 
                     {
                         $sql = "SELECT `workid` FROM `work_subjectdata` 
