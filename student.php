@@ -2,7 +2,7 @@
 
 <?php 
 include('is_login.php');
-session_start(); 
+
 ?>
 
 <html>
@@ -140,6 +140,7 @@ session_start();
           </div>
             <ul class="fh5co-social">
                 <li>
+                  
                   <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
                 </li>
             </ul>
@@ -147,12 +148,48 @@ session_start();
       </div>
     </nav>
     <div style = 'padding-top: 5%; padding-left: 12%;'>
-      <a class='btn info' href ="portfolio_home.php">
+      <a class='btn info' href ="student_portfolio.php?studentid=<?php echo $_SESSION["id"]; ?>">
         แฟ้มสะสมข้อมูลของนักเรียน
-      </a>;
+      </a>
     </div>
     <div class="contentBox" style='padding-top:0px;'>
-    <?php include('generate_acc_student.php');?> 
+
+
+
+    <?php 
+     $sql = "SELECT DISTINCT `work_subjectdata`.subjectid 
+     FROM `work_studentdata` 
+     LEFT JOIN `work_subjectdata` 
+     ON `work_studentdata`.workid = `work_subjectdata`.workid 
+     WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
+     ORDER BY `work_subjectdata`.subjectid DESC";
+     $query = mysqli_query($conn,$sql);
+     
+    
+    if($query->num_rows == 0){
+      
+      echo "
+
+      <div class='col-md-12 text-center intro' style = 'padding-top: 10%;' >
+					
+      <h2> ยังไม่มีงานที่ต้องส่ง </h2>
+      
+       </div>
+      
+      
+      ";
+    }else {
+      
+      include('generate_acc_student.php');
+
+    }
+    
+    
+    
+    
+    ?> 
+
+
   </div>
   <footer id="fh5co-footer" role="contentinfo">
   </footer>
