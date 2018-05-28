@@ -14,6 +14,10 @@ include('config.php');
 
 	<!-- 
 	//////////////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab3820c1c0a4276ed081054274d0e0fd64f8a770
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -21,6 +25,10 @@ include('config.php');
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab3820c1c0a4276ed081054274d0e0fd64f8a770
 	//////////////////////////////////////////////////////
 	 -->
 
