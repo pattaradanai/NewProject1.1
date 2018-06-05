@@ -120,7 +120,7 @@ session_start();
 			</nav>
 			<div id="fh5co-work">
 			<div class="container">
-				<div class="row top-line animate-box">
+				<div class="row top-line animate-box" style='padding-bottom:1em;'>
 							<div class="col-md-12 text-center intro"> 
 							
 										<div  align = "center">
@@ -174,11 +174,14 @@ session_start();
 						$re_comment = mysqli_query($conn, $comment);
 						$row_comment = mysqli_fetch_array($re_comment);
 						// if($row_comment["comment"] == "none comment"){
+						echo "<div align='center'>
+								<a href='sentWork.php?subjectid_add_work=$subjectid&workid_add_work=$workid&studentid_add_work=$studentid'><p style='color:black;'>ถ่ายภาพผลงานใหม่</p></a>
+							<div>";
 					?>
 						<?php 
 						// }
 						// else{
-						echo "<form action = 'commentToDB.php?subjectid_to_db={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
+						echo "<form action = 'commentToDB.php?subjectid_edit_work={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
 							?>
 						<!-- <form action = "commentToDB.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}" method="post" > -->
 							<div class="form-group">
@@ -196,7 +199,7 @@ session_start();
 							<div class="form-group">
 								<label class="control-label col-sm-5" align = 'right'></label>
 								<div class="col-sm-7" align = 'left'>
-									<div align = "5px" ><br><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
+									<div align = "5px" ><br><button type="submit">ยืนยัน</button><a href='teacher.php' style='margin-left:10px; color:rgb(206, 69, 69); cursor:pointer;'>ยกเลิก</a></div>
 								</div>
 							</div>
 						</form>

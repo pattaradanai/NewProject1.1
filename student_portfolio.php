@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php
-	session_start();
-	include('config.php');
+session_start();
+include('config.php');
 ?>
 <html>
 	<head>
@@ -15,6 +15,7 @@
 
 	<!-- 
 	//////////////////////////////////////////////////////
+
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -22,6 +23,7 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
+
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -57,32 +59,6 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	<style>
-			/* .item{
-				width:200px;
-				text-align:center;
-				display:block;
-				background-color: transparent;
-				border: 1px solid transparent;
-				margin-right: 0px;
-				padding : 20px;
-				margin-bottom: 1px;
-				float:left;
-				
-				}
-			textarea{	
-				margin-right : 20px ;
-				color: black;
-				float:left;
-				width: 100%;
-				min-height: 35px;
-				outline: none;
-				resize: none;
-				} */
-			
-			</style>
-
-
 	<style> 
 		input[type=search] {
 			width: 200px;
@@ -97,6 +73,7 @@
 			margin-right: 30px;
 			
 		}
+
 		
 	</style>
 
@@ -109,7 +86,8 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-			<div id="fh5co-logo"><a href="index.php">Back</a></div>
+            
+            <div id="fh5co-logo"><a href="student.php">Back</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -117,54 +95,50 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.html">Login</a>
+							
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-				<ul class="fh5co-social">
-				<?php include('index_is_login.php');?>
-				</ul>
+			<div style = " font-size: 20px " > 
+				<?php 
+					include 'add_student_name.php';
+				?> 
+			
 			</div>
 		</div>
 	</nav>
-		<div align = "right" style = "padding-top: 5%;" >	
-	
-			<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
-	
-		</div>
+		
 
-		<div align = "right"  margin-right = "50px">	
-		<form action="search.php" method="post">
-			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
-			<span class="validity"></span>
-		</form>		
-	</div>
 	
-	<div id="fh5co-work" style='padding-top:1em;'>
+	<div id="fh5co-work">
 		<div class="container">
 			<div class="row top-line animate-box" style='padding-bottom:1em;'>
 				<div class="col-md-12 text-center intro">
 				<?php 
-					$sql = "SELECT `name`, `surname` 
+					$sql = "SELECT `name`, `surname` ,`sex`
 							FROM `student`
-							WHERE `studentid`='{$_SESSION['stdid_search']}'";
+							WHERE `studentid`='{$_GET['studentid']}'";
 					$query = mysqli_query($conn, $sql); 
 					$name = $query->fetch_array();
 					// echo var_dump($name);
-					echo "<h3>{$name['name']} {$name['surname']}</h3>";
+					if($name['sex']==0){
+						echo "<h3>Portfolio ของนาย{$name['name']} {$name['surname']}</h3>";
+					}else{
+						echo "<h3>Portfolio ของนางสาว{$name['name']} {$name['surname']}</h3>";
+					}
 				?>
+					<!-- <h2> Welcome To  Student <i class="icon-heart2"></i> </h2> -->
+					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
 				</div>
-				</div>
-				<div class="row">
-				<!-- ใส่ตามช่างงาน  -->
-				<?php
+			</div>
+			<div class="row">
+			<?php
 				$count = 1;
 				mysqli_set_charset($conn, "utf8");
 				##### หารหัสวิชาของงานที่นักเรียนเลือกไว้ #####
-				$studentid = $_SESSION['stdid_search'];
+				$studentid = $_GET['studentid'];
 				$img = "SELECT DISTINCT `workid` 
 						FROM `work_studentdata` 
 						WHERE `studentid`='$studentid'
@@ -183,10 +157,7 @@
 						$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 						$name = mysqli_query($conn, $sql);
 						echo "<div class='col-md-4 text-center animate-box'>";
-						$sql_subject = "SELECT `subjectid` FROM `work_subjectdata` WHERE `workid`='{$workid['workid']}'";
-						$query_subject = mysqli_query($conn, $sql_subject);
-						$subject = $query_subject->fetch_array();
-						echo "<a class='work' href='portfolio_show_work.php?portfolio_show_stdid=$studentid&portfolio_show_subjectid={$subject['subjectid']}&portfolio_show_workid={$workid['workid']}' name='studentid_form_index'>";
+						echo "<a class='work' href='' name='studentid_form_index'>";
 						echo "<div class='work-grid'>";
 						echo "<div class='desc' align='center' style='color: black;'>";
 						echo "<div class='item'>";
@@ -218,8 +189,6 @@
 						</div>
 					</a>
 				</div>
-													
-
 			</div>
 		</div>
 	</div>
@@ -241,7 +210,8 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<!-- <script> $.reel.def.indicator = 5; </script> -->
+	<script> $.reel.def.indicator = 5; </script>
 
 	</body>
 </html>
+

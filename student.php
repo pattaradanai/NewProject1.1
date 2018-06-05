@@ -137,23 +137,36 @@ include('is_login.php');
           <?php 
             include 'add_student_name.php';
           ?> 
-          </div>
-            <ul class="fh5co-social">
-                <li>
-                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
-                </li>
-            </ul>
+          
         </div>
       </div>
     </nav>
     <div style = 'padding-top: 5%; padding-left: 12%;'>
-      <a class='btn info' href ="portfolio_home.php">
+      <a class='btn info' href ="student_portfolio.php?studentid=<?php echo $_SESSION["id"]; ?>">
         แฟ้มสะสมข้อมูลของนักเรียน
-      </a>;
+      </a>
     </div>
     <div class="contentBox" style='padding-top:0px;'>
-    <?php include('generate_acc_student.php');?> 
-  </div>
+    <?php 
+      $sql_1 = "SELECT DISTINCT `work_subjectdata`.subjectid 
+      FROM `work_studentdata` 
+      LEFT JOIN `work_subjectdata` 
+      ON `work_studentdata`.workid = `work_subjectdata`.workid 
+      WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
+      ORDER BY `work_subjectdata`.subjectid DESC";
+      $query_1 = mysqli_query($conn,$sql_1);
+      if($query_1->num_rows == 0){
+        echo "<div class='col-md-12 text-center intro' style = 'padding-top: 10%;' >
+                <h2> ยังไม่มีงานที่ต้องส่ง </h2>
+              </div>";
+      }else {
+        include 'generate_acc_student.php';
+        // include 'test_call_php.php';
+        // echo "1";
+      }
+      
+    ?> 
+    </div>
   <footer id="fh5co-footer" role="contentinfo">
   </footer>
   <div class="gototop js-top">

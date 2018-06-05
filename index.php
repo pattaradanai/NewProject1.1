@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php 
 		session_start();
+		ini_set('max_execution_time', 300);
 		// $_SESSION["status"] = "teacher";
 		// $_SESSION["id"] = "101";
 		// $_SESSION["sid"] = "61002";
@@ -122,7 +123,7 @@
 					
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<?php include('index_is_login.php');?>
+							
 
 						
 						</ul>
@@ -132,9 +133,7 @@
 			</div>
 			
 			<div class="fh5co-top-social menu-1 text-right">
-				<ul class="fh5co-social">
 					<?php include('index_is_login.php');?>
-				</ul>
 			</div>
 		</div>
 	</nav>
@@ -194,12 +193,16 @@
 							echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
 							echo "<div class='work-grid' style='background-color: white'>";
 							echo "<div class='desc' align='center' style='color: black;'>";
-							echo "<div class='item'>";
+							echo "<div class='item' style='width:auto; '>";
 							echo '<img src="data:image/jpeg;base64,'.base64_encode( $studentid_img['img'] ).'"  width="200" height="200" />'; 
-							echo "<h3 align = 'center'>";
+							echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
 							echo "<font face='verdana' >";
 							while($name_data = $name -> fetch_assoc()){
-								echo "ชิ้นงาน {$workid_worksubdata['workname']} ของ {$name_data['name']} {$name_data['surname']}";
+								if($name_data['sex']==0){
+									echo "ผลงาน{$workid_worksubdata['workname']} ของนาย{$name_data['name']} {$name_data['surname']}";
+								}else{
+									echo "ผลงาน{$workid_worksubdata['workname']} ของนางสาว{$name_data['name']} {$name_data['surname']}";
+								}
 								$count++;
 								break;
 							}			
