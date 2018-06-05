@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 <?php 
+
 include('is_login.php');
 
 ?>
@@ -84,7 +85,7 @@ include('is_login.php');
     .default {color: black;}
   </style>
 
-  <script>
+   <script>
     function changePortfolioStatus(workid)
     {
       var image =  document.getElementById('portfolio_img_'+workid);
@@ -106,8 +107,8 @@ include('is_login.php');
           });
       }
     }
-
 </script>
+
 
 </head>
 
@@ -156,39 +157,26 @@ include('is_login.php');
 
 
 
-    <?php 
-     $sql = "SELECT DISTINCT `work_subjectdata`.subjectid 
-     FROM `work_studentdata` 
-     LEFT JOIN `work_subjectdata` 
-     ON `work_studentdata`.workid = `work_subjectdata`.workid 
-     WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
-     ORDER BY `work_subjectdata`.subjectid DESC";
-     $query = mysqli_query($conn,$sql);
-     
-    
-    if($query->num_rows == 0){
+     <?php 
+      $sql_1 = "SELECT DISTINCT `work_subjectdata`.subjectid 
+      FROM `work_studentdata` 
+      LEFT JOIN `work_subjectdata` 
+      ON `work_studentdata`.workid = `work_subjectdata`.workid 
+      WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
+      ORDER BY `work_subjectdata`.subjectid DESC";
+      $query_1 = mysqli_query($conn,$sql_1);
+      if($query_1->num_rows == 0){
+        echo "<div class='col-md-12 text-center intro' style = 'padding-top: 10%;' >
+                <h2> ยังไม่มีงานที่ต้องส่ง </h2>
+              </div>";
+      }else {
+        include 'generate_acc_student.php';
+        // include 'test_call_php.php';
+        // echo "1";
+      }
       
-      echo "
-
-      <div class='col-md-12 text-center intro' style = 'padding-top: 10%;' >
-					
-      <h2> ยังไม่มีงานที่ต้องส่ง </h2>
-      
-       </div>
-      
-      
-      ";
-    }else {
-      
-      include('generate_acc_student.php');
-
-    }
-    
-    
-    
-    
     ?> 
-
+    </div>
 
   </div>
   <footer id="fh5co-footer" role="contentinfo">

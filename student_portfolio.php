@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+session_start();
 include('config.php');
 ?>
 <html>
@@ -14,10 +15,6 @@ include('config.php');
 
 	<!-- 
 	//////////////////////////////////////////////////////
-<<<<<<< HEAD
-=======
-
->>>>>>> ab3820c1c0a4276ed081054274d0e0fd64f8a770
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -25,10 +22,6 @@ include('config.php');
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-<<<<<<< HEAD
-=======
-
->>>>>>> ab3820c1c0a4276ed081054274d0e0fd64f8a770
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -131,17 +124,24 @@ include('config.php');
 					<li class="has-dropdown">						
 						<ul class="dropdown">
                             <!-- Link Menu Write here (mobile)-->
-                            <?php include('index_is_login.php');?>
+                        
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-				<ul class="fh5co-social">
-				<?php include('index_is_login.php');?>
-				
-				</ul>
-			</div>
+				<div style = " font-size: 20px " > 
+				<?php 
+					include 'add_student_name.php';
+				?> 
+				</div>
+           	 <ul class="fh5co-social">
+                <li>
+                  
+                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
 		</div>
 	</nav>
 		

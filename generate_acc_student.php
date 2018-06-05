@@ -11,11 +11,23 @@
             WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
             ORDER BY `work_subjectdata`.subjectid DESC";
     $query = mysqli_query($conn,$sql);
+    // echo $sql;
+    $is_subjectid = $query->fetch_assoc();
     $tabno = 0;
     $subtabno = 0;
     // if($query->num_rows > 0)
     // {
+    $sql = "SELECT DISTINCT `work_subjectdata`.subjectid 
+        FROM `work_studentdata` 
+        LEFT JOIN `work_subjectdata` 
+        ON `work_studentdata`.workid = `work_subjectdata`.workid 
+        WHERE `work_studentdata`.studentid = '{$_SESSION['id']}'
+        ORDER BY `work_subjectdata`.subjectid DESC";
+        // echo $sql;
+    $query = mysqli_query($conn,$sql);
+    if($is_subjectid['subjectid']!=NULL){
         # สร้าง tablv1 ตามจำนวนของวิชาที่เรียน #
+        // echo $query->num_rows;
         while($data = $query->fetch_assoc())
         {
             // echo $data['subjectid'];
@@ -33,12 +45,12 @@
             $sql = "SELECT `workid` ,`subjectid`
                      FROM `work_subjectdata` 
                      WHERE `subjectid`= {$data['subjectid']}";
-            $query = mysqli_query($conn,$sql);
+            $query_workid = mysqli_query($conn,$sql);
             $subtabno = 0;
             # เช็คว่ามีงานอยู่ไหม #
-            if($query->num_rows > 0)
+            if($query_workid->num_rows > 0)
             {
-                while($workid = $query->fetch_assoc())
+                while($workid = $query_workid->fetch_assoc())
                 {
                     echo "<div class='tablv2'>";
                     echo "<div class='worklist'> ";
@@ -59,33 +71,30 @@
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
                     $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
-                                               WHERE `subjectid`='{$data['subjectid']}'";
+                            WHERE `subjectid`='{$data['subjectid']}'";
                     $query2 = mysqli_query($conn,$sql2);
                     while($work = $query2->fetch_assoc())
                     {
                         // echo "<li>";
                         echo "<tr>";
                         echo "<td>";
-                        $sql = "SELECT `portfolio` 
+                        $sql3 = "SELECT `portfolio` 
                                 FROM `work_studentdata` 
                                 WHERE `studentid`='{$_SESSION['id']}' 
                                 AND `workid`='{$work['workid']}'";
-                        $query = mysqli_query($conn,$sql);
-                        $portfolio = $query->fetch_assoc();
+                        $query3 = mysqli_query($conn,$sql3);
+                        $portfolio = $query3->fetch_assoc();
                         if($portfolio['portfolio']==1){
                             echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/zpJ2gms.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         } else {
                             echo "<img id='portfolio_img_{$work['workid']}' class='portfolio_icon' src='https://i.imgur.com/pDqvmwb.png' onclick='changePortfolioStatus({$work['workid']})'/>";
                         }
-                        $sql = "SELECT `imgno` FROM `work{$work['workid']}` 
+                        $sql4 = "SELECT `imgno` FROM `work{$work['workid']}` 
                             WHERE studentid='{$_SESSION['id']}'";
-                        $query = mysqli_query($conn,$sql);
-                        if($query->num_rows > 0)
+                        $query4 = mysqli_query($conn,$sql4);
+                        if($query4->num_rows > 0)
                         {
-                            echo "<a href='student_to_show.php?
-                            studentid_to_show={$_SESSION['id']}
-                            &workid_to_show={$work['workid']}
-                            &subjectid_to_show={$work['subjectid']}' style='color:black;'>
+                            echo "<a href='student_to_show.php?studentid_to_show={$_SESSION['id']}&workid_to_show={$work['workid']}&subjectid_to_show={$work['subjectid']}' style='color:black;'>
                             <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         } else 
                         {
@@ -114,7 +123,10 @@
             $tabno++; 
             
         }
-            // }
+    } 
+    // else {
+    //     echo "<p>ยัง</p>";
+    // }
     // $tabno = 0;
     // $subtabno = 0;
     // if($query->num_rows > 0)

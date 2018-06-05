@@ -153,95 +153,77 @@
 			<div class="row top-line animate-box">
 				<div class="col-md-12 text-center intro">
 				<font face="verdana" >  
-							<?php 
-								//$workid =  $_SESSION["workid"] ;
-								
-								$stdid =  $_SESSION["stdid_search"] ;
-								
-								
-								$sql_port = "SELECT  `workid` FROM `work_studentdata` WHERE `studentid` = $stdid ";
-								$sql_name = "SELECT * FROM `student` WHERE `studentid` = $stdid";
-								$query_name =  mysqli_query($conn,$sql_name);
-								$query_port =  mysqli_query($conn,$sql_port);
-
-								//echo var_dump($query_name);
-							
-								$objName = mysqli_fetch_array($query_name);
-								$objPort = mysqli_fetch_array($query_port);
-
-							
-							?>
-							<div class = "createborder">
-								<font face="verdana" >  
-									<h3> ชื่อ : <?php  echo $objName["name"] ?> </h3> 
-									<h3> นามสกุล : <?php echo $objName["surname"] ?> </h3>
-									<h3> รหัสนักเรียน : <?php echo $objName["studentid"] ?>  </h3>
-									<h3> ห้อง : <?php echo $objName["class"] ?> </h3>
-							
-
-							
-							</font>
+				<?php 
+					$sql = "SELECT `name`, `surname` 
+							FROM `student`
+							WHERE `studentid`='{$_SESSION['stdid_search']}'";
+					$query = mysqli_query($conn, $sql); 
+					$name = $query->fetch_array();
+					// echo var_dump($name);
+					echo "<h3>{$name['name']} {$name['surname']}</h3>";
+				?>
+				</div>
+				</div>
+				<div class="row">
+				<!-- ใส่ตามช่างงาน  -->
+				<?php
+				$count = 1;
+				mysqli_set_charset($conn, "utf8");
+				##### หารหัสวิชาของงานที่นักเรียนเลือกไว้ #####
+				$studentid = $_SESSION['stdid_search'];
+				$img = "SELECT DISTINCT `workid` 
+						FROM `work_studentdata` 
+						WHERE `studentid`='$studentid'
+						AND `portfolio`='1' 
+						ORDER BY `workid` DESC";
+				// echo $img;
+				$imgstd = mysqli_query($conn, $img);  
+				while($workid = $imgstd -> fetch_assoc()){
+					$sql = "SELECT `img` 
+							FROM `work{$workid['workid']}` 
+							WHERE `imgno`='1' 
+							AND `studentid`='$studentid'";
+							// AND `work{$workid['workid']}`.`imgno`='1'";
+					$query = mysqli_query($conn, $sql);
+					while($row = $query->fetch_assoc()){
+						$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+						$name = mysqli_query($conn, $sql);
+						echo "<div class='col-md-4 text-center animate-box'>";
+						$sql_subject = "SELECT `subjectid` FROM `work_subjectdata` WHERE `workid`='{$workid['workid']}'";
+						$query_subject = mysqli_query($conn, $sql_subject);
+						$subject = $query_subject->fetch_array();
+						echo "<a class='work' href='portfolio_show_work.php?portfolio_show_stdid=$studentid&portfolio_show_subjectid={$subject['subjectid']}&portfolio_show_workid={$workid['workid']}' name='studentid_form_index'>";
+						echo "<div class='work-grid'>";
+						echo "<div class='desc' align='center' style='color: black;'>";
+						echo "<div class='item'>";
+						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
+						echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
+						echo "<font face='verdana' >";
+						while($name_data = $name -> fetch_assoc()){
+							echo "ผลงานของนักเรียน {$name_data['name']} {$name_data['surname']}";
+							$count++;
+							break;
+						}		
+						echo"</font>
+							</h3>";
+						// echo "<font > ";
+						// echo "</font>";
+						echo "</div>";
+						echo "</div> ";
+						echo "</div>";
+						echo "</a>";
+						echo "</div>";
+					}
+				}
+			?> 
+				<div class="col-md-4 text-center animate-box">
+					<a class="work" >
+						<div class="work-grid" style="background-color: white">
+							<div class="desc" align="center" style="color: black;">
 							</div>
-								
-							</div>
-							<div class="row">
-					
-										
-													<!-- ใส่ตามช่างงาน  -->
-														<?php
-																$stdid =  $_SESSION["stdid_search"] ;
-															//	echo $stdid;
-																$sqlWork = "SELECT `workid` FROM `work_studentdata` WHERE `studentid` = $stdid AND `portfolio` = 1";
-																
-																
-																
-																$query_work =  mysqli_query($conn,$sqlWork);
-																// $objWork = mysqli_fetch_array($query_work );
-
-																while($workid = $query_work -> fetch_assoc()){
-
-																	$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`imgno`, `work{$workid['workid']}`.`img`
-																	FROM `work_studentdata` 
-																	LEFT JOIN `work{$workid['workid']}` 
-																	ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
-																	WHERE `work_studentdata`.`workid`='{$workid['workid']}'
-																	AND `work{$workid['workid']}`.`imgno`='0'";
-																	$query2 = mysqli_query($conn, $sql2);
-																			while($studentid_img = $query2 -> fetch_assoc()){
-																				$studentid = $studentid_img['studentid'];
-																				$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-																				$name = mysqli_query($conn, $sql3);
-																				echo "<div class='col-md-4 text-center animate-box'>";
-																				 echo "<a  href='portfolio_show_work.php'>";
-																				echo "<div class='work-grid' style='background-color: white'>";
-																				echo "<div class='desc' align='center' style='color: black;'>";
-																				echo "<div class='item'>";
-																				echo '<img src="data:image/jpeg;base64,'.base64_encode( $studentid_img['img'] ).'"  width="200" height="200" />'; 
-																				echo "<p align = 'center'>";
-																				echo "<font face='verdana' >";
-																			$sql_subject = "SELECT * FROM `work_subjectdata` WHERE workid = {$workid['workid']}";
-																				$query_sub =  mysqli_query($conn,$sql_subject);
-																						while($name_data = $query_sub  -> fetch_assoc()){
-																							echo "ชิ้นงาน {$name_data['workname']} ";
-
-																							 $_SESSION['index_portfolio_stdid'] = $stdid ;
-																							 $_SESSION['index_portfolio_subjectid'] = $name_data['subjectid'];
-																							 $_SESSION['index_portfolio_workid'] = $workid['workid'] ;
-																							
-																						}	
-																						echo"</font>
-																							</p>
-																							</div>
-																							</div> 
-																							</div>
-																							</a>
-																							</div>";		
-
-
-																				}
-																			}
-														?>
-
+						</div>
+					</a>
+				</div>
 													
 
 			</div>

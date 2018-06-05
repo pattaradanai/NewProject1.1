@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
 <?php
-	session_start();
-	include('config.php');
 ?>
 <html>
 	<head>
@@ -15,7 +13,6 @@
 
 	<!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -23,7 +20,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -71,9 +67,8 @@
 			background-repeat: no-repeat;
 			padding: 12px 20px 12px 40px;
 			margin-right: 30px;
-			
 		}
-		.item{
+		.item {
 			width:100px;
 			text-align:center;
 			display:block;
@@ -83,8 +78,7 @@
 			padding : 20px;
 			margin-bottom: 1px;
 			float:left;
-			
-			}
+		}
 		textarea{	
 			margin-right : 20px ;
 			color: black;
@@ -93,10 +87,7 @@
 			min-height: 35px;
 			outline: none;
 			resize: none;
-			}
-	
-		
-
+		}
 		
 	</style>
 
@@ -109,8 +100,7 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-            
-			<div id="fh5co-logo"><a href="index_portfolio.php">Back</a></div>
+            <div id="fh5co-logo"><a href="student_portfolio_guest.php?studentid=61002">Back</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -118,30 +108,26 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<?php include('index_is_login.php');?>
+							<a href="logout.php">Logout</a>
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-					
-				<ul class="fh5co-social">
-					<?php include('index_is_login.php');?>
-				
-				</ul>
+					<div style = " font-size: 20px " > 
+                    <?php include 'add_student_name.php';?> 
 			</div>
 		</div>
 	</nav>
-		
-	
-	
 	<div id="fh5co-work" style='padding:0px; padding-top: 5%;' >
 		<div class="container">
-		<div  align = "center" >
-		<?php 
-						$studentid = $_GET['portfolio_show_stdid'];
-						$subjectid = $_GET['portfolio_show_subjectid'];
-						$workid = $_GET['portfolio_show_workid'];
+			<div class="row top-line animate-box">
+				<div class="col-md-12 text-center intro">
+					<div  align = "center" >
+					<?php 
+						$studentid = $_GET['portfolio_guest_stdid'];
+						$subjectid = $_GET['portfolio_guest_subjectid'];
+						$workid = $_GET['portfolio_guest_workid'];
 						// $src = "bottle/001.jpeg";
 						// $src1 = "bottle/###.jpeg";
 						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
@@ -214,7 +200,6 @@
 			</div>
 		</div>
 
-	</div>
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
@@ -234,4 +219,3 @@
 
 	</body>
 </html>
-

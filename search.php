@@ -2,7 +2,6 @@
     session_start();
     include('config.php');
    $idstn =  $_POST['search'];
-
    $sql = "SELECT `studentid` FROM `student` WHERE `studentid` = $idstn";
     
    $check = mysqli_query($conn,$sql);
@@ -29,16 +28,8 @@
                     exit(); 
            }
          
-
     }else{
-
          header("Location:index.php");
-
     }
- 
-   
-    
-
-	
 	session_write_close();
 ?>

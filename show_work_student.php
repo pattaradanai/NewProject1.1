@@ -123,7 +123,7 @@ include('config.php');
 	
 	<div id="fh5co-work">
 		<div class="container">
-			<div >
+		<div >
 				<div class="col-md-12 text-center intro">
 					<h1>  
 					<?php  
@@ -142,18 +142,20 @@ include('config.php');
                     // $subjectid = $_SESSION['subjectid_form_index'];
                     // $workid = $_SESSION['workid_form_index'];
                     // $studentid = $_SESSION['studentid_form_index'];
-                    $subjectid = $_SESSION['student_show_subjectid'];
-                    $workid = $_SESSION['student_show_workid'];
-                    $studentid = $_SESSION['student_show_studentid'];
-                    $src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-					$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
-					
+                    
                     // $src = "images/img_data/1612101/161110004/61002/001.jpg";
                     // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
 				?>
 			</div>
 			<div  align = "center">
-				<?php echo "
+				<?php 
+				$subjectid = $_SESSION['student_show_subjectid'];
+				$workid = $_SESSION['student_show_workid'];
+				$studentid = $_SESSION['student_show_studentid'];
+				$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+				$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+				
+				echo "
 						<img src= $src width='200' height='200'
 						class='reel'
 						id='image'
