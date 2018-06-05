@@ -27,6 +27,6 @@
 
     }else{
     
-      echo  "<div id='fh5co-logo'><a href='Login.html'>Login</a></div>";
+      echo  "<div id='fh5co-logo'><a href='Login.php'>เข้าสู่ระบบ</a></div>";
     }
 ?>

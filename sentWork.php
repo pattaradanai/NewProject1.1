@@ -131,7 +131,7 @@ session_start();
 				<div class="container">
 					<div class="fh5co-top-logo" >
 						<div id="fh5co-logo">
-							<a href="teacher.php">Back </a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="teacher.php">ย้อนกลับ </a>&nbsp;&nbsp;&nbsp;&nbsp;
 							
 						</div>
 					</div>
@@ -141,7 +141,7 @@ session_start();
 							<li class="has-dropdown">
 								
 								<ul class="dropdown">
-									<a href="logout.php">Logout</a>
+								
 									<!-- Link Menu Write here (mobile)-->
 								</ul>
 							</li>
@@ -151,10 +151,7 @@ session_start();
 					<div class="fh5co-top-social menu-1 text-right">
 							<?php include("teacher_login.php"); ?>
 
-						<ul class="fh5co-social">
-							
-							<li> <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a></li>
-						</ul>
+					
 					</div>
 				</div>
 			</nav>
@@ -183,85 +180,10 @@ session_start();
 				<button onclick='ping_hw()' style='margin-top:3px; color:black;'>ตรวจสอบการเชื่อมต่อกับอุปกรณ์</button>
             </div>
 		</div>
-		<?php
-			$subjectid = $_GET['subjectid_add_work'];
-			$workid = $_GET['workid_add_work'];
-			$studentid = $_GET['studentid_add_work'];
-			$imgno = '1';
-			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
-			// echo $comment;
-			$re_comment = mysqli_query($conn, $comment);
-			$row_comment = mysqli_fetch_assoc($re_comment);
-			// echo var_dump($row_comment);
-			// if($row_comment["comment"] == "none comment"){
-			if($row_comment == NULL){
-			# กรณีที่ยังไม่มีข้อมูล
-		?>
-		<?php 
-                echo "<form action = 'commentToDB.php?subjectid_to_db={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
-			?>
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
-				<div class="col-sm-7" align = 'left'>
-					<textarea rows="4" cols="50" name = "comment" placeholder="พิมพ์คำอธิบายที่นี้ ..." required> </textarea>
+	
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>คะแนน :</label>
-				<div class="col-sm-7" align = 'left'>
-				<!-- <input type="number" name="quantity" min="0" max="100"> -->
-				<?php
-					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='$workid'";
-					$query = mysqli_query($conn, $sql);
-					while($maxscore = $query->fetch_assoc()){
-						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนน</p>";
-						break;
-					}
-				?>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'></label>
-				<div class="col-sm-7" align = 'left'>
-				<div  align = "5px" ><br><button type="submit">ยืนยัน</button><a href='teacher.php' style='margin-left:10px; color:rgb(206, 69, 69); cursor:pointer;'>ยกเลิก</a></div>
-				</div>
-			</div>
-		</form>
-			<?php }
-			else{
-				# กรณีที่มีข้อมูลแล้ว
-				while($data = $re_comment->fetch_assoc()){
-				echo "<form action = 'commentToDB.php?subjectid_from_index=$subjectid&workid_from_index=$workid&studentid_from_index=$studentid' method='post' >";
-			?>
-		<!-- <form action = "commentToDB.php?subjectid=$subjectid" method="post" > -->
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>comment :</label>
-				<div class="col-sm-7" align = 'left'>
-					<textarea rows="4" cols="50" name = "comment" ><?php echo $data["comment"]; ?></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'>Point :</label>
-				<div class="col-sm-7" align = 'left'>
-					<!-- <input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>"> -->
-					<?php
-					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$data['max_score']}'";
-					$query = mysqli_query($conn, $sql);
-					while($maxscore = $query->fetch_assoc()){
-						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนนss</p>";
-						break;
-					}
-				?>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-5" align = 'right'></label>
-				<div class="col-sm-7" align = 'left'>
-					<div align = "5px" ><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
-				</div>
-			</div>
-		</form>
-			<?php }} ?>
+		
 			<!-- comment box -- >
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

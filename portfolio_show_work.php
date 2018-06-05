@@ -110,7 +110,7 @@
 		<div class="container">
 			<div class="fh5co-top-logo">
             
-			<div id="fh5co-logo"><a href="index_portfolio.php">Back</a></div>
+			<div id="fh5co-logo"><a href="index_portfolio.php">ย้อนกลับ</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>

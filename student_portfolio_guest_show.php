@@ -100,7 +100,7 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-            <div id="fh5co-logo"><a href="student_portfolio_guest.php?studentid=61002">Back</a></div>
+            <div id="fh5co-logo"><a href="student_portfolio_guest.php?studentid=61002">ย้อนกลับ</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -108,7 +108,7 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="logout.php">Logout</a>
+							<a href="logout.php">ออกจากระบบ</a>
 						</ul>
 					</li>					
 				</ul>

@@ -10,13 +10,13 @@
             echo "</div>
 			<ul class='fh5co-social'>
                 <li>
-                  <a style = 'padding : 10px 10px ; font-size: 15px' href='logout.php'>Logout</a>
+                  <a style = 'padding : 10px 10px ; font-size: 15px' href='logout.php'>ออกจากระบบ</a>
                 </li>
             </ul>";
         }
     }else{
         echo "</div>
-                <div id='fh5co-logo'><a href='Login.html'>Login</a></div>
+                <div id='fh5co-logo'><a href='Login.html'>เข้าสู่ระบบ</a></div>
                 ";
     }
 ?>

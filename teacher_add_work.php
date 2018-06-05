@@ -48,7 +48,6 @@
                 $query = mysqli_query($conn, $sql);
                 echo '<script type="text/javascript">'.'alert("เพิ่มงานชิ้นนี้สำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
         }
-<<<<<<< HEAD
 ?><?php 
 include('config.php');
 $work_name = $_POST['subject_name'];
@@ -99,6 +98,4 @@ if($query->num_rows!=0){
         $query = mysqli_query($conn, $sql);
         echo '<script type="text/javascript">'.'alert("เพิ่มงานชิ้นนี้สำเร็จแล้ว");'.'window.location.href = "teacher_editer.php"'.'</script>';
 }
-=======
->>>>>>> ab3820c1c0a4276ed081054274d0e0fd64f8a770
 ?>

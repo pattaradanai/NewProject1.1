@@ -57,9 +57,9 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<a class="login100-form-btn" href="index.php" style="color:white;">Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
+						<a class="login100-form-btn" href="index.php" style="color:white;">หน้าหลัก</a> &nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="login100-form-btn">
-							Login
+							เข้าสู่ระบบ
 						</button>
 					</div>
 

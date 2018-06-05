@@ -112,7 +112,7 @@
 		<div class="container">
 			
 			<div class="fh5co-top-logo">
-				<div id="fh5co-logo"><a href="index.php">Home</a></div>
+				<div id="fh5co-logo"><a href="index.php">หน้าหลัก</a></div>
 		
 			</div>
 			
@@ -139,7 +139,7 @@
 			</div>
 		</div>
 	</nav>
-
+ 
 	<div align = "right" style = "padding-top: 4%;" >	
 	<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
   </div>
@@ -200,7 +200,11 @@
 							echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
 							echo "<font face='verdana' >";
 							while($name_data = $name -> fetch_assoc()){
-								echo "ชิ้นงาน {$workid_worksubdata['workname']} <br> ของ {$name_data['name']} <br> {$name_data['surname']}";
+								if($name_data['sex']==0){
+									echo "ผลงาน{$workid_worksubdata['workname']} ของนาย{$name_data['name']} {$name_data['surname']}";
+								}else{
+									echo "ผลงาน{$workid_worksubdata['workname']} ของนางสาว{$name_data['name']} {$name_data['surname']}";
+								}
 								$count++;
 								break;
 							}			

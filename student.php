@@ -119,7 +119,7 @@ include('is_login.php');
       <div class="container">
         <div class="fh5co-top-logo">
             <div id="fh5co-logo">
-            <a href="index.php">Home</a>
+            <a href="index.php">หน้าหลัก</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -128,7 +128,7 @@ include('is_login.php');
             <li class="has-dropdown">
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
-                <a href="logout.php">Logout</a>
+                <a href="logout.php">ออกจากระบบ</a>
               </ul>
             </li>
           </ul>
@@ -141,8 +141,7 @@ include('is_login.php');
           </div>
             <ul class="fh5co-social">
                 <li>
-                  
-                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+                
                 </li>
             </ul>
         </div>

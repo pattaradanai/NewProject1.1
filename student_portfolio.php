@@ -113,7 +113,7 @@ include('config.php');
             <div id="fh5co-logo">
 
             <div id="fh5co-logo">
-                <a href="student.php">Back</a>
+                <a href="student.php">ย้อนกลับ</a>
             </div>
             
             </div>
@@ -138,7 +138,6 @@ include('config.php');
            	 <ul class="fh5co-social">
                 <li>
                   
-                  <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
                 </li>
             </ul>
         </div>

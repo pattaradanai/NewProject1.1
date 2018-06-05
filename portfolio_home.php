@@ -112,7 +112,7 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-			<div id="fh5co-logo"><a href="index.php">Home</a></div>
+			<div id="fh5co-logo"><a href="index.php">หน้าหลัก</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -120,7 +120,7 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.html">Login</a>
+							<a href="Login.html">เข้าสู่ระบบ</a>
 						</ul>
 					</li>					
 				</ul>

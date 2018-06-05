@@ -109,7 +109,7 @@ include('config.php');
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo" >
-				<a   id="fh5co-logo"  href="index.php"> Home </a>
+				<a   id="fh5co-logo"  href="index.php"> หน้าหลัก </a>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -118,7 +118,7 @@ include('config.php');
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.php">Login</a>
+							<a href="Login.php">เข้าสู่ระบบ</a>
 						</ul>
 					</li>
 				</ul>

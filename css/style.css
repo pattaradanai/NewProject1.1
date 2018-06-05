@@ -107,6 +107,14 @@ h1, h2, h3, h4, h5, h6, figure {
   .fh5co-nav {
     padding: 20px 0;
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 .fh5co-nav .fh5co-top-logo,
 .fh5co-nav .fh5co-top-menu,
@@ -413,6 +421,14 @@ h1, h2, h3, h4, h5, h6, figure {
     padding: 3em 0;
   
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 
 .feature-center {
@@ -460,6 +476,14 @@ h1, h2, h3, h4, h5, h6, figure {
   .feature-center .icon {
     margin: 0 auto 30px auto;
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 
 .work {
@@ -491,6 +515,14 @@ h1, h2, h3, h4, h5, h6, figure {
     opacity: 1;
     background: rgba(237, 235, 232, 0.7);
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 .work .work-grid .inner .desc {
   display: table-cell;
@@ -516,6 +548,14 @@ h1, h2, h3, h4, h5, h6, figure {
 @media screen and (max-width: 768px) {
   .work .work-grid .inner .desc .cat {
     color: #333333;
+  }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
   }
 }
 .work:hover .inner, .work:focus .inner {
@@ -559,6 +599,14 @@ h1, h2, h3, h4, h5, h6, figure {
   .intro h2 {
     font-size: 30px;
     line-height: 45px;
+  }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
   }
 }
 .intro h2 .fh5co-highlight {
@@ -609,6 +657,14 @@ h1, h2, h3, h4, h5, h6, figure {
   .title {
     text-align: center;
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 
 .author {
@@ -630,6 +686,14 @@ h1, h2, h3, h4, h5, h6, figure {
     width: 100%;
     margin-bottom: 40px;
   }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
 }
 .author .desc {
   width: 60%;
@@ -640,6 +704,14 @@ h1, h2, h3, h4, h5, h6, figure {
   .author .desc {
     width: 100%;
     padding-left: 0;
+  }
+  .fh5co-nav #fh5co-logo {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
   }
 }
 .author .desc span {
@@ -731,6 +803,7 @@ h1, h2, h3, h4, h5, h6, figure {
   #fh5co-footer .fh5co-widget {
     text-align: left;
   }
+  
 }
 #fh5co-footer .fh5co-widget h3 {
   margin-bottom: 15px;

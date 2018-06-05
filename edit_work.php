@@ -90,7 +90,7 @@ session_start();
 				<div class="container">
 					<div class="fh5co-top-logo">
                         <div id="fh5co-logo">
-							<a href="teacher.php">Back </a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="teacher.php">ย้อนกลับ </a>&nbsp;&nbsp;&nbsp;&nbsp;
 							
 						</div>
 					</div>
@@ -101,7 +101,7 @@ session_start();
 								
 								<ul class="dropdown">
 									<!-- Link Menu Write here (mobile)-->
-									<a href="index.php">Logout</a>
+									<a href="index.php">ออกจากระบบ</a>
 								</ul>
 							</li>
 							
@@ -111,10 +111,7 @@ session_start();
 							<?php include("teacher_login.php"); ?>
 					
 
-						<ul class="fh5co-social">
-							
-							<li> <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a></li>
-						</ul>
+						
 					</div>
 				</div>
 			</nav>

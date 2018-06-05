@@ -94,7 +94,7 @@ include('config.php');
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo" >
-				<a   id="fh5co-logo"  href="student.php">Back </a>
+				<a   id="fh5co-logo"  href="student.php">ย้อนกลับ </a>
 				
 				
 			</div>
@@ -105,7 +105,7 @@ include('config.php');
 						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="logout.php">Logout</a>
+							<a href="logout.php">ออกจากระบบ</a>
 						</ul>
 					</li>
 					
@@ -115,7 +115,7 @@ include('config.php');
 			<div style = " font-size: 20px " > <?php include 'add_student_name.php';?> </div>
 				<ul class="fh5co-social">
 					
-					<li><a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a></li>
+					<li><a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">ออกจากระบบ</a></li>
 				</ul>
 			</div>
 		</div>

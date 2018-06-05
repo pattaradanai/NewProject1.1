@@ -71,7 +71,7 @@
       <div class="container">
         <div class="fh5co-top-logo">
           <div id="fh5co-logo">
-            <a href="teacher.php">Back</a>
+            <a href="teacher.php">ย้อนกลับ</a>
           </div>
         </div>
         <div class="fh5co-top-menu menu-1 text-center">
@@ -81,7 +81,7 @@
 
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
-                <a href="logout.php">Logout</a>
+                <a href="logout.php">ออกจากระบบ</a>
                 
               </ul>
             </li>
@@ -90,12 +90,7 @@
         </div>
         <div class="fh5co-top-social menu-1 text-right">
           <?php include("teacher_login.php"); ?>
-          <ul class="fh5co-social">
-            <li>
-                 <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
-             
-            </li>
-          </ul>
+         \
         </div>
       </div>
     </nav>
