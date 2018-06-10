@@ -81,17 +81,19 @@
 
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
+                <a href="logout.php">Logout</a>
+                
               </ul>
             </li>
 
           </ul>
         </div>
         <div class="fh5co-top-social menu-1 text-right">
+          <?php include("teacher_login.php"); ?>
           <ul class="fh5co-social">
             <li>
-              <a href="https://github.com/pattaradanai/NewProject1.1">
-                <i class="icon-github"></i>
-              </a>
+                 <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+             
             </li>
           </ul>
         </div>
@@ -106,15 +108,15 @@
       <form class="accform" action="teacher_add_subject.php" method="POST">
         <div style='margin-bottom:5px;'>
           <label for="subname">วิชา: </label>
-          <input class="subinput" type="text" name="subname" placeholder="ชื่อวิชา" style='margin-left:5px;' required>  
+          <input class="subinput" type="text" name="subname" placeholder="ชื่อวิชา" style='margin-left:5px; color: black' required>  
         </div>
         <div style='margin-bottom:5px;'>
           <label for="year">ปีการศึกษา: </label>
-          <input class="subinput" type="text" name="year" placeholder="ปีการศึกษา เช่น 2561" pattern="25[0-9]{2}" style='margin-left:5px;' required>  
+          <input class="subinput" type="text" name="year" placeholder="ปีการศึกษา เช่น 2561" pattern="25[0-9]{2}" style='margin-left:5px; color: black' required>  
         </div>
         <div style='margin-bottom:5px;'>
         <label for="term">เทอมที่: </label>
-          <select name="term" style='margin-left:5px;' required>
+          <select name="term" style='margin-left:5px; color: black' required>
             <option value="" selected>--เทอมที่--</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -122,26 +124,26 @@
         </div>
         <div style='margin-bottom:5px;'>
           <label for="section">หมวดวิชา: </label>
-          <select name="section" style='margin-left:5px;' required>
+          <select name="section" style='margin-left:5px; color: black' required>
             <option value="" selected>--หมวดวิชา--</option>
-            <option value="1">1:</option>
-            <option value="2">2:</option>
-            <option value="3">3:</option>
+            <option value="1">1:วิทยาศาสตร์</option>
+            <option value="2">2:คณิตศาสตร์</option>
+            <option value="3">3:สังคมศาสตร์</option>
             <option value="4">4:</option>
             <option value="5">5:</option>
             <option value="6">6:</option>
           </select>  
         </div>
         <div style='margin-bottom:5px;'>
-          <label for="year1-6">นักเรียนช่วงชั้นที่สอน: </label>
-          <select name="year1-6" style='margin-left:5px;' required>
-            <option value="" selected>--ช่วงชั้นที่--</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+          <label for="year1-6">ระดับชั้นที่สอน: </label>
+          <select name="year1-6" style='margin-left:5px; color: black' required>
+            <option value="" selected>--ระดับชั้นที่--</option>
+            <option value="1">ป.1</option>
+            <option value="2">ป.2</option>
+            <option value="3">ป.3</option>
+            <option value="4">ป.4</option>
+            <option value="5">ป.5</option>
+            <option value="6">ป.6</option>
           </select>  
         </div>
         <div class="createacc">

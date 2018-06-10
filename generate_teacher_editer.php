@@ -18,18 +18,18 @@
         $temp_subjectdata = mysqli_fetch_array($query_subjectdata);
         echo "<div class='tablv1'>";
         echo  "<input class='input_tablv1' id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
-        echo  "<label class='label-tablv1' for='tabno".$tabno."-lv1'>".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." ".$temp_subjectdata["name"]."</label>";  
+        echo  "<label class='label-tablv1' for='tabno".$tabno."-lv1'>ปี".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." วิชา".$temp_subjectdata["name"]."</label>";  
         echo  "<div class='tablv2'>";
         ## เริ่มส่วนของงาน ##
         echo   "<div class='workdata'>";
         # เริ่มส่วนของตารางแสดงรายการงาน #
         echo    "<div class='work_table'>";
-        echo     "<p class='tablv2-p1'>รายชื่องานที่หมอบหมาย</p>";
+        echo     "<p class='tablv2-p1'>รายชื่องานที่มอบหมาย</p>";
         echo      "<table>";
         echo       "<tbody>";
         echo        "<tr>";
         echo         "<th>ชื่องาน</th>";
-        echo         "<th>คะแนนเต็ม</th>";
+        echo         "<th>คะแนนเก็บ</th>";
         echo         "<th></th>";
         echo        "</tr>";
         $sql = "SELECT DISTINCT `workid`,`workname`, `max_score` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `subjectid`";
@@ -66,14 +66,14 @@
         echo     "<tbody>";
         echo      "<tr>";
         echo       "<th class='th-name'>ชื่องาน</th>";
-        echo       "<th class='th-maxscore'>คะแนนเต็ม</th>";
+        echo       "<th class='th-maxscore'>คะแนนเก็บ</th>";
         echo      "</tr>";
         echo      "<tr>";
         echo       "<td>";
         echo        "<input type='text' name='subject_name' placeholder='ชื่องาน' required>";  
         echo       "</td>";
         echo       "<td>";
-        echo        "<input type='text' name='max_score' placeholder='คะแนนเต็ม 1-99' pattern='[0-9]{1,2}' required>";
+        echo        "<input type='text' name='max_score' placeholder='คะแนนเก็บ 1-99' pattern='[0-9]{1,2}' required>";
         echo       "</td>";
         echo      "</tr>";
         echo     "</tbody>";
@@ -92,7 +92,8 @@
         echo "<div class='classdata'>";
         # เริ่มส่วนของข้อมูลห้อง #
         echo  "<div class='class_list'>";
-        echo  "<h4>ห้องที่เรียนวิชานี้</h4>";
+        $year = substr($subjectid['subjectid'],4,1);
+        echo  "<h4>ห้องที่เรียนวิชานี้(ป.$year)</h4>";
         echo   "<ul>";
         $sql = "SELECT `class` FROM `subject` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
         $query = mysqli_query($conn,$sql);
@@ -104,7 +105,7 @@
                 } else 
                 {
                         // echo "<form>";
-                        echo "<li>ห้อง {$classdata['class']}  <a class='a-link' href='teacher_delete_class.php?editer_del_class={$classdata['class']}&editer_del_subjectid={$subjectid['subjectid']}'>ลบห้องนี้</a> ";
+                        echo "<li>ป.{$classdata['class']}  <a class='a-link' href='teacher_delete_class.php?editer_del_class={$classdata['class']}&editer_del_subjectid={$subjectid['subjectid']}'>ลบห้องนี้</a> ";
                         // echo "<select  name='subject_work_list' required>";
                         // echo  "<option value='' selected>--เลือกงานที่จะสั่ง--</option>";
                         // $sql0 = "SELECT `workname` FROM `work_subjectdata` WHERE `subjectid`= {$subjectid['subjectid']} ORDER BY `class`";
@@ -170,16 +171,16 @@
         # เริ่มฟอร์มเพิ่มห้อง #
         echo "<div>";
         echo "<form name='add_class_to_subject' action='teacher_add_class.php?editer_add_subjectid={$subjectid['subjectid']}' method='POST'>";
-        echo  "<label>เลขห้อง: </label>";
+        echo  "<label>ห้อง: </label>";
         // echo  "<input type='text' name='class' placeholder='เลขห้อง เช่น 1/2, 2/5 ' pattern='[1-6]{1}/[1-6]{1}' style='margin-left:5px;' required/>";
         echo  "<select name='class' requried>";
-        echo   "<option value='' selected>--เลือกเลขห้อง--</option>";
-        echo   "<option value='1'>1</option>";
-        echo   "<option value='2'>2</option>";
-        echo   "<option value='3'>3</option>";
-        echo   "<option value='4'>4</option>";
-        echo   "<option value='5'>5</option>";
-        echo   "<option value='6'>6</option>";
+        echo   "<option value='' selected>--เลือกห้อง--</option>";
+        echo   "<option value='1'>ป.$year/1</option>";
+        echo   "<option value='2'>ป.$year/2</option>";
+        echo   "<option value='3'>ป.$year/3</option>";
+        echo   "<option value='4'>ป.$year/4</option>";
+        echo   "<option value='5'>ป.$year/5</option>";
+        echo   "<option value='6'>ป.$year/6</option>";
         echo  "</select>";
         echo  "<button type='submit' style='margin-left:5px;'>เพิ่มห้องที่เรียนวิชานี้</button>";
         echo "</form>";

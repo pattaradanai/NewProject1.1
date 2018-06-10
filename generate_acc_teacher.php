@@ -49,8 +49,8 @@
                 echo " <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right:4px; '/> หมายถึง ยังไม่ได้ส่งและบันทึกงานชิ้นนี้";
                 echo " <p>คลิกที่เครื่องหมาย <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em;  margin-right:4px;'/>หรือ <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' style='width: 1em; margin-right:4px; '/> เพื่อจัดเก็บ หรือแก้ไขชิ้นงาน</p>";
                 echo "</div>";
-                echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>รายชื่องานที่มี</p><br>";
-                $sql = "SELECT `workid`,`workorder`,`workname`
+                echo "<p style='margin-left:13px; margin-bottom: 0px; display: inline;'>รายชื่องานที่มีทั้งหมด</p><br>";
+                $sql = "SELECT DISTINCT `workid`,`workorder`,`workname`
                         FROM `work_subjectdata` 
                         WHERE `subjectid`= '{$subjectid['subjectid']}'";
                 $query = mysqli_query($conn,$sql);
@@ -68,14 +68,14 @@
                     </tr>
                     <tr>";
                 # create work col much as work quantity #
-                $sql = "SELECT `workid`,`workorder` FROM `work_subjectdata` 
+                $sql = "SELECT `workid`,`workorder`,`max_score` FROM `work_subjectdata` 
                         WHERE `subjectid`= '{$subjectid['subjectid']}'
                         AND `class`= '{$subjectdata['class']}'";
                 // echo $sql;
                 $query_work = mysqli_query($conn,$sql);
                 while($work = $query_work->fetch_assoc())
                 {
-                    echo "<td>{$work['workorder']}</td>";
+                    echo "<td>{$work['workorder']}({$work['max_score']})</td>";
                     $workno++;
                 }
                 echo "</tr>"; # close header row #
