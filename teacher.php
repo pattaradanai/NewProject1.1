@@ -94,8 +94,8 @@
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
               <?php 
-                   include('is_login.php');
-                   include('index_is_login.php');
+                  //  include('is_login.php');
+                  //  include('index_is_login.php');
               ?>
                 <!-- <a href="logout.php">Logout</a> -->
               </ul>
@@ -105,7 +105,11 @@
         <div class="fh5co-top-social menu-1 text-right" >
               <!-- ชื่อ อาจารย์ -->
          <?php include("teacher_login.php"); ?>
-         
+          <!-- <ul class="fh5co-social">
+            <li>
+            <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a>
+            </li>
+          </ul> -->
         </div>
       </div>
     </nav>

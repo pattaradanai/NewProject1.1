@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 
 <?php 
-
 include('is_login.php');
-
+// session_start(); 
 ?>
 
 <html>
@@ -85,7 +84,7 @@ include('is_login.php');
     .default {color: black;}
   </style>
 
-   <script>
+  <script>
     function changePortfolioStatus(workid)
     {
       var image =  document.getElementById('portfolio_img_'+workid);
@@ -107,8 +106,8 @@ include('is_login.php');
           });
       }
     }
-</script>
 
+</script>
 
 </head>
 
@@ -128,7 +127,6 @@ include('is_login.php');
             <li class="has-dropdown">
               <ul class="dropdown">
                 <!-- Link Menu Write here (mobile)-->
-                <a href="logout.php">ออกจากระบบ</a>
               </ul>
             </li>
           </ul>
@@ -138,25 +136,16 @@ include('is_login.php');
           <?php 
             include 'add_student_name.php';
           ?> 
-          </div>
-            <ul class="fh5co-social">
-                <li>
-                
-                </li>
-            </ul>
         </div>
       </div>
     </nav>
     <div style = 'padding-top: 5%; padding-left: 12%;'>
-      <a class='btn info' href ="student_portfolio.php?studentid=<?php echo $_SESSION["id"]; ?>">
+      <a class='btn info' href ="portfolio_home_qr.php?stdid=<?php echo $_SESSION["id"]; ?>">
         แฟ้มสะสมข้อมูลของนักเรียน
       </a>
     </div>
     <div class="contentBox" style='padding-top:0px;'>
-
-
-
-     <?php 
+    <?php 
       $sql_1 = "SELECT DISTINCT `work_subjectdata`.subjectid 
       FROM `work_studentdata` 
       LEFT JOIN `work_subjectdata` 
@@ -176,8 +165,6 @@ include('is_login.php');
       
     ?> 
     </div>
-
-  </div>
   <footer id="fh5co-footer" role="contentinfo">
   </footer>
   <div class="gototop js-top">

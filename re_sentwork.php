@@ -2,7 +2,6 @@
 
 <?php
 include('config.php');
- 
 session_start();
 ?>
 
@@ -54,44 +53,22 @@ session_start();
 	<![endif]-->
 	<script>
 		function move(workid, studentid, subjectid) {
-			var disconnect = 0;
-			var run_hardware_img = document.getElementById("run_hardware_img");
-			run_hardware_img.src = 'https://media.giphy.com/media/9i3Ax6g0DLlzW/giphy.gif';
-			run_hardware_img.style.width = '80px';
-			var progress_text = document.getElementById("progress_text");
-			var percent_text = document.getElementById("percent_text");
-			var progress_bar = document.getElementById("bar");
-			var width = 3.125;
-			var i = 1;
-			var run_count = 0;
+			$run_hardware_img = document.getElementById("run_hardware_img");
+			$run_hardware_img.src = 'https://media.giphy.com/media/9i3Ax6g0DLlzW/giphy.gif';
+			$run_hardware_img.style.width = '80px';
 			// $run_hardware_img.style.margin-left = '15px';
-			progress_text.innerHTML = 'กำลังถ่ายภาพ กรุณารอสักครู่';
-			// while(i<33){
-				var xhttp = new XMLHttpRequest();
-				// xhttp.open("GET", "run_hardware.php?workid_sent_work="+workid+"&studentid_sent_work="+studentid+"&subjectid_sent_work="+subjectid+"&i="+i, true);
-				xhttp.open("GET", "test.php", true);
-				xhttp.onreadystatechange = function() {
-					if(this.readyState == 4 && this.status == 200){
-					// 	if(this.responseText == 'false'){
-					// 		document.getElementById("ping_status").style.color = 'rgb(206, 69, 69)';
-					// 		progress_text.innerHTML = "ขาดการเชื่อมต่อกับอุปกรณ์ระหว่างการทำงาน กรุณาลองใหม่อีกครั้ง";
-					// 	}else{
-					// 		run_count++;
-					run_count = this.responseText;
-							percent_text.innerHTML = run_count +'%';
-							progress_bar.style.width = (width*run_count) +'%';
-					// 		width = width + 3.125;
-					// 	}
-					if(run_count==32){
-							run_hardware_img.src = 'https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png'; 
-							progress_text.innerHTML = 'ถ่ายภาพเสร็จแล้ว';
-						}
-					}
-					
-				};
-				xhttp.send();
-				i++;
-			// }
+			document.getElementById("process_text").innerHTML = 'กำลังถ่ายภาพ กรุณารอสักครู่';
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					$run_hardware_img.src = 'https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png'; 
+					document.getElementById("process_text").innerHTML = 'ถ่ายภาพเสร็จแล้ว';
+				}
+			};
+			// xhttp.open("GET", "test_2nd_process.php", true);
+			xhttp.open("GET", "run_hardware.php?workid_sent_work="+workid+"&studentid_sent_work="+studentid+"&subjectid_sent_work="+subjectid, true);
+			xhttp.send();
 		}
 	</script>
 	<script>
@@ -133,20 +110,13 @@ session_start();
 		padding : 20px;
 		margin-bottom: 1px;
 		float:left;
-	}
-	textarea{	
-		margin-right : 20px ;
-		color: black;
-	}
-	#progress_bar {
-		width: 30%;
-		background-color: rgba(226, 225, 225, 0.623);
-	}
-	#bar {
-		width: 0%;
-		height: 30px;
-		background-color: green;
-	}
+		
+		}
+	 textarea{	
+		 	
+		 	margin-right : 20px ;
+    		color: black;
+		}
 	
 	</style>
 	
@@ -158,7 +128,7 @@ session_start();
 				<div class="container">
 					<div class="fh5co-top-logo" >
 						<div id="fh5co-logo">
-							<a href="teacher.php">ย้อนกลับ </a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="teacher.php">Back </a>&nbsp;&nbsp;&nbsp;&nbsp;
 							
 						</div>
 					</div>
@@ -168,6 +138,7 @@ session_start();
 							<li class="has-dropdown">
 								
 								<ul class="dropdown">
+									<a href="logout.php">Logout</a>
 									<!-- Link Menu Write here (mobile)-->
 								</ul>
 							</li>
@@ -175,42 +146,27 @@ session_start();
 						</ul>
 					</div>
 					<div class="fh5co-top-social menu-1 text-right">
-						<?php include("teacher_login.php"); ?>
+							<?php include("teacher_login.php"); ?>
+
+						<ul class="fh5co-social">
+							
+							<li> <a style = "padding : 10px 10px ; font-size: 15px " href="logout.php">Logout</a></li>
+						</ul>
 					</div>
 				</div>
 			</nav>
-			<div class="container" style='margin-top:50px; margin-left:40%;'>
-				<?php
-					$studentid = $_GET['stdid'];
-					$workid = $_GET['wid'];
-					$subjectid = $_GET['subid'];
-					$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-					$query = mysqli_query($conn, $sql);
-					while($student = $query->fetch_assoc()){
-						if($student['sex']==0){
-							echo "<p style='padding:0px;margin:0px;color:black;'>ผลงานของด.ช.{$student['name']} {$student['surname']}</p>";
-						}else{
-							echo "<p style='padding:0px;margin:0px;color:black;'>ผลงานของด.ญ.{$student['name']} {$student['surname']}</p>";
-						}
-					}
-				?>
-			</div>
-			<div class="container" style='margin-top:50px; margin-left:40%;'>
+			<div class="container" style='margin-top:50px; margin-left:41.6667%;'>
 			<!-- RUN HARDWHERE -->
-				<div style='margin-left:6.667%;'>
+				<div style='margin-left:5%;'>
 				<?php 
 					// echo "<a onclick='move()' href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
-					echo "<a onclick='move({$_GET['wid']}, {$_GET['stdid']}, {$_GET['subid']})' style='cursor:pointer;'>";
+					echo "<a onclick='move({$_GET['workid_add_work']}, {$_GET['studentid_add_work']}, {$_GET['subjectid_add_work']})' style='cursor:pointer;'>";
 				?>
                     <img id='run_hardware_img' src="images/ic_camera_black_24dp_2x.png" style='width:24dp;padding-left:50px' alt=""/> 
-                    <h4> <font face="verdana" id='progress_text'> คลิ้กเพื่อถ่ายภาพผลงาน </font></h4>
+                    <h4> <font face="verdana" id='process_text'> คลิ้กเพื่อถ่ายภาพผลงาน </font></h4>
                 </a>
 				</div>
-				<!-- <div id="progress_bar">
-					<div id="bar"></div>
-				</div>
-				<p id='percent_text' style='margin:0px; padding:0px;'>0%</p> -->
-				<div style='display:-webkit-box; margin-left:1.6667%;'>
+				<div style='display:-webkit-box;'>
 				<?php 
 					$ip = '192.168.149.106';
 					exec("ping -n 1 $ip", $output, $status);
@@ -221,16 +177,89 @@ session_start();
 					}
 				?>
 				</div>
-				<button onclick='ping_hw()' style='margin-top:3px; color:black; margin-left:1%;'>ตรวจสอบการเชื่อมต่อกับอุปกรณ์</button>
+				<button onclick='ping_hw()' style='margin-top:3px; color:black;'>ตรวจสอบการเชื่อมต่อกับอุปกรณ์</button>
             </div>
 		</div>
 		<?php
+			$subjectid = $_GET['subjectid_add_work'];
+			$workid = $_GET['workid_add_work'];
+			$studentid = $_GET['studentid_add_work'];
 			$imgno = '1';
 			$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
 			// echo $comment;
 			$re_comment = mysqli_query($conn, $comment);
 			$row_comment = mysqli_fetch_assoc($re_comment);
+			// echo var_dump($row_comment);
+			// if($row_comment["comment"] == "none comment"){
+			if($row_comment == NULL){
+			# กรณีที่ยังไม่มีข้อมูล
 		?>
+		<?php 
+                echo "<form action = 'commentToDB.php?subjectid_to_db={$subjectid}&workid_to_db={$workid}&studentid_to_db={$studentid}' method='post' >";
+			?>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>คำอธิบาย :</label>
+				<div class="col-sm-7" align = 'left'>
+					<textarea rows="4" cols="50" name = "comment" placeholder="พิมพ์คำอธิบายที่นี้ ..." required> </textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>คะแนน :</label>
+				<div class="col-sm-7" align = 'left'>
+				<!-- <input type="number" name="quantity" min="0" max="100"> -->
+				<?php
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='$workid'";
+					$query = mysqli_query($conn, $sql);
+					while($maxscore = $query->fetch_assoc()){
+						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนน</p>";
+						break;
+					}
+				?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'></label>
+				<div class="col-sm-7" align = 'left'>
+					<div  align = "5px" ><br><button type="submit">ยืนยัน</button><a href='teacher.php' style='margin-left:10px; color:rgb(206, 69, 69); cursor:pointer;'>ยกเลิก</a></div>
+				</div>
+			</div>
+		</form>
+			<?php }
+			else{
+				# กรณีที่มีข้อมูลแล้ว
+				while($data = $re_comment->fetch_assoc()){
+				echo "<form action = 'commentToDB.php?subjectid_from_index=$subjectid&workid_from_index=$workid&studentid_from_index=$studentid' method='post' >";
+			?>
+		<!-- <form action = "commentToDB.php?subjectid=$subjectid" method="post" > -->
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>comment :</label>
+				<div class="col-sm-7" align = 'left'>
+					<textarea rows="4" cols="50" name = "comment" ><?php echo $data["comment"]; ?></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'>Point :</label>
+				<div class="col-sm-7" align = 'left'>
+					<!-- <input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>"> -->
+					<?php
+					$sql = "SELECT `max_score` FROM `work_subjectdata` WHERE `workid`='{$data['max_score']}'";
+					$query = mysqli_query($conn, $sql);
+					while($maxscore = $query->fetch_assoc()){
+						echo "<input type='number' name='quantity' min='0' max='{$maxscore['max_score']}' required><p style='margin-bottom:0px;'>คะแนนเต็ม: {$maxscore['max_score']} คะแนนss</p>";
+						break;
+					}
+				?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" align = 'right'></label>
+				<div class="col-sm-7" align = 'left'>
+					<div align = "5px" ><button type="submit">ยืนยัน</button><button style='margin-left:10px;'>ยกเลิก</button> </div>
+				</div>
+			</div>
+		</form>
+			<?php }} ?>
+			<!-- comment box -- >
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>

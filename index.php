@@ -123,7 +123,7 @@
 					
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<?php include('index_is_login.php');?>
+							
 
 						
 						</ul>
@@ -133,14 +133,12 @@
 			</div>
 			
 			<div class="fh5co-top-social menu-1 text-right">
-				<ul class="fh5co-social">
 					<?php include('index_is_login.php');?>
-				</ul>
 			</div>
 		</div>
 	</nav>
- 
-	<div align = "right" style = "padding-top: 4%;" >	
+
+	<div align = "right" style='padding-top:5%' >	
 	<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
   </div>
 
@@ -150,12 +148,12 @@
 			<input type="search" name="search" placeholder="รหัสนักเรียน" require>
 			<span class="validity"></span>
 		</form>		
-  </div>
-	<div id="fh5co-work">
+	</div>
+	<div id="fh5co-work" style='padding:3em 0px'>
 
 		<div class="container">
 	
-			<div class="row top-line animate-box">
+			<div class="row top-line animate-box" style='padding:0px 0px 2em 0px'>
 				
 				<div class="col-md-12 text-center intro"  >
 					
@@ -177,7 +175,7 @@
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$sql = "SELECT DISTINCT `workid`, `workname` FROM `work_subjectdata` ORDER BY `workid` ";
+					$sql = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` ORDER BY `workid` ";
 					$query = mysqli_query($conn, $sql);
 					while($workid_worksubdata = $query -> fetch_assoc()){
 						$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid_worksubdata['workid']}`.`imgno`, `work{$workid_worksubdata['workid']}`.`img`
@@ -192,7 +190,7 @@
 							$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 							$name = mysqli_query($conn, $sql3);
 							echo "<div class='col-md-4 text-center animate-box'>";
-							echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
+							echo "<a  href='index_show_work.php?stdid=$studentid&wid={$workid_worksubdata['workid']}&subid={$workid_worksubdata['subjectid']}' name='studentid_form_index'>";
 							echo "<div class='work-grid' style='background-color: white'>";
 							echo "<div class='desc' align='center' style='color: black;'>";
 							echo "<div class='item' style='width:auto; '>";

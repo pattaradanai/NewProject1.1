@@ -50,7 +50,8 @@
                         echo  "</td>";
                         echo  "<td>";
                     //     echo   "<button>ลบงานนี้</button>";
-                        echo   "<a class='a-link' href='teacher_delete_work.php?editer_del_workid={$workdata['workid']}'>ลบงานนี้</a>";
+                        // echo   "<a class='a-link' href='teacher_delete_work.php?editer_del_workid={$workdata['workid']}'>ลบงานนี้</a>";
+                        echo   "<a class='a-link' onclick='del_work(\"{$workdata['workname']}\")'>ลบงานนี้</a>";
                         echo  "</td>";
                         echo "</tr>";
                 }

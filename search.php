@@ -2,6 +2,7 @@
     session_start();
     include('config.php');
    $idstn =  $_POST['search'];
+
    $sql = "SELECT `studentid` FROM `student` WHERE `studentid` = $idstn";
     
    $check = mysqli_query($conn,$sql);
@@ -13,12 +14,10 @@
             $query = mysqli_query($conn,$sql1);
             $objResult = mysqli_fetch_array($query);
                     //$_SESSION["workid"] = $objResult["workid"];
-                 
-                     $_SESSION["stdid_search"] = $idstn;
-                    //echo  $_SESSION["stid_search"];
-                   // $_SESSION["stdid_search"] = $objResult["studentid"];
-                   // echo 	$_SESSION["stdid_search"];
-                    header("Location:portfolio_home.php");
+                    //  $_SESSION["stdid_search"] = $idstn;
+                    // $_SESSION["stdid_search"] = $objResult["studentid"];
+                    // header("Location:portfolio_home.php");
+                    header("Location:portfolio_home_search.php?stdid=$idstn");
                             
            }else{   
                     echo '<script type="text/javascript">'; 
@@ -28,8 +27,11 @@
                     exit(); 
            }
          
+
     }else{
+
          header("Location:index.php");
+
     }
 	session_write_close();
 ?>

@@ -6,7 +6,11 @@
         $query = mysqli_query($conn, $sql);
         while($data = $query->fetch_assoc())
         {
-            echo "<a href='student.php'> {$data["name"]} {$data["surname"]} </a>";
+            if($data["sex"]==0){
+                echo "<a href='student.php'> ด.ช.{$data["name"]} {$data["surname"]} </a>";
+            } else {
+                echo "<a href='student.php'> ด.ญ.{$data["name"]} {$data["surname"]} </a>";
+            }
             echo "</div>
 			<ul class='fh5co-social'>
                 <li>

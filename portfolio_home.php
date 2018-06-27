@@ -15,7 +15,6 @@
 
 	<!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -23,7 +22,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -60,7 +58,7 @@
 	<![endif]-->
 
 	<style>
-			.item{
+			/* .item{
 				width:200px;
 				text-align:center;
 				display:block;
@@ -80,7 +78,7 @@
 				min-height: 35px;
 				outline: none;
 				resize: none;
-				}
+				} */
 			
 			</style>
 
@@ -99,7 +97,6 @@
 			margin-right: 30px;
 			
 		}
-
 		
 	</style>
 
@@ -120,7 +117,6 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="Login.html">เข้าสู่ระบบ</a>
 						</ul>
 					</li>					
 				</ul>
@@ -128,39 +124,28 @@
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
 				<?php include('index_is_login.php');?>
-				
-				
 				</ul>
 			</div>
 		</div>
 	</nav>
-		<div align = "right" style = "padding-top: 5%;" >	
+		
 	
-			<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
-	
-		</div>
-
-		<div align = "right"  margin-right = "50px">	
-		<form action="search.php" method="post">
-			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
-			<span class="validity"></span>
-		</form>		
-	</div>
-	
-	<div id="fh5co-work">
+	<div id="fh5co-work" style='padding-top:4em;'>
 		<div class="container">
-			<div class="row top-line animate-box">
+			<div class="row top-line animate-box" style='padding-bottom:1em;'>
 				<div class="col-md-12 text-center intro">
-				<font face="verdana" >  
 				<?php 
-					$sql = "SELECT `name`, `surname` 
-							FROM `student`
-							WHERE `studentid`='{$_SESSION['stdid_search']}'";
+					$sql = "SELECT `name`, `surname` ,'sex'
+						FROM `student`
+						WHERE `studentid`='{$_GET['stdid']}'";
 					$query = mysqli_query($conn, $sql); 
 					$name = $query->fetch_array();
 					// echo var_dump($name);
-					echo "<h3>{$name['name']} {$name['surname']}</h3>";
+					if($name['sex']==0){
+						echo "<h3>ด.ช.{$name['name']} {$name['surname']}</h3>" ;
+					}else{
+						echo "<h3>ด.ญ.{$name['name']} {$name['surname']}</h3>" ;
+					}
 				?>
 				</div>
 				</div>
@@ -170,7 +155,7 @@
 				$count = 1;
 				mysqli_set_charset($conn, "utf8");
 				##### หารหัสวิชาของงานที่นักเรียนเลือกไว้ #####
-				$studentid = $_SESSION['stdid_search'];
+				$studentid = $_GET['stdid'];
 				$img = "SELECT DISTINCT `workid` 
 						FROM `work_studentdata` 
 						WHERE `studentid`='$studentid'
@@ -186,24 +171,26 @@
 							// AND `work{$workid['workid']}`.`imgno`='1'";
 					$query = mysqli_query($conn, $sql);
 					while($row = $query->fetch_assoc()){
-						$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-						$name = mysqli_query($conn, $sql);
+						// $sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+						// $name = mysqli_query($conn, $sql);
 						echo "<div class='col-md-4 text-center animate-box'>";
-						$sql_subject = "SELECT `subjectid` FROM `work_subjectdata` WHERE `workid`='{$workid['workid']}'";
+						$sql_subject = "SELECT `subjectid`, `workname` FROM `work_subjectdata` WHERE `workid`='{$workid['workid']}'";
 						$query_subject = mysqli_query($conn, $sql_subject);
 						$subject = $query_subject->fetch_array();
-						echo "<a class='work' href='portfolio_show_work.php?portfolio_show_stdid=$studentid&portfolio_show_subjectid={$subject['subjectid']}&portfolio_show_workid={$workid['workid']}' name='studentid_form_index'>";
+						echo "<a class='work' href='portfolio_show_work.php?stdid=$studentid&wid={$workid['workid']}&subid={$subject['subjectid']}' name='studentid_form_index'>";
 						echo "<div class='work-grid'>";
 						echo "<div class='desc' align='center' style='color: black;'>";
 						echo "<div class='item'>";
 						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
 						echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
 						echo "<font face='verdana' >";
-						while($name_data = $name -> fetch_assoc()){
-							echo "ผลงานของนักเรียน {$name_data['name']} {$name_data['surname']}";
+						$sql_sub = "SELECT * FROM `subject` WHERE `subjectid`='{$subject['subjectid']}'";
+						$query_sub = mysqli_query($conn, $sql_sub);
+						while($sub = $query_sub -> fetch_assoc()){
+							echo "วิชา{$sub['name']} ผลงาน{$subject['workname']}";
 							$count++;
 							break;
-						}		
+						}	
 						echo"</font>
 							</h3>";
 						// echo "<font > ";
@@ -251,4 +238,3 @@
 
 	</body>
 </html>
-

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php
-
+session_start();
+include('config.php');
 ?>
 <html>
 	<head>
@@ -103,7 +104,7 @@
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-            <div id="fh5co-logo"><a href="student_portfolio_guest.php?studentid=61002">Back</a></div>
+            <div id="fh5co-logo"><?php echo "<a href='portfolio_home_qr.php?stdid={$_GET['stdid']}'>ย้อนกลับ</a>" ?></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
@@ -111,14 +112,12 @@
 					<li class="has-dropdown">						
 						<ul class="dropdown">
 							<!-- Link Menu Write here (mobile)-->
-							<a href="logout.php">Logout</a>
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-					<div style = " font-size: 20px " > 
-                    <?php include 'add_student_name.php';?> 
+                <?php include 'index_is_login.php';?> 
 			</div>
 		</div>
 	</nav>
@@ -128,9 +127,9 @@
 				<div class="col-md-12 text-center intro">
 					<div  align = "center" >
 					<?php 
-						$studentid = $_GET['portfolio_guest_stdid'];
-						$subjectid = $_GET['portfolio_guest_subjectid'];
-						$workid = $_GET['portfolio_guest_workid'];
+						$studentid = $_GET['stdid'];
+						$workid = $_GET['wid'];
+						$subjectid = $_GET['subid'];
 						// $src = "bottle/001.jpeg";
 						// $src1 = "bottle/###.jpeg";
 						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
@@ -167,7 +166,7 @@
 								<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 									<font face="verdana" >  
 									<?php 
-										$sql = "SELECT `name`, `surname`, `class` 
+										$sql = "SELECT `name`, `surname`, `class` ,'sex'
 												FROM `student` 
 												WHERE `studentid` = $studentid ";
 										$query  = mysqli_query($conn,$sql);
@@ -175,6 +174,7 @@
 										$name = $Result["name"];
 										$surname = $Result["surname"];
 										$class = $Result["class"];
+										$sex = $Result["sex"];
 										$sql = "SELECT `workname` 
 												FROM `work_subjectdata` 
 												WHERE `workid` = '$workid'
@@ -188,8 +188,11 @@
 												AND `studentid` = '$studentid'";
 										$query  = mysqli_query($conn,$sql);
 										$Result = mysqli_fetch_array($query);
-										echo "<h3> ชื่อ : $name</h3>" ;
-										echo "<h3> นามสกุล  : $surname</h3>";
+										if($sex==0){
+											echo "<h3> ชื่อ : ด.ช.$name $surname</h3>";
+										} else {
+											echo "<h3> ชื่อ : ด.ญ.$name $surname</h3>";
+										}
 										echo "<h3> รหัสนักเรียน : $studentid</h3>";
 										echo "<h3> ห้อง  : $class</h3>";
 										echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";

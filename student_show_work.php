@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <?php
- session_start();
+session_start();
 include('config.php');
+$student_id = $_SESSION['student_show_studentid'];
 ?>
 <html>
 	<head>
@@ -79,35 +80,6 @@ include('config.php');
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	<style> 
-		input[type=search] {
-			width: 200px;
-			box-sizing: border-box;
-			border: 2px solid #ccc;
-			border-radius: 4px;
-			font-size: 16px;
-			background-color: white;
-			background-position: 10px 10px; 
-			background-repeat: no-repeat;
-			padding: 12px 20px 12px 40px;
-			margin-right: 30px;
-		}
-
-		.breadcrumbs {
-			margin: 30px 0px 0px 90px; 
-			color: rgb(200, 200, 200);
-			display: -webkit-inline-box;
-		}
-		.breadcrumbs a:hover {
-			color: rgb(100, 100, 100);
-		}
-		.breadcrumbs p{
-			margin: 0px;
-		}
-
-		
-	</style>
-
 	</head>
 	<body>
 		
@@ -117,58 +89,80 @@ include('config.php');
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo" >
-				<a   id="fh5co-logo"  href="index.php"> หน้าหลัก </a>
+				<a   id="fh5co-logo"  href="student.php">ย้อนกลับ </a>
+				
+				
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
-					<!-- Link Menu Write here (Web)-->
+						<!-- Link Menu Write here (Web)-->
 					<li class="has-dropdown">
-					<ul class="dropdown">
-						<!-- Link Menu Write here (mobile)-->
-					</ul>
+						
+						<ul class="dropdown">
+							<!-- Link Menu Write here (mobile)-->
+						</ul>
 					</li>
+					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-				<ul class="fh5co-social">
-					<?php include('index_is_login.php');?>
-				</ul>
+			<div style = " font-size: 20px " > 
+			<?php include 'add_student_name.php';?> 
 			</div>
 		</div>
 	</nav>
 	
-	<div align = "right" style='margin-top:5%;'>	
-		<p style = "margin-right: 90px; margin-bottom: 5px;  color:#3b3a3a;" >ค้นหาผลงานนักเรียน</p>
-	</div>
-		<div align = "right"  margin-right = "50px">	
-		<form action="search.php" method="post">
-			<img src="images/search.png" alt="Girl in a jacket" style="width:50px;height:50px;">
-			<input type="search" name="search" placeholder="รหัสนักเรียน" required>
-			<span class="validity"></span>
-		</form>	
-	</div>
-	<div id="fh5co-work" style='padding:0px;'>
+	<div id="fh5co-work" style='padding:4em 0px'>
 		<div class="container">
+			<div >
+				<div class="col-md-12 text-center intro">
+					<h1>  
+					<?php  
+						$sql = "SELECT DISTINCT `workname` FROM `work_subjectdata` WHERE `workid`={$_GET['wid']}";
+                        $query = mysqli_query($conn, $sql);
+                        while($work_data = $query -> fetch_assoc())
+                        {
+                            echo $work_data['workname'];
+						}
+						$sql = "SELECT DISTINCT `name` FROM `subject` WHERE `subjectid`={$_GET['subid']}";
+                        $query = mysqli_query($conn, $sql);
+                        while($subject_data = $query -> fetch_assoc())
+                        {
+                            echo " ของวิชา {$subject_data['name']}";
+                        }
+                    ?> 
+                    </h1>
+					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+				</div>
+				<?php
+                    // $subjectid = $_SESSION['subjectid_form_index'];
+                    // $workid = $_SESSION['workid_form_index'];
+                    // $studentid = $_SESSION['studentid_form_index'];
+                    
+                    // $src = "images/img_data/1612101/161110004/61002/001.jpg";
+                    // $src1 = "images/img_data/1612101/161110004/61002/###.jpg";
+				?>
+			</div>
 			<div  align = "center">
-					<?php 
-						$studentid = $_GET['stdid'];
-						$workid = $_GET['wid'];
-						$subjectid = $_GET['subid'];
-						// $src = "bottle/001.jpeg";
-						// $src1 = "bottle/###.jpeg";
-						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-						$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
-						echo "<img src= $src width='200' height='200'
-							class='reel'
-							id='image'
-							data-images=$src1 	
-							data-frames='32'
-							data-frame='32'
-							data-rows='2'
-							data-row='2'
-							data-speed='0.3'>
-							"
-					?>
+				<?php 
+				$subjectid = $_GET['subid'];
+				$workid = $_GET['wid'];
+				$studentid = $_GET['stdid'];
+				$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+				$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+				
+				echo "
+						<img src= $src width='200' height='200'
+						class='reel'
+						id='image'
+						data-images=$src1 
+						data-frames='32'
+						data-frame='32'
+						data-rows='2'
+						data-row='2'
+						data-speed='0.3'>
+						"
+				?>
 				<div class="reel-annotation"
 						id="last_row"
 						data-start="1"
@@ -185,50 +179,26 @@ include('config.php');
 						data-y="33"
 						data-for="image">
 				</div>
-				<div class="row top-line animate-box" style='padding-top:2em;'>
-					<div class="col-md-12 text-center intro"> 
-						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
-							<font face="verdana" >  
-							<?php 
-								$sql = "SELECT `name`, `surname`, `class` , `sex`
-										FROM `student` 
-										WHERE `studentid` = $studentid ";
-								$query  = mysqli_query($conn,$sql);
-								$Result = mysqli_fetch_array($query);
-								$name = $Result["name"];
-								$surname = $Result["surname"];
-								$class = $Result["class"];
-								$sex = $Result['sex'];
-								$sql = "SELECT `workname` 
-										FROM `work_subjectdata` 
-										WHERE `workid` = '$workid'
-										AND `subjectid` = '$subjectid'";
-								$query  = mysqli_query($conn,$sql);
-								$Result = mysqli_fetch_array($query);
-								echo "<h3> ชื่องาน: {$Result['workname']}</h3>";
-								$sql = "SELECT `score` 
-										FROM `work_studentdata` 
-										WHERE `workid` = '$workid'
-										AND `studentid` = '$studentid'";
-								$query  = mysqli_query($conn,$sql);
-								$Result = mysqli_fetch_array($query);
-								if($sex==0){
-									echo "<h3> ชื่อ : ด.ช. $name $surname</h3>" ;
-								}else{
-									echo "<h3> ชื่อ : ด.ญ. $name $surname</h3>" ;
-								}
-								echo "<h3> รหัสนักเรียน : $studentid</h3>";
-								echo "<h3> ห้อง  : $class</h3>";
-								// echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
-							?> 
-							</font>
-						</div>		
-					</div>
-				</div>
+				<?php 
+					$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND studentid = '$studentid'";
+					$re_comment = mysqli_query($conn, $comment);
+					$row_comment = mysqli_fetch_array($re_comment);
+                ?>
+                <div style='margin-top:4em;'>
+                    <div align='center'>
+                        <label  >ข้อติชม/ข้อเสนอแนะ :</label>
+                        <a ><?php echo $row_comment["comment"]; ?></a>
+                        <br>
+                        <label  >คะแนนที่ได้ :</label>
+                        <a> <?php echo $row_comment["score"]; ?> </a>
+                    </div>	
+                </div>			
 			</div>
 		</div>
 	</div>
-	
+	<footer id="fh5co-footer" role="contentinfo">
+
+	</footer>
 	</div>
 
 	<div class="gototop js-top">
@@ -246,7 +216,7 @@ include('config.php');
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<!-- <script> $.reel.def.indicator = 5; </script> -->
+	<script> $.reel.def.indicator = 5; </script>
 
 	</body>
 </html>

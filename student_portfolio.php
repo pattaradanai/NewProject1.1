@@ -15,6 +15,7 @@ include('config.php');
 
 	<!-- 
 	//////////////////////////////////////////////////////
+
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -22,6 +23,7 @@ include('config.php');
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
+
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -70,32 +72,7 @@ include('config.php');
 			padding: 12px 20px 12px 40px;
 			margin-right: 30px;
 			
-        }
-
-
-        .item{
-				width:200px;
-				text-align:center;
-				display:block;
-				background-color: transparent;
-				border: 1px solid transparent;
-				margin-right: 0px;
-				padding : 20px;
-				margin-bottom: 1px;
-				float:left;
-				
-				}
-			textarea{	
-				margin-right : 20px ;
-				color: black;
-				float:left;
-				width: 100%;
-				min-height: 35px;
-				outline: none;
-				resize: none;
-				}
-			
-	
+		}
 
 		
 	</style>
@@ -110,37 +87,26 @@ include('config.php');
 		<div class="container">
 			<div class="fh5co-top-logo">
             
-            <div id="fh5co-logo">
-
-            <div id="fh5co-logo">
-                <a href="student.php">ย้อนกลับ</a>
-            </div>
-            
-            </div>
+            <div id="fh5co-logo"><a href="student.php">Back</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-center">
 				<ul>
 						<!-- Link Menu Write here (Web)-->
 					<li class="has-dropdown">						
 						<ul class="dropdown">
-                            <!-- Link Menu Write here (mobile)-->
-                        
+							<!-- Link Menu Write here (mobile)-->
+							
 						</ul>
 					</li>					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
-				<div style = " font-size: 20px " > 
+			<div style = " font-size: 20px " > 
 				<?php 
 					include 'add_student_name.php';
 				?> 
-				</div>
-           	 <ul class="fh5co-social">
-                <li>
-                  
-                </li>
-            </ul>
-        </div>
+			
+			</div>
 		</div>
 	</nav>
 		
@@ -148,64 +114,86 @@ include('config.php');
 	
 	<div id="fh5co-work">
 		<div class="container">
-			<div class="row top-line animate-box">
+			<div class="row top-line animate-box" style='padding-bottom:1em;'>
 				<div class="col-md-12 text-center intro">
 				<?php 
-					
-                    $sqlWork = "SELECT `workid` FROM `work_studentdata` WHERE `studentid`='{$_GET['studentid']}' AND `portfolio` = 1";
-					$query_work = mysqli_query($conn,$sqlWork); 
-					$name = $query_work->fetch_array();
-					while($workid = $query_work -> fetch_assoc()){
+					$sql = "SELECT `name`, `surname` ,`sex`
+							FROM `student`
+							WHERE `studentid`='{$_GET['studentid']}'";
+					$query = mysqli_query($conn, $sql); 
+					$name = $query->fetch_array();
+					// echo var_dump($name);
+					if($name['sex']==0){
+						echo "<h3>Portfolio ของนาย{$name['name']} {$name['surname']}</h3>";
+					}else{
+						echo "<h3>Portfolio ของนางสาว{$name['name']} {$name['surname']}</h3>";
+					}
+				?>
+					<!-- <h2> Welcome To  Student <i class="icon-heart2"></i> </h2> -->
+					<!-- <h2>Shift is a Collection of a Beautiful &amp; Premium Themes.</h2> -->
+				</div>
+			</div>
+			<div class="row">
+			<?php
+				$count = 1;
+				mysqli_set_charset($conn, "utf8");
+				##### หารหัสวิชาของงานที่นักเรียนเลือกไว้ #####
+				$studentid = $_GET['studentid'];
+				$img = "SELECT DISTINCT `workid` 
+						FROM `work_studentdata` 
+						WHERE `studentid`='$studentid'
+						AND `portfolio`='1' 
+						ORDER BY `workid` DESC";
+				// echo $img;
+				$imgstd = mysqli_query($conn, $img);  
+				while($workid = $imgstd -> fetch_assoc()){
+					$sql = "SELECT `img` 
+							FROM `work{$workid['workid']}` 
+							WHERE `imgno`='1' 
+							AND `studentid`='$studentid'";
+							// AND `work{$workid['workid']}`.`imgno`='1'";
+					$query = mysqli_query($conn, $sql);
+					while($row = $query->fetch_assoc()){
+						$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
+						$name = mysqli_query($conn, $sql);
+						echo "<div class='col-md-4 text-center animate-box'>";
+						echo "<a class='work' href='' name='studentid_form_index'>";
+						echo "<div class='work-grid'>";
+						echo "<div class='desc' align='center' style='color: black;'>";
+						echo "<div class='item'>";
+						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"  width="200" height="200" />'; 
+						echo "<h3 align = 'center' style='margin-top:9px; padding:7px 3px 7px 3px; background-color:rgb(250,250,250); border:3px groove rgb(245,245,245);'>";
+						echo "<font face='verdana' >";
+						while($name_data = $name -> fetch_assoc()){
+							echo "ผลงานของนักเรียน {$name_data['name']} {$name_data['surname']}";
+							$count++;
+							break;
+						}		
+						echo"</font>
+							</h3>";
+						// echo "<font > ";
+						// echo "</font>";
+						echo "</div>";
+						echo "</div> ";
+						echo "</div>";
+						echo "</a>";
+						echo "</div>";
+					}
+				}
+			?> 
+				<div class="col-md-4 text-center animate-box">
+					<a class="work" >
+						<div class="work-grid" style="background-color: white">
+							<div class="desc" align="center" style="color: black;">
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                        $sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid['workid']}`.`imgno`, `work{$workid['workid']}`.`img`
-                        FROM `work_studentdata` 
-                        LEFT JOIN `work{$workid['workid']}` 
-                        ON `work_studentdata`.`studentid`=`work{$workid['workid']}`.`studentid` 
-                        WHERE `work_studentdata`.`workid`='{$workid['workid']}'
-                        AND `work{$workid['workid']}`.`imgno`='0'";
-                        $query2 = mysqli_query($conn, $sql2);
-                                while($studentid_img = $query2 -> fetch_assoc()){
-                                    $studentid = $studentid_img['studentid'];
-                                    $sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
-                                    $name = mysqli_query($conn, $sql3);
-                                    echo "<div class='col-md-4 text-center animate-box'>";
-                                     echo "<a  href='portfolio_show_work.php'>";
-                                    echo "<div class='work-grid' style='background-color: white'>";
-                                    echo "<div class='desc' align='center' style='color: black;'>";
-                                    echo "<div class='item'>";
-                                    echo '<img src="data:image/jpeg;base64,'.base64_encode( $studentid_img['img'] ).'"  width="200" height="200" />'; 
-                                    echo "<p align = 'center'>";
-                                    echo "<font face='verdana' >";
-                                $sql_subject = "SELECT * FROM `work_subjectdata` WHERE workid = {$workid['workid']}";
-                                    $query_sub =  mysqli_query($conn,$sql_subject);
-                                            while($name_data = $query_sub  -> fetch_assoc()){
-                                                echo "ชิ้นงาน {$name_data['workname']} ";
-
-                                                 $_SESSION['index_portfolio_stdid'] = $stdid ;
-                                                 $_SESSION['index_portfolio_subjectid'] = $name_data['subjectid'];
-                                                 $_SESSION['index_portfolio_workid'] = $workid['workid'] ;
-                                                
-                                            }	
-                                            echo"</font>
-                                                </p>
-                                                </div>
-                                                </div> 
-                                                </div>
-                                                </a>
-                                                </div>";		
-
-
-                                    }
-                                }
-            ?>
-
-        
-
-</div>
-</div>
-</div>
-
-</div>
+	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
@@ -222,7 +210,8 @@ include('config.php');
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	<!-- Object -->
-	<!-- <script> $.reel.def.indicator = 5; </script> -->
+	<script> $.reel.def.indicator = 5; </script>
 
 	</body>
 </html>
+

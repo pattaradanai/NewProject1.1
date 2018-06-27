@@ -25,7 +25,7 @@
         # add accordion lv1 with name #
         echo "<div class='tablv1'>";
         echo "<input class='input_tablv1' id='tabno".$tabno."-lv1' type='checkbox' name='panel' />";
-        echo "<label class='label-tablv1' for='tabno".$tabno."-lv1'>".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." ".$temp_subjectdata["name"]."</label>";  
+        echo "<label class='label-tablv1' for='tabno".$tabno."-lv1'>ปีการศึกษา ".$temp_subjectdata["year"]."/".$temp_subjectdata["term"]." วิชา ".$temp_subjectdata["name"]."</label>";  
         # add accdion lv2 much as class#
         
         # re-query subject data #
@@ -37,7 +37,7 @@
                 $workno = 1;
                 echo "<div class='tablv2'>";
                 echo "<input class='input_tablv2' id='tabno".$tabno."-lv2-".$subtabno."' type='checkbox' name='panel' />";
-                echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> ห้อง ".$subjectdata['class']."</label>";
+                echo "<label class='label_tablv2' for='tabno".$tabno."-lv2-".$subtabno."'> ห้อง ป.".$subjectdata['class']."</label>";
                 # create table header #
                 echo "<div class='acctable'>";
                 echo "<div style='display:-webkit-inline-box;'>";
@@ -122,9 +122,9 @@
                             // echo $studentid_no['studentid']."----".isset($studentworklist[0]);
                             echo "<td>";
                             if(isset($studentworklist[0])>0){
-                                echo "<a href='edit_work.php?subjectid_edit_work={$subjectid['subjectid']}&workid_edit_work={$work['workid']}&studentid_edit_work={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' /></a>";
+                                echo "<a href='edit_work.php?stdid={$studentid_no['studentid']}&wid={$work['workid']}&subid={$subjectid['subjectid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' /></a>";
                             } else {
-                                echo "<a href='sentWork.php?subjectid_add_work={$subjectid['subjectid']}&workid_add_work={$work['workid']}&studentid_add_work={$studentid_no['studentid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' /></a>";
+                                echo "<a href='sentWork.php?stdid={$studentid_no['studentid']}&wid={$work['workid']}&subid={$subjectid['subjectid']}'><img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/101/cross-red-256.png' /></a>";
                             }
                             echo "</td>";
                         }
