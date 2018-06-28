@@ -10,7 +10,8 @@
     $subtabno = 0;
     $sql = "SELECT * FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']}";
     $query_subjectid = mysqli_query($conn,$sql);
-    $alertc = 1;
+    $alert_delwork = 1;
+    $alert_delsub = 1;
     while($subjectid = $query_subjectid->fetch_assoc())
     {
         echo "<div style='display:flex;'>";
@@ -51,8 +52,8 @@
                         echo  "</td>";
                         echo  "<td>";
                         // echo   "<a class='a-link' onclick='del_work(\"{$workdata['workname']}\")'>ลบงานนี้</a>";
-                        echo "<a data-toggle='modal' data-target='#alert_delwork_$alertc' style='cursor:pointer; color:rgb(206, 69, 69)'>ลบงานนี้</a>
-                        <div class='modal fade' id='alert_delwork_$alertc' role='dialog' >
+                        echo "<a data-toggle='modal' data-target='#alert_delwork_$alert_delwork' style='cursor:pointer; color:rgb(206, 69, 69)'>ลบงานนี้</a>
+                        <div class='modal fade' id='alert_delwork_$alert_delwork' role='dialog' >
                         <div class='modal-dialog'>
                         <div class='modal-content'>
                                 <div class='modal-header'>
@@ -63,7 +64,7 @@
                                 <p>ต้องการที่จะลบงาน {$workdata['workname']} หรือไม่</p>
                                 </div>
                                 <div class='modal-footer'>
-                                <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(158, 208, 252);'>ตกลง</button>
+                                <button type='button' class='btn btn-default' data-dismiss='modal' onclick='del_work(\"{$workdata['workid']}\")' style='background-color:rgb(158, 208, 252);'>ตกลง</button>
                                 <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(216, 217, 218);'>ยกเลิก</button>
                                 </div>
                         </div>
@@ -71,7 +72,7 @@
                         </div>";
                         echo  "</td>";
                         echo "</tr>";
-                        $alertc++;
+                        $alert_delwork++;
                 }
         }
         echo    "</tbody>";
@@ -213,11 +214,30 @@
         echo "</div>"; # tablv1
         # เริ่มส่วนของปุ่มลบวิชา #
         echo "<div style=' margin:0.8% 0px 0px 1%; width: 56px;'>";
-        echo  "<a class='a-link' href='teacher_delete_subject.php?editer_del_subjectid={$subjectid['subjectid']}' style='color:rgb(206, 69, 69);'>";
-        echo   "ลบวิชานี้";
-        echo  "</a>";
+        // echo  "<a class='a-link' href='teacher_delete_subject.php?editer_del_subjectid={$subjectid['subjectid']}' style='color:rgb(206, 69, 69);'>";
+        // echo   "ลบวิชานี้";
+        // echo  "</a>";
+        echo "<a class='a-link' data-toggle='modal' data-target='#alert_delsub_$alert_delsub' style='cursor:pointer; color:rgb(206, 69, 69)'>ลบวิชานี้</a>
+                <div class='modal fade' id='alert_delsub_$alert_delsub' role='dialog' >
+                <div class='modal-dialog'>
+                <div class='modal-content'>
+                        <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                        <h4 class='modal-title'>แจ้งเตือน</h4>
+                        </div>
+                        <div class='modal-body'>
+                        <p>ต้องการที่จะลบวิชา {$temp_subjectdata["name"]} หรือไม่</p>
+                        </div>
+                        <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(158, 208, 252);'>ตกลง</button>
+                        <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(216, 217, 218);'>ยกเลิก</button>
+                        </div>
+                </div>
+                </div>
+                </div>";
         echo "</div>";
         echo "</div>";
+        $alert_delsub++;
         $tabno++;
     }
 ?>

@@ -67,12 +67,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
-  function del_work(del_name) {
-      if (confirm("ต้องการที่จะลบงาน "+del_name+" หรือไม่")) {
-
-      } else {
-
+  function del_work(workid) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        window.location.href = "teacher_editer.php"
       }
+    };
+    xhttp.open("GET", "teacher_delete_work.php?wid="+workid, true);
+    xhttp.send();
+  }
+  function del_sub() {
+      
   }
   </script>
 
