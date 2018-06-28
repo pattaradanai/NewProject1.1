@@ -60,6 +60,12 @@
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+  <!-- ตัวใหม่สำหรับ alert box -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script>
   function del_work(del_name) {
       if (confirm("ต้องการที่จะลบงาน "+del_name+" หรือไม่")) {

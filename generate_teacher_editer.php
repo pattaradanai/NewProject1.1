@@ -10,6 +10,7 @@
     $subtabno = 0;
     $sql = "SELECT * FROM `teachesdata` WHERE `teacherid`= {$_SESSION['id']}";
     $query_subjectid = mysqli_query($conn,$sql);
+    $alertc = 1;
     while($subjectid = $query_subjectid->fetch_assoc())
     {
         echo "<div style='display:flex;'>";
@@ -49,11 +50,28 @@
                         echo   "<p>{$workdata['max_score']}</P>";
                         echo  "</td>";
                         echo  "<td>";
-                    //     echo   "<button>ลบงานนี้</button>";
-                        // echo   "<a class='a-link' href='teacher_delete_work.php?editer_del_workid={$workdata['workid']}'>ลบงานนี้</a>";
-                        echo   "<a class='a-link' onclick='del_work(\"{$workdata['workname']}\")'>ลบงานนี้</a>";
+                        // echo   "<a class='a-link' onclick='del_work(\"{$workdata['workname']}\")'>ลบงานนี้</a>";
+                        echo "<a data-toggle='modal' data-target='#alert_delwork_$alertc' style='cursor:pointer; color:rgb(206, 69, 69)'>ลบงานนี้</a>
+                        <div class='modal fade' id='alert_delwork_$alertc' role='dialog' >
+                        <div class='modal-dialog'>
+                        <div class='modal-content'>
+                                <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                <h4 class='modal-title'>แจ้งเตือน</h4>
+                                </div>
+                                <div class='modal-body'>
+                                <p>ต้องการที่จะลบงาน {$workdata['workname']} หรือไม่</p>
+                                </div>
+                                <div class='modal-footer'>
+                                <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(158, 208, 252);'>ตกลง</button>
+                                <button type='button' class='btn btn-default' data-dismiss='modal' style='background-color:rgb(216, 217, 218);'>ยกเลิก</button>
+                                </div>
+                        </div>
+                        </div>
+                        </div>";
                         echo  "</td>";
                         echo "</tr>";
+                        $alertc++;
                 }
         }
         echo    "</tbody>";
