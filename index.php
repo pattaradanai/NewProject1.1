@@ -177,7 +177,7 @@
 					$count = 1;
 					mysqli_set_charset($conn, "utf8");
 					##### query lastest workid and display image no 1 for each student amount 12 image #####
-					$sql = "SELECT DISTINCT `workid`, `workname` FROM `work_subjectdata` ORDER BY `workid` ";
+					$sql = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` ORDER BY `workid` ";
 					$query = mysqli_query($conn, $sql);
 					while($workid_worksubdata = $query -> fetch_assoc()){
 						$sql2 = "SELECT DISTINCT `work_studentdata`.`studentid`, `work{$workid_worksubdata['workid']}`.`imgno`, `work{$workid_worksubdata['workid']}`.`img`
@@ -192,7 +192,7 @@
 							$sql3 = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 							$name = mysqli_query($conn, $sql3);
 							echo "<div class='col-md-4 text-center animate-box'>";
-							echo "<a  href='index_to_show.php?block_no=$block_no' name='studentid_form_index'>";
+							echo "<a  href='index_show_work.php?stdid=$studentid&wid={$workid_worksubdata['workid']}&subid={$workid_worksubdata['subjectid']}' name='studentid_form_index'>";
 							echo "<div class='work-grid' style='background-color: white'>";
 							echo "<div class='desc' align='center' style='color: black;'>";
 							echo "<div class='item' style='width:auto; '>";

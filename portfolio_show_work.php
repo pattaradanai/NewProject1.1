@@ -139,9 +139,9 @@
 		<div class="container">
 		<div  align = "center" >
 		<?php 
-						$studentid = $_GET['portfolio_show_stdid'];
-						$subjectid = $_GET['portfolio_show_subjectid'];
-						$workid = $_GET['portfolio_show_workid'];
+						$studentid = $_GET['stdid'];
+						$workid = $_GET['wid'];
+						$subjectid = $_GET['subid'];
 						// $src = "bottle/001.jpeg";
 						// $src1 = "bottle/###.jpeg";
 						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
@@ -178,7 +178,7 @@
 								<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 									<font face="verdana" >  
 									<?php 
-										$sql = "SELECT `name`, `surname`, `class` 
+										$sql = "SELECT `name`, `surname`, `class` ,'sex'
 												FROM `student` 
 												WHERE `studentid` = $studentid ";
 										$query  = mysqli_query($conn,$sql);
@@ -186,6 +186,7 @@
 										$name = $Result["name"];
 										$surname = $Result["surname"];
 										$class = $Result["class"];
+										$sex = $Result["sex"];
 										$sql = "SELECT `workname` 
 												FROM `work_subjectdata` 
 												WHERE `workid` = '$workid'
@@ -199,8 +200,11 @@
 												AND `studentid` = '$studentid'";
 										$query  = mysqli_query($conn,$sql);
 										$Result = mysqli_fetch_array($query);
-										echo "<h3> ชื่อ : $name</h3>" ;
-										echo "<h3> นามสกุล  : $surname</h3>";
+										if($sex==0){
+											echo "<h3> ชื่อ : ด.ช.$name $surname</h3>";
+										} else {
+											echo "<h3> ชื่อ : ด.ญ.$name $surname</h3>";
+										}
 										echo "<h3> รหัสนักเรียน : $studentid</h3>";
 										echo "<h3> ห้อง  : $class</h3>";
 										echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
@@ -214,7 +218,6 @@
 			</div>
 		</div>
 
-	</div>
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>

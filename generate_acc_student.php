@@ -40,11 +40,17 @@
             $query = mysqli_query($conn,$sql);
             $objResult = mysqli_fetch_array($query);
             // echo var_dump($objResult);
-            echo "<label for='tabno".$tabno."-lv1'>".$objResult["year"]."/".$objResult["term"]." ".$objResult["name"]."</label>";  
+            echo "<label for='tabno".$tabno."-lv1'>ปีการศึกษา ".$objResult["year"]."/".$objResult["term"]." วิชา ".$objResult["name"]."</label>";  
             # เช็คว่าวิชานี้มีกี่ชิ้นงาน #
-            $sql = "SELECT `workid` ,`subjectid`
+            $sql0 = "SELECT DISTINCT `class` 
+                    FROM `student` 
+                    WHERE `studentid`= {$_SESSION['id']}";
+            $query0 = mysqli_query($conn,$sql0);
+            $class = mysqli_fetch_array($query0);
+            $sql = "SELECT DISTINCT `workid` 
                      FROM `work_subjectdata` 
-                     WHERE `subjectid`= {$data['subjectid']}";
+                     WHERE `subjectid`= '{$data['subjectid']}'
+                     AND `class`='{$class['class']}'";
             $query_workid = mysqli_query($conn,$sql);
             $subtabno = 0;
             # เช็คว่ามีงานอยู่ไหม #
@@ -71,7 +77,7 @@
                     echo "<tbody>";
                     # สร้าง tablv2 ตามจำนวนงาน #
                     $sql2 = "SELECT DISTINCT `workid`, `workname`, `subjectid` FROM `work_subjectdata` 
-                            WHERE `subjectid`='{$data['subjectid']}'";
+                            WHERE `subjectid`='{$data['subjectid']}' AND `class`='{$class['class']}'";
                     $query2 = mysqli_query($conn,$sql2);
                     while($work = $query2->fetch_assoc())
                     {
@@ -94,7 +100,7 @@
                         $query4 = mysqli_query($conn,$sql4);
                         if($query4->num_rows > 0)
                         {
-                            echo "<a href='student_to_show.php?studentid_to_show={$_SESSION['id']}&workid_to_show={$work['workid']}&subjectid_to_show={$work['subjectid']}' style='color:black;'>
+                            echo "<a href='student_show_work.php?stdid={$_SESSION['id']}&wid={$work['workid']}&subid={$work['subjectid']}' style='color:black;'>
                             <img src='https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png' style='width: 1em; margin-right: 3px; margin-bottom: 3px;'/>";
                         } else 
                         {
@@ -108,6 +114,7 @@
                     // echo "</ul>";
                     echo "</div>
                     </div>";
+                    break;
                 }
             } else 
             {

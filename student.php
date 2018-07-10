@@ -86,7 +86,7 @@ include('is_login.php');
   </style>
 
    <script>
-    function changePortfolioStatus(workid)
+      function changePortfolioStatus(workid)
     {
       var image =  document.getElementById('portfolio_img_'+workid);
       var xhttp = new XMLHttpRequest();
@@ -176,8 +176,7 @@ include('is_login.php');
       
     ?> 
     </div>
-
-  </div>
+    
   <footer id="fh5co-footer" role="contentinfo">
   </footer>
   <div class="gototop js-top">

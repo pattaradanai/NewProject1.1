@@ -145,10 +145,10 @@ include('config.php');
 	<div id="fh5co-work" style='padding:0px;'>
 		<div class="container">
 			<div  align = "center">
-					<?php 
-						$studentid = $_SESSION['index_show_studentid'];
-						$subjectid = $_SESSION['index_show_subjectid'];
-						$workid = $_SESSION['index_show_workid'];
+			<?php 
+						$studentid = $_GET['stdid'];
+						$workid = $_GET['wid'];
+						$subjectid = $_GET['subid'];
 						// $src = "bottle/001.jpeg";
 						// $src1 = "bottle/###.jpeg";
 						$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
@@ -185,7 +185,7 @@ include('config.php');
 						<div class = "createborder" style='border-width:0px; background-color:rgba(226, 225, 225, 0.623);'>
 							<font face="verdana" >  
 							<?php 
-								$sql = "SELECT `name`, `surname`, `class` , `sex` 
+								$sql = "SELECT `name`, `surname`, `class` , `sex`
 										FROM `student` 
 										WHERE `studentid` = $studentid ";
 								$query  = mysqli_query($conn,$sql);
@@ -208,13 +208,13 @@ include('config.php');
 								$query  = mysqli_query($conn,$sql);
 								$Result = mysqli_fetch_array($query);
 								if($sex==0){
-										echo "<h3> ชื่อ : นาย $name $surname</h3>" ;
-									}else{
-								     	echo "<h3> ชื่อ : นางสาว $name $surname</h3>" ;
-																}
+									echo "<h3> ชื่อ : ด.ช. $name $surname</h3>" ;
+								}else{
+									echo "<h3> ชื่อ : ด.ญ. $name $surname</h3>" ;
+								}
 								echo "<h3> รหัสนักเรียน : $studentid</h3>";
 								echo "<h3> ห้อง  : $class</h3>";
-								echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
+								// echo "<h3> คะแนนที่ได้: {$Result['score']}</h3>";
 							?> 
 							</font>
 						</div>		

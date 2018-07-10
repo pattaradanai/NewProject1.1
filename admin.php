@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php 
 		session_start();
+		include("config.php");
 		ini_set('max_execution_time', 300);
 		// $_SESSION["status"] = "teacher";
 		// $_SESSION["id"] = "101";
@@ -102,6 +103,12 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+ 	<!-- import excel -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+	<!-- End -->
 
 	</head>
 	<body>
@@ -146,13 +153,78 @@
 	
 
         <div class="contentBox">
-            <button style='margin-bottom:1em;'>
-                <a style = "color : black;" href='teacher_editer.php'>แก้ไขข้อมูลวิชาและงานทั้งหมด</a>
-            </button>
-            <?php 
-                // include 'add_teacher_name.php';
-                include 'generate_acc_teacher.php';
-            ?> 
+            <!-- ปุ่มแอด รายชื่อ --> 
+			<!-- End -->
+			 
+    <div class="container" style="height: 87%; position: fixed; width: 100%;">
+    	<div clas="row" style="height: 100%;">
+    	   	<div class="col-xs-6" style="border-right: 4px solid grey; height: 100%; overflow: scroll;">
+                <?php
+					require_once 'Examples/db_connect.php';
+					
+
+					$sql = "SELECT DISTINCT `workid`, `subjectid` FROM `work_subjectdata` ORDER BY `workid` ";
+					$result = mysqli_query($conn, $sql);
+                    
+                    if($result)
+                    {
+                        echo "Select Table:<br>";
+                        while($table = mysql_fetch_assoc($result))
+                        {
+                            echo "<center><button type=button class='export btn btn-lg btn-primary' id='".$table["Tables_in_phpexcel"]."'>".$table["Tables_in_phpexcel"]."</button></center><br>";
+                        }
+                    }
+                    else
+                        echo "No tables found";
+                ?>
+
+	    		<!-- <center><button type="button" class="btn btn-lg btn-primary" id="export">Export DB to Excel</button></center> -->
+                <span id="export_result"></span>
+	    	</div>
+
+	    	<div class="col-xs-6" style="height: 100%;">
+                <center>
+                <form action="#"" method="post" enctype="multipart/form-data">
+                    Select Excel (.xlsx) file to upload: 
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload File" name="submit">
+                </form>
+                </center>
+                <span>
+                    <?php
+                    if(isset($_POST['submit'])):
+                        $target_dir = "Examples/";
+                        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+                        $uploadOk = 1;
+                        $FileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                        // Allow certain file formats
+                        if(!($FileType == "xlsx" || $FileType =="xls")) {
+                            echo "Sorry, only xlsx files are allowed.";
+                            $uploadOk = 0;
+                        }
+                        // Check if $uploadOk is set to 0 by an error
+                        if ($uploadOk == 0) {
+                            echo "Sorry, your file was not uploaded.";
+                        // if everything is ok, try to upload file
+                        } else {
+                            echo $target_file;
+                            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],"Examples/file.xlsx")) {
+                                echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                            } else {
+                                echo "Sorry, there was an error uploading your file.";
+                            }
+                        }
+                    ?>
+                </span>
+                <br><br><br>
+	    		<center><button type="button" class="btn btn-lg btn-primary" id="import">Import Excel to DB</button></center>
+                <?php 
+                    endif;
+                ?>
+                <span id="import_result"></span>
+	    	</div>    	
+    	</div>
+    </div>
         </div>
 	
 	</div>

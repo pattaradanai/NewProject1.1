@@ -66,29 +66,32 @@ session_start();
 			var run_count = 0;
 			// $run_hardware_img.style.margin-left = '15px';
 			progress_text.innerHTML = 'กำลังถ่ายภาพ กรุณารอสักครู่';
-			while(i<33){
+			// while(i<33){
 				var xhttp = new XMLHttpRequest();
-				xhttp.open("GET", "run_hardware.php?workid_sent_work="+workid+"&studentid_sent_work="+studentid+"&subjectid_sent_work="+subjectid+"&i="+i, true);
+				// xhttp.open("GET", "run_hardware.php?workid_sent_work="+workid+"&studentid_sent_work="+studentid+"&subjectid_sent_work="+subjectid+"&i="+i, true);
+				xhttp.open("GET", "test.php", true);
 				xhttp.onreadystatechange = function() {
 					if(this.readyState == 4 && this.status == 200){
-						if(this.responseText == 'false'){
-							document.getElementById("ping_status").style.color = 'rgb(206, 69, 69)';
-							progress_text.innerHTML = "ขาดการเชื่อมต่อกับอุปกรณ์ระหว่างการทำงาน กรุณาลองใหม่อีกครั้ง";
-						}else{
-							run_count++;
-							percent_text.innerHTML = width +'%';
-							progress_bar.style.width = width+'%';
-							width = width + 3.125;
-						}
-						if(run_count==32){
+					// 	if(this.responseText == 'false'){
+					// 		document.getElementById("ping_status").style.color = 'rgb(206, 69, 69)';
+					// 		progress_text.innerHTML = "ขาดการเชื่อมต่อกับอุปกรณ์ระหว่างการทำงาน กรุณาลองใหม่อีกครั้ง";
+					// 	}else{
+					// 		run_count++;
+					run_count = this.responseText;
+							percent_text.innerHTML = run_count +'%';
+							progress_bar.style.width = (width*run_count) +'%';
+					// 		width = width + 3.125;
+					// 	}
+					if(run_count==32){
 							run_hardware_img.src = 'https://cdn2.iconfinder.com/data/icons/pointed-edge-web-navigation/130/tick-green-512.png'; 
 							progress_text.innerHTML = 'ถ่ายภาพเสร็จแล้ว';
 						}
 					}
+					
 				};
 				xhttp.send();
 				i++;
-			}
+			// }
 		}
 	</script>
 	<script>
@@ -179,17 +182,17 @@ session_start();
 				</div>
 			</nav>
 			<div class="container" style='margin-top:50px; margin-left:40%;'>
-				<?php
-					$subjectid = $_GET['subjectid_add_work'];
-					$workid = $_GET['workid_add_work'];
-					$studentid = $_GET['studentid_add_work'];
+			<?php
+					$studentid = $_GET['stdid'];
+					$workid = $_GET['wid'];
+					$subjectid = $_GET['subid'];
 					$sql = "SELECT * FROM `student` WHERE `studentid`='$studentid'";
 					$query = mysqli_query($conn, $sql);
 					while($student = $query->fetch_assoc()){
 						if($student['sex']==0){
-							echo "<p style='padding:0px;margin:0px;'>ผลงานของนาย  {$student['name']} {$student['surname']}</p>";
+							echo "<p style='padding:0px;margin:0px;color:black;'>ผลงานของด.ช.{$student['name']} {$student['surname']}</p>";
 						}else{
-							echo "<p style='padding:0px;margin:0px;'>ผลงานของนางสาว {$student['name']} {$student['surname']}</p>";
+							echo "<p style='padding:0px;margin:0px;color:black;'>ผลงานของด.ญ.{$student['name']} {$student['surname']}</p>";
 						}
 					}
 				?>
@@ -199,16 +202,16 @@ session_start();
 				<div style='margin-left:6.667%;'>
 				<?php 
 					// echo "<a onclick='move()' href='run_hardware.php?subjectid_from_index={$_GET['subjectid_from_index']}&workid_from_index={$_GET['workid_from_index']}&studentid_from_index={$_GET['studentid_from_index']}'>";
-					echo "<a onclick='move({$_GET['workid_add_work']}, {$_GET['studentid_add_work']}, {$_GET['subjectid_add_work']})' style='cursor:pointer;'>";
+					echo "<a onclick='move({$_GET['wid']}, {$_GET['stdid']}, {$_GET['subid']})' style='cursor:pointer;'>";
 				?>
                     <img id='run_hardware_img' src="images/ic_camera_black_24dp_2x.png" style='width:24dp;padding-left:50px' alt=""/> 
                     <h4> <font face="verdana" id='progress_text'> คลิ้กเพื่อถ่ายภาพผลงาน </font></h4>
                 </a>
 				</div>
-				<div id="progress_bar">
+				<!-- <div id="progress_bar">
 					<div id="bar"></div>
 				</div>
-				<p id='percent_text' style='margin:0px; padding:0px;'>0%</p>
+				<p id='percent_text' style='margin:0px; padding:0px;'>0%</p> -->
 				<div style='display:-webkit-box; margin-left:1.6667%;'>
 				<?php 
 					$ip = '192.168.149.106';
@@ -229,12 +232,7 @@ session_start();
 			// echo $comment;
 			$re_comment = mysqli_query($conn, $comment);
 			$row_comment = mysqli_fetch_assoc($re_comment);
-			// echo var_dump($row_comment);
-			// if($row_comment["comment"] == "none comment"){
-			// if($row_comment == NULL){
-			# กรณีที่ยังไม่มีข้อมูล
 		?>
-
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>

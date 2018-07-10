@@ -122,58 +122,56 @@ session_start();
 							
 										<div  align = "center">
 										
-											<?php 
-											$subjectid = $_GET['subjectid_edit_work'];
-											$workid = $_GET['workid_edit_work'];
-											$studentid = $_GET['studentid_edit_work'];
-											$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
-											$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
-											echo "
-												<img src= $src width='200' height='200'
-												class='reel'
-												id='image'
-												data-images=$src1 
-												data-frames='32'
-												data-frame='32'
-												data-rows='2'
-												data-row='2'
-												data-speed='0.3'>
-												"
-												?>
-													<div class="reel-annotation"
-												id="last_row"
-												data-start="1"
-												data-end="32"
-												data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
-												data-y="2"
-												data-for="image">
-												</div>
-
-												<div class="reel-annotation"
-												id="first_row"
-												data-start="33"
-												data-end="64"
-												data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
-												data-y="33"
-												data-for="image">
-											
-												</div>
-																		
-										</div>
+										<?php 
+							$studentid = $_GET['stdid'];
+							$workid = $_GET['wid'];
+							$subjectid = $_GET['subid'];
+							$src = "images/img_data/$subjectid/$workid/$studentid/001.jpg";
+							$src1 = "images/img_data/$subjectid/$workid/$studentid/###.jpg";
+							echo "
+								<img src= $src width='200' height='200'
+								class='reel'
+								id='image'
+								data-images=$src1 
+								data-frames='32'
+								data-frame='32'
+								data-rows='2'
+								data-row='2'
+								data-speed='0.3'>
+							"
+							?>
+								<div class="reel-annotation"
+							id="last_row"
+							data-start="1"
+							data-end="32"
+							data-x="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32"
+							data-y="2"
+							data-for="image">
 							</div>
+
+							<div class="reel-annotation"
+							id="first_row"
+							data-start="33"
+							data-end="64"
+							data-x="33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63"
+							data-y="33"
+							data-for="image">
+							</div>					
+						</div>
+					</div>
 				 </div>
-				 <?php
-						$subjectid = $_GET['subjectid_edit_work'];
-						$workid = $_GET['workid_edit_work'];
-						$studentid = $_GET['studentid_edit_work'];
+					<?php
+						$studentid = $_GET['stdid'];
+						$workid = $_GET['wid'];
+						$subjectid = $_GET['subid'];
 						$imgno = '1';
 						$comment = "SELECT * FROM `work_studentdata` WHERE `workid`='$workid' AND `studentid` = '$studentid'";
 						$re_comment = mysqli_query($conn, $comment);
 						$row_comment = mysqli_fetch_array($re_comment);
 						// if($row_comment["comment"] == "none comment"){
-						echo "<div align='center'>
-								<a href='sentWork.php?subjectid_add_work=$subjectid&workid_add_work=$workid&studentid_add_work=$studentid'><p style='color:black;'>ถ่ายภาพผลงานใหม่</p></a>
-							<div>";
+						// echo "<div align='center'>
+						// 		<a href='sentWork.php?subjectid_add_work=$subjectid&workid_add_work=$workid&studentid_add_work=$studentid'><p style='color:black;'>ถ่ายภาพผลงานใหม่</p></a>
+						// 	<div>";
 					?>
 						<?php 
 						// }
@@ -182,13 +180,13 @@ session_start();
 							?>
 						<!-- <form action = "commentToDB.php?subjectid_from_index={$subjectid['subjectid']}&workid_from_index={$work['workid']}&studentid_from_index={$studentid_no['studentid']}" method="post" > -->
 							<div class="form-group">
-								<label class="control-label col-sm-5" align = 'right'>comment :</label>
+								<label class="control-label col-sm-5" align = 'right'>ข้อติชม/ข้อเสนอแนะ :</label>
 								<div class="col-sm-7" align = 'left'>
 									<textarea rows="4" cols="50" name = "comment" ><?php echo $row_comment["comment"]; ?></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-5" align = 'right'>Point :</label>
+								<label class="control-label col-sm-5" align = 'right'>คะแนนที่ได้ :</label>
 								<div class="col-sm-7" align = 'left'>
 									<input type="number" name="quantity" min="0" max="100" value="<?php echo $row_comment["score"]; ?>">
 								</div>
