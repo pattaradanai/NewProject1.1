@@ -159,33 +159,11 @@
     <div class="container" style="height: 87%; position: fixed; width: 100%;">
     	<div clas="row" style="height: 100%;">
     	   	<div class="col-xs-6" style="border-right: 4px solid grey; height: 100%; overflow: scroll;">
-                <?php
-					require_once 'Examples/db_connect.php';
-					
-
-					$sql = "SELECT DISTINCT `workid`, `subjectid` FROM `work_subjectdata` ORDER BY `workid` ";
-					$result = mysqli_query($conn, $sql);
-                    
-                    if($result)
-                    {
-                        echo "Select Table:<br>";
-                        while($table = mysql_fetch_assoc($result))
-                        {
-                            echo "<center><button type=button class='export btn btn-lg btn-primary' id='".$table["Tables_in_phpexcel"]."'>".$table["Tables_in_phpexcel"]."</button></center><br>";
-                        }
-                    }
-                    else
-                        echo "No tables found";
-                ?>
-
-	    		<!-- <center><button type="button" class="btn btn-lg btn-primary" id="export">Export DB to Excel</button></center> -->
-                <span id="export_result"></span>
-	    	</div>
-
+               
 	    	<div class="col-xs-6" style="height: 100%;">
                 <center>
                 <form action="#"" method="post" enctype="multipart/form-data">
-                    Select Excel (.xlsx) file to upload: 
+						Select Excel (.xlsx) file to upload: 
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <input type="submit" value="Upload File" name="submit">
                 </form>

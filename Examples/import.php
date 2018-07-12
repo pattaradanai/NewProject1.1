@@ -69,13 +69,13 @@ if($Aval=='')
 	$i++;
 	break;
 }
-if(!is_float($Cval))
+if($Cval=='')
 {
 	echo "name must be numeric<br>";
 	$i++;
 	continue;
 }
-if(!is_float($Dval))
+if($Dval=='')
 {
 	echo "surname must be numeric<br>";
 	$i++;
@@ -89,7 +89,8 @@ if(!is_float($Eval))
 }
 
 //checking for existing values
-$result= mysql_query("SELECT id FROM questions where title='$Aval' AND topicId='$Cval'",$link) or die(mysql_error());
+
+$result= mysql_query("SELECT * FROM student where studentid='$Aval'") or die(mysql_error());
 // var_dump($result);
 $result = mysql_fetch_array($result);
 // var_dump($result);
@@ -103,7 +104,7 @@ if($result)
 //seeding into the DB
 else
 {
-	$result=mysql_query("INSERT INTO questions VALUES ('','$Aval','$Bval','$Cval','$Dval','$Eval')",$link) or die(mysql_error());
+	$result=mysql_query("INSERT INTO student VALUES ('','$Aval','$Bval','$Cval','$Dval','$Eval')",$conn) or die(mysql_error());
 	echo $i-1, " Record Added<br>";
 }
 $i++;
